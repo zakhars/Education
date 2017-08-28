@@ -71,6 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\;</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -142,7 +143,77 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Books\CLRS\Cormen_Chapter01.cpp" />
+    <ClCompile Include="..\Challenges\Personal\BubbleSort.cpp" />
+    <ClCompile Include="..\Challenges\Personal\InvertMostSign.cpp" />
+    <ClCompile Include="..\Challenges\Personal\ListReverse.cpp" />
+    <ClCompile Include="..\Common\Source\MinUnit.cpp" />
+    <ClCompile Include="..\Coursera\Stanford_Algorithms\Coursera_AlgStanford_Week01_Task01.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task01.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task02.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task03.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task04.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task05.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task06.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task07.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task08.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task01.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task02.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task03.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task04.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task05.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task06.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task07.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task08.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task09.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task10.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task11.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task12.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task13.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task14.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task15.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task16.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task17.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task18.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week03_Task01.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week03_Task02.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week03_Task03.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week03_Task04.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week03_Task05.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week03_Task06.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week03_Task07.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week03_Task08.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task01.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task02.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task03.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task04.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task05.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task06.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task07.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task08.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task09.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task10.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task11.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task12.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task13.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task14.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task15.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task16.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week05_Task01.cpp" />
+    <ClCompile Include="..\Experiments\Alloc.cpp" />
+    <ClCompile Include="..\Experiments\Exceptions.cpp" />
+    <ClCompile Include="..\Experiments\Inheritance.cpp" />
+    <ClCompile Include="..\Experiments\PerfTests.cpp" />
+    <ClCompile Include="..\Experiments\SharedPtr.cpp" />
+    <ClCompile Include="..\Multithreading\SimpleThread.cpp" />
+    <ClCompile Include="..\Networks\Curl_GetPhoneBalance.cpp" />
+    <ClCompile Include="..\Networks\Sockets_SimpleServer.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Challenges\Hackerrank\CTCI.h" />
+    <ClInclude Include="..\Common\MinUnit.h" />
+    <ClInclude Include="..\Common\Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

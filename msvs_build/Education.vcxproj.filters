@@ -1,18 +1,250 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Coursera">
+      <UniqueIdentifier>{16a6a097-e585-4bfd-adf5-08a38541e7dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    <Filter Include="Coursera\Yandex_CppWhite">
+      <UniqueIdentifier>{89bb0eba-25c2-4797-b5f8-e748339c150e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Coursera\Stanford_Algorithms">
+      <UniqueIdentifier>{dacad202-5962-49d4-8701-9a3217bfbbed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Books">
+      <UniqueIdentifier>{2d072686-634f-4757-845d-5d22f9f35ff8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Books\CLRS">
+      <UniqueIdentifier>{f71c80a3-546e-47f6-bfa6-6a72108054b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Challenges">
+      <UniqueIdentifier>{a9b56b1d-67fe-486f-89a7-f466d9417540}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Challenges\Hackerrank">
+      <UniqueIdentifier>{f3b807c7-8ece-4b92-90a6-fed3de61b67b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Challenges\Personal">
+      <UniqueIdentifier>{c670f1df-ea24-4ad8-9578-12d762c73998}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{087db006-c9e5-4e7d-9dd3-b71e25f292c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Experiments">
+      <UniqueIdentifier>{f8600929-fc5e-463e-8016-7f5a2e660bda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Multithreading">
+      <UniqueIdentifier>{597d074c-9806-4034-b451-1bceb6976a1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Networks">
+      <UniqueIdentifier>{22acc70e-a1d5-476d-b445-40d56373cd06}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task01.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
     </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task02.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task03.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task04.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task05.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task06.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task07.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task08.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task01.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task02.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task03.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task04.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task05.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task06.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task07.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task08.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task09.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task10.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task11.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task12.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task13.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task14.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task15.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task16.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task17.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week02_Task18.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week03_Task01.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week03_Task02.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week03_Task03.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week03_Task04.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week03_Task05.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week03_Task06.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week03_Task07.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week03_Task08.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task01.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task02.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task03.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task04.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task05.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task06.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task07.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task08.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task09.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task10.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task11.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task12.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task13.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task14.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task15.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task16.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week05_Task01.cpp">
+      <Filter>Coursera\Yandex_CppWhite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Stanford_Algorithms\Coursera_AlgStanford_Week01_Task01.cpp">
+      <Filter>Coursera\Stanford_Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Books\CLRS\Cormen_Chapter01.cpp">
+      <Filter>Books\CLRS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Challenges\Personal\BubbleSort.cpp">
+      <Filter>Challenges\Personal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Challenges\Personal\InvertMostSign.cpp">
+      <Filter>Challenges\Personal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Challenges\Personal\ListReverse.cpp">
+      <Filter>Challenges\Personal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Source\MinUnit.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Experiments\Alloc.cpp">
+      <Filter>Experiments</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Experiments\Exceptions.cpp">
+      <Filter>Experiments</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Experiments\Inheritance.cpp">
+      <Filter>Experiments</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Experiments\PerfTests.cpp">
+      <Filter>Experiments</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Experiments\SharedPtr.cpp">
+      <Filter>Experiments</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Multithreading\SimpleThread.cpp">
+      <Filter>Multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Networks\Curl_GetPhoneBalance.cpp">
+      <Filter>Networks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Networks\Sockets_SimpleServer.cpp">
+      <Filter>Networks</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Challenges\Hackerrank\CTCI.h">
+      <Filter>Challenges\Hackerrank</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\MinUnit.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Timer.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
