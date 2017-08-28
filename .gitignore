@@ -30,3 +30,15 @@
 *.exe
 *.out
 *.app
+
+# MS Visual Studio common filters
+.vs/
+Debug/
+Release/
+x64/
+*/x64/
+ipch/
+packages/
+*.VC.db
+*.sdf
+*.opendb
