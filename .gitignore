@@ -42,3 +42,4 @@ packages/
 *.VC.db
 *.sdf
 *.opendb
+.idea

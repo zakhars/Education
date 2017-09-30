@@ -235,6 +235,15 @@
     <ClCompile Include="..\Networks\Sockets_SimpleServer.cpp">
       <Filter>Networks</Filter>
     </ClCompile>
+    <ClCompile Include="..\Challenges\Personal\FizzBuzz.cpp">
+      <Filter>Challenges\Personal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Challenges\Personal\ListRotate.cpp">
+      <Filter>Challenges\Personal</Filter>
+    </ClCompile>
+    <ClCompile Include="Palindrome.cpp">
+      <Filter>Challenges\Personal</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Challenges\Hackerrank\CTCI.h">
