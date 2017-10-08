@@ -1050,7 +1050,6 @@ if hasattr(earth, 'mass'):
     print(earth.mass)
 
 #Constructor:
-
 class Planet5:
     def __new__(cls, *args, **kwargs):
         print('__new__ called')
@@ -1348,3 +1347,601 @@ for _ in range(1000):
 """
 print(timeit.timeit(stmt=s2, number=1))
 # 1000 loops, best of 3: 78.3 us per loop
+
+
+#MAGIC METHODS
+
+#__init__, ___new__, __str__ already described above
+
+#__hash__, __eq__
+
+class User:
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+
+    def __hash__(self):
+        return hash(self.email)
+
+    def __eq__(self, other):
+        return self.email == other.email
+
+john = User('John', 'john@mail.ru')
+jack = User('Jack', 'john@mail.ru')
+
+print(john == jack) #True
+
+print(hash(john)) # 125274383719749823
+print(hash(jack)) # 125274383719749823
+
+#__getattr__: defines behavior when attribute not found, called only when attr not found
+#__getattribute__: called always when we access to attribute. We can, e.g. log access to attribute
+
+class Researcher:
+    def __getattr__(self, name):
+        return 'Nothing found'
+
+    def __getattribute__(self, name):
+        print('Looking for {}'.format(name)) #override
+        return object.__getattribute__(self, name)  #call original __getattribute__
+
+obj = Researcher()
+
+print(obj.attr)
+#Loking for attr
+#Nothing found
+obj.myattr = 1
+print(obj.myattr)
+#Loking for method
+#1
+
+#__setattr__
+class Ignorant:
+    def __setattr__(self, name, value):
+        print('Not gonna set {}'.format(name))
+
+obj = Ignorant()
+
+obj.myattr = '3.14'
+# Not gonna set myattr
+
+#print(obj.myattr)
+#AttributeError: 'Ignorant' object has no attribute 'myattr'
+
+#__delattr__
+#We can delete or not delete attribute in this method
+
+class Deleter:
+    def __delattr__(self, item):
+        value = getattr(self, item)
+        print(f'Goodbye {item}, you were {value}')
+        object.__delattr__(self, item)
+
+obj = Deleter()
+obj.myattr = 10
+del obj.myattr
+#Goodbye myattr, you were 10
+
+#__call__
+#Called when class is called
+
+class Logger:
+    def __init__(self, filename):
+        self.filename = filename
+
+    def __call__(self, func):
+        with open(self.filename, 'w') as f:
+            f.write('Oh yes!')
+        return func
+logger = Logger('log.txt')
+@logger
+def useless_func():
+    pass
+useless_func() # will do nothing but will log 'Oh yes!' to a file
+
+#__add__, __sub__
+#Redefine +/-
+import random
+class NoisyInt:
+    def __init__(self, val):
+        self.val = val
+    def __add__(self, other):
+        noise = random.randint(1,10)
+        return self.val + other.val + noise
+a = NoisyInt(10)
+b = NoisyInt(20)
+for _ in range(3):
+    print(a+b)
+#40
+#39
+#35
+
+#__getitem__, __setitem__
+#Defines object behavior during access by index
+#Defines object behavior during setting value by index
+class PascalArray:
+    def __init__(self, other_list = None):
+        self.lst = other_list or []
+    def __getitem__(self, key):
+        return self.lst[key-1]
+    def __setitem__(self, key, value):
+        self.lst[key-1] = value
+orig_lst = [1,3,5,7,9]
+pascal_array = PascalArray(orig_lst)
+pascal_array[4] = 8
+print(pascal_array[3], pascal_array[4]) #5, 8
+
+
+
+#ITERATORS
+
+for number in range(5):
+    print(number)
+
+for letter in 'python':
+    print(letter)
+
+for item in [1,2,3]:
+    print(item)
+
+iterator = iter([1,2,3])
+print(next(iterator))
+print(next(iterator))
+print(next(iterator))
+#print(next(iterator)) raises StopIteration that means we should e.g. break for loop
+
+
+#Writting own iterator: implement __iter__ and __next__
+class SquareIter:
+    def __init__(self, start, end):
+        self.current = start
+        self.end = end
+    def __iter__(self):
+        return self
+    def __next__(self):
+        if self.current >= self.end:
+            raise StopIteration
+        result = self.current ** 2
+        self.current += 1
+        return result
+
+for num in SquareIter(1,4):
+    print(num)
+#1,4,9
+
+
+#CONTEXT MANAGERS (with...)
+
+#To define own context manager we need to redefine 2 magic methods __enter__ and __exit__
+
+class open_file:
+    def __init__(self, filename, mode):
+        self.f = open(filename, mode)
+    def __enter__(self):
+        return self.f #for using "as f" if needed
+    def __exit__(self, *args):
+        self.f.close()
+with open_file('log.txt', 'w') as f:
+    f.write('Hello from context manager')
+
+# Context managers are useful for exceptions
+class suppress_exception:
+    def __init__(self, exc_type):
+        self.exc_type = exc_type
+    def __enter__(self):
+        return
+        #pass also valid
+    def __exit__(self, exc_type, exc_val, trackback):
+        if exc_type == self.exc_type:
+            print('Nothing happened')
+            return True #mandatory to not re-throw exception
+with suppress_exception(ZeroDivisionError):
+    a = 1 / 0
+    #Nothing happened
+
+#Exception suppressing already exists in library
+import contextlib
+with contextlib.suppress(ValueError):
+    raise ValueError
+
+#Useful application:
+import time
+class timer:
+    def __init__(self):
+        self.start = time.time()
+    def get_ellapsed(self):
+        return time.time() - self.start
+    def __enter__(self):
+        return self
+    def __exit__(self, *args):
+        print('Ellapsed: {}'.format(t.get_ellapsed()))
+with timer() as t:
+    time.sleep(0.1)
+    print('Current: {}'.format(t.get_ellapsed()))
+    time.sleep(0.1)
+
+
+#DESCRIPTORS
+#Allow to work classes, objects, methods
+
+#Contain up to 3 methods:
+class Descriptor: #name can be any
+    def __get__(self, obj, obj_type):
+        print('get')
+    def __set__(self, obj, obj_value):
+        print('set')
+    def delete(self, obj):
+        print('delete')
+
+class MyClass:
+    attr = Descriptor()
+
+instance = MyClass()
+instance.attr #get
+instance.attr = 5 #set
+#del instance.attr #delete
+
+#Descriptors allow to redefine classes behavior invisibly for users
+#Example:
+class Value:
+    def __init__(self):
+        self.value = None
+    @staticmethod
+    def _prepare_value(val):
+        return val * 10
+    def __get__(self, obj, obj_type):
+        return self.value
+    def __set__(self, obj, value):
+        self.value = self._prepare_value(value)
+
+class MyVal:
+    attr = Value()
+
+myval = MyVal()
+myval.attr = 10
+print(myval.attr) #100
+
+#Example: descriptor which saves all assignments to file
+
+class ImportantValue:
+    def __init__(self, amount):
+        self.amount = amount
+    def __get__(self, obj, obj_type):
+        """
+        What will be in obj and obj_type:
+        class Descriptor:
+            def __get__(self, obj, obj_type):
+                pass
+
+        class Class:
+            attr = Descriptor()
+
+        new_obj = Class()
+        print(new_obj.attr)
+
+        obj -> new_obj, obj_type -> Class
+        """
+        return self.amount
+    def __set__(self, obj, value):
+        with open('log.txt', 'a') as f:
+            f.write('{}\n'.format(value))
+        self.amount = value
+
+class Account:
+    amount = ImportantValue(100)
+
+bobs_account = Account()
+bobs_account.amount = 150 #This change is logged to a file
+
+#Bound methods/unbound methods (functions):
+class Class:
+    def __init__(self):
+        self.a = 5
+    def method(self):
+        print(self.a)
+
+class_instance = Class()
+
+print(class_instance.method) #<bound method Class.method of <__main__.Class object at 0x0000000002DD9C50>>
+print(Class.method) #<function Class.method at 0x0000000002DE6620>
+#Same method returns different objects depending ont he way it accessed
+class_instance.method() #5
+Class.method(class_instance) #5
+
+#Property, ClassMethod and StaticMethod are descriptors
+
+
+#SLOTS
+
+#Limits the possible class attributes with some predefined dict
+
+class Class1:
+    __slots__ = ['name']
+    def __init__(self):
+        self.name = 'Vasya'
+
+obj1 = Class1()
+#obj1.familyname = 'Petrov' #AttributeError: 'Class1' object has no attribute 'familyname'
+
+#Slots implemented as descriptors for each attribute
+
+
+#METACLASSES
+
+#Class which creates other classes
+
+class Class2:
+    pass
+
+obj = Class2()
+
+print(type(obj)) # <class '__main__.Class2'>
+print(type(Class2)) #'type' - it creates our class. 'type' is metaclass - it creates other classes
+print(type(type)) #'type' - recursive closure
+
+#Creation and inheritance are different:
+print(issubclass(Class2, type)) #False
+print(issubclass(Class2, object)) #True
+
+#Create class on-the-fly:
+NewClass = type('NewClass', (), {}) #class without parents and attrs
+print(NewClass) #<class '__main__.NewClass'>
+print(NewClass()) #<__main__.NewClass object at 0x0000000003931A90>
+
+#Create our own meta-class
+class Meta(type):
+    def __new__(cls, name, parents, attrs):
+        print('Creating {}'.format(name))
+
+        if 'class_id' not in attrs:
+            attrs['class_id'] = name.lower()
+
+        return super().__new__(cls, name, parents, attrs)
+
+
+class A(metaclass=Meta):
+    pass
+#Creating A
+
+
+class Meta2(type):
+    def __init__(cls, name, bases, attrs):
+        print('Initializing — {}'.format(name))
+
+        if not hasattr(cls, 'registry'):
+            cls.registry = {}
+        else:
+            cls.registry[name.lower()] = cls
+
+        super().__init__(name, bases, attrs)
+
+class Base(metaclass=Meta2): pass
+class A2(Base): pass
+class B(Base): pass
+#Initializing — Base
+#Initializing — A2
+#Initializing — B
+print(Base.registry) #{'a': <class '__main__.A'>, 'b': <class '__main__.B'>}
+print(Base.__subclasses__()) #[<class '__main__.A'>, <class '__main__.B'>]
+
+
+#ABSTRACT METHODS
+
+from abc import ABCMeta, abstractmethod
+
+class Sender(metaclass=ABCMeta):
+    @abstractmethod
+    def send(self):
+        """Do something"""
+
+class Child(Sender): pass
+#Child()
+#TypeError: Can't instantiate abstract class Child with abstract methods send
+class Child2(Sender):
+    def send(self):
+        print('Sending')
+print(Child2()) #<__main__.Child2 at 0x110cfa860>
+
+#Better to use the following form of abstract class:
+class PythonWay:
+    def send(self):
+        raise NotImplementedError
+
+
+#DEBUGGING
+
+def f():
+    #import pdb
+    #pdb.set_trace()
+    #type: step, next, ll, b [line], continue, p, ..., q, help, help [command]
+    a = 1
+f()
+
+#Another way:
+#python -m pdb <code.py>
+
+
+#UNITTESTS
+
+# test_python.py
+
+import unittest
+
+class TestPython(unittest.TestCase):
+    def test_float_to_int_coercion(self):
+        self.assertEqual(1, int(1.0))
+
+    def test_get_empty_dict(self):
+        self.assertIsNone({}.get('key'))
+
+    def test_trueness(self):
+        self.assertTrue(bool(10))
+
+    def test_integer_division(self):
+        self.assertIs(10 / 5, 2)
+
+#To run:
+#>> python3 - m unittest test_python.py
+
+
+# Another example with setUp and mock
+
+"""
+import requests
+
+class Asteroid:
+    BASE_API_URL = 'https://api.nasa.gov/neo/rest/v1/neo/{}?api_key=DEMO_KEY'
+
+    def __init__(self, spk_id):
+        self.api_url = self.BASE_API_URL.format(spk_id)
+
+    def get_data(self):
+        pass
+        return requests.get(self.api_url).json()
+
+    @property
+    def name(self):
+        return self.get_data()['name']
+
+    @property
+    def diameter(self):
+        return int(self.get_data()['estimated_diameter']['meters']['estimated_diameter_max'])
+
+    @property
+    def closest_approach(self):
+        closest = {
+            'date': None,
+            'distance': float('inf')
+        }
+        for approach in self.get_data()['close_approach_data']:
+            distance = float(approach['miss_distance']['lunar'])
+            if distance < closest['distance']:
+                closest.update({
+                    'date': approach['close_approach_date'],
+                    'distance': distance
+                })
+        return closest
+
+apophis = Asteroid(2099942)
+
+print(f'Name: {apophis.name}')
+print(f'Diameter: {apophis.diameter}m')
+Name: 99942 Apophis (2004 MN4)
+Diameter: 682m
+
+import json
+import unittest
+from unittest.mock import patch
+
+from asteroid import Asteroid
+
+
+class TestAsteroid(unittest.TestCase):
+    def setUp(self): #Method runs before each test case. Also there is a tearDown method 
+        self.asteroid = Asteroid(2099942)
+
+    def mocked_get_data(self):
+        with open('apophis_fixture.txt') as f: #file contains json downloaded before 
+            return json.loads(f.read())
+
+    @patch('asteroid.Asteroid.get_data', mocked_get_data) #Decorator replaces given method with mock  
+    def test_name(self):
+        self.assertEqual(self.asteroid.name, '99942 Apophis (2004 MN4)')
+
+    @patch('asteroid.Asteroid.get_data', mocked_get_data)
+    def test_diameter(self):
+        self.assertEqual(self.asteroid.diameter, 682)
+
+print(f'Date: {apophis.closest_approach["date"]}')
+print(f'Distance: {apophis.closest_approach["distance"]:.2} LD')
+
+"""
+
+
+#PROCESSES
+#Commands: top, ps aux | grep <your_process>, lsof (show open files, including stdin, stdout, stderr - 0,1,2), strace -p <pid> (system calls)
+
+import os
+print(os.getpid())
+
+#Fork - creates copy of parent process, with all resources and same code
+#This code works in *nix:
+"""
+import os
+import time
+
+pid = os.fork()
+
+if pid == 0: # we're in child process
+    while True:
+        print('child', os.getpid())
+        time.sleep(2)    
+else: #parent process
+    print('parent', os.getpid())
+    os.wait() #sleep until all child processes finish
+
+>> python ex.py
+parent 2411
+child 2412
+
+ps axf | grep ex.py
+
+|  \_python3 ex.py
+|     \_python3 ex.py  
+|  \_grep ex.py
+
+
+# Memory for parent and child process is different: 
+foo = 'bar'
+pid = os.fork()
+if pid == 0: #child
+    foo = "baz"
+    print('child:', foo)
+else:
+    print('parent:', foo)
+    
+>> python ex.py
+parent: bar
+child: baz        
+
+Not only memory but also file descriptors are copied when we call fork.
+
+f.readline() #in parent process -> line1
+pid = fork()
+if pid == 0: #child
+    f.readline() #read line 2
+else: #parent
+    f.readline() #read line 2 too    
+ 
+Fork can return error, it should be checked.
+It is easier to use module multiprocessing
+
+   
+"""
+
+from multiprocessing import Process, freeze_support
+
+def fp(name):
+    print('Hello,', name)
+
+if __name__ == '__main__':
+    freeze_support()
+    p = Process (target = fp, args = ('Bob',))
+    p.start() #hides fork() or other type of process creation
+    p.join() #hides os.wait()
+
+#Another way to create process:
+
+class MyProcess(Process):
+    def __init__(self, name):
+        super().__init__()
+        self.name = name
+
+    def run(self): #override
+        print('Hello, ', self.name)
+
+if __name__ == '__main__':
+    freeze_support()
+    p = MyProcess('Mike')
+    p.start()
+    p.join()
