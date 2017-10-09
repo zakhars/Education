@@ -1945,3 +1945,42 @@ if __name__ == '__main__':
     p = MyProcess('Mike')
     p.start()
     p.join()
+
+
+#Threads
+
+from threading import Thread
+
+def ft(name):
+    print('Hello from thread,', name)
+
+thread1 = Thread(target = ft, args = ('Bob',))
+thread1.start()
+thread1.join()
+
+class MyThread(Thread):
+    def __init__(self, name):
+        super().__init__()
+        self.name = name
+
+    def run(self):
+        print('Hello from thread,', self.name)
+
+thread2 = MyThread('Mike')
+thread2.start()
+thread2.join()
+
+#Thread pool
+
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+def ftp(a):
+    return a * a
+
+# .shutdown() on exit
+with ThreadPoolExecutor(max_workers = 3) as pool:
+    results = [pool.submit(ftp, i) for i in range(10)]
+
+    for future in as_completed(results):
+        print(future.result())
+# results will be mixed in order (4, 1, 0, 9, 25...)
