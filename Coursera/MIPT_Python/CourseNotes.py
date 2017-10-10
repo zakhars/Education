@@ -1919,10 +1919,11 @@ It is easier to use module multiprocessing
    
 """
 
+"""
 from multiprocessing import Process, freeze_support
 
 def fp(name):
-    print('Hello,', name)
+    print('Hello from process,', name)
 
 if __name__ == '__main__':
     freeze_support()
@@ -1938,14 +1939,14 @@ class MyProcess(Process):
         self.name = name
 
     def run(self): #override
-        print('Hello, ', self.name)
+        print('Hello from process, ', self.name)
 
 if __name__ == '__main__':
     freeze_support()
     p = MyProcess('Mike')
     p.start()
     p.join()
-
+"""
 
 #Threads
 
@@ -1984,3 +1985,177 @@ with ThreadPoolExecutor(max_workers = 3) as pool:
     for future in as_completed(results):
         print(future.result())
 # results will be mixed in order (4, 1, 0, 9, 25...)
+
+
+#Queues - preferred way for synchronization instead of locks
+from queue import Queue
+from threading import Thread
+
+def tfq(q, n):
+    while True:
+        item = q.get()
+        if item is None: #There is no way to close process in Python (to avoid inconsistent state) so we're putting special value to queue
+            break
+        print("Process data in thread {}: get item {}".format(n, item))
+
+q = Queue(5) #max number of elements
+th1 = Thread(target=tfq, args=(q, 1))
+th2 = Thread(target=tfq, args=(q, 2))
+th1.start(); th2.start()
+
+for i in range(50):
+    q.put(i) # if size is already 5 the "put" blocks until item is popped from queue
+
+q.put(None)
+q.put(None)
+
+th1.join(); th2.join()
+
+
+#Locks
+
+import threading
+
+#With context manager:
+class Point:
+    def __init__(self):
+        self.mutex = threading.RLock()
+        self.x = 0; self.y = 0
+
+    def get(self):
+        with self.mutex:
+            return (self.x, self.y)
+
+    def set(self, x, y):
+        with self.mutex:
+            self.x, self.y = x, y
+
+#Without context manager:
+
+mutex1 = threading.RLock()
+mutex2 = threading.RLock()
+
+def foo():
+    try:
+        mutex1.acquire()
+        mutex2.acquire()
+        print('Acquire')
+    finally:
+        mutex1.release() #Can cause deadlock if called from different threads since we release in incorrect order
+        mutex2.release()
+        print('Release')
+
+
+threads = [Thread(target=foo) for _ in range(10)]
+
+for td in threads:
+    td.start()
+
+for td in threads:
+    td.join()
+
+
+#Conditional variables
+
+class MyQueue:
+
+    def __init__(self, size=5):
+        self._queue = []
+        self._size = size
+        self._mutex = threading.RLock()
+        self._empty = threading.Condition(self._mutex) #There is default lock object for CV, but for dependent CVs we have to use common lock object
+        self._full  = threading.Condition(self._mutex)
+
+    def put(self, item):
+        with self._full:
+            print('trying to push element')
+            while len(self._queue) >= self._size:
+                print('queue is full, waiting')
+                self._full.wait() #wait until queue is ready to accept new item
+            print('element pushed')
+            self._queue.append(item)
+            self._empty.notify() #notify all other waiting threads that there is item in queue
+
+    def get(self):
+        with self._empty:
+            print('trying to get element')
+            while len(self._queue) == 0:
+                print('queue is empty, waiting')
+                self._empty.wait() #wait for element
+            print('element popped')
+            ret = self._queue.pop(0)
+            self._full.notify() #notify all threads which wait trying to put element into a full queue
+            return ret
+
+myqueue = MyQueue()
+
+def qput():
+    for _ in range(100):
+        myqueue.put(1)
+
+def qget():
+    for _ in range(100):
+        myqueue.get()
+
+threads_put = [Thread(target=qput) for _ in range(10)]
+threads_get = [Thread(target=qget) for _ in range(10)]
+
+for tp, tg in zip(threads_put, threads_get):
+    tp.start()
+    tg.start()
+
+for tp, tg in zip(threads_put, threads_get):
+    tp.join()
+    tg.join()
+
+
+#GIL (Global Interpreter Lock)
+
+#Python's GIL is intended to serialize access to interpreter internals from different threads
+#On multi-core systems, it means that multiple threads can't effectively make use of multiple cores.
+#Note that Python's GIL is only really an issue for CPython, the reference implementation. Jython and IronPython don't have a GIL.
+#C extension writers need to release the GIL when their extensions do blocking I/O, so that other threads in the Python process get a chance to run.
+
+#It is better to execute CPU-bound tasks sequentially
+#It is better to execute I/O-bound tasks or system calls simultaneously in threads
+
+#GIL implemented as threading.Lock (non-recursive)
+#Every thread slips for 5 ms waiting for releasing GIL
+
+#CPU-bound example:
+
+import time
+
+def cpu_bound(count = 10_000_000):
+    while count > 0:
+        count -= 1
+
+t0 = time.time()
+cpu_bound()
+cpu_bound()
+print('Sequential time: ', time.time() - t0)
+
+t0 = time.time()
+tcpu1 = Thread(target = cpu_bound())
+tcpu2 = Thread(target = cpu_bound())
+tcpu1.start(); tcpu2.start()
+tcpu1.join(); tcpu2.join()
+print('Parallel time: ', time.time() - t0)
+
+#Sequential time:  1.4420826435089111
+#Parallel time:  1.9200959205627441
+
+# как выполняется поток?
+
+"""
+
+a      r      a            r              a          r    a
+  run  |------|    run     |--------------|   run    |----| run
+------>|  IO  |----------->|      IO      |--------->| IO |----->
+       |------|            |--------------|          |----|
+a      r      a            r              a          r    a
+
+a - acquire GIL
+r - release GIL
+
+"""
