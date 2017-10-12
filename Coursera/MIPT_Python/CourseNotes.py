@@ -2159,3 +2159,64 @@ a - acquire GIL
 r - release GIL
 
 """
+
+
+#SOCKETS
+#Sockets are cross-platform mechanism for data exchange between processes which can run on different hosts and can be written on different languages
+#It is implemented via system calls
+
+#Server
+
+import socket
+
+def RunServer():
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.bind(('127.0.0.1', 10001)) #Max port is 65535. Address 127.0.0.1 means server listens only local connections. Empty or 0.0.0.0 means any interface
+    sock.listen(socket.SOMAXCONN) #Parameter means size of queue for incoming connections. If overflow - "connection refused" is returned to client
+    conn, addr = sock.accept() #Blocks until client connects. conn is duplex channel which supports read (recv) and write (send)
+
+    while True:
+        data = conn.recv(buffersize=1024) #1024 is a buffersize
+        if not data: # client closed connection
+            break
+        #process data
+        print(data.decode('utf-8'))
+
+    conn.close()
+    sock.close()
+
+#Client
+
+import socket
+
+
+def RunClient():
+    sock = socket.socket() #socket.AF_INET, socket.SOCK_STREAM are defaults
+    sock.bind(('127.0.0.1', 10001))
+
+    #Sorter form of 2 locks above:
+    sock = socket.create_connection(('127.0.0.1', 10001))
+
+    sock.sendall('ping'.encode('utf-8'))
+    #or: sock.sendall(b'ping')
+    sock.close()
+
+#Using context managers to not forget to close connection and socket
+
+def RunServerWithCM():
+    with socket.socket() as sock:
+        sock.bind(('', 10001))
+        sock.listen()
+
+        while True:
+            conn, addr = sock.accept()
+            with conn:
+                while True:
+                    data = sock.recv(1024)
+                    if not data:
+                        break
+                    print(data.decode('utf-8'))
+
+def RunClientWithCM():
+    with socket.create_connection(('127.0.0.1', 10001)) as sock:
+        sock.sendall(b'ping')
