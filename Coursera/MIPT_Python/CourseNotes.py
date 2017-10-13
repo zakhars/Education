@@ -2212,7 +2212,7 @@ def RunServerWithCM():
             conn, addr = sock.accept()
             with conn:
                 while True:
-                    data = sock.recv(1024)
+                    data = conn.recv(1024)
                     if not data:
                         break
                     print(data.decode('utf-8'))
@@ -2220,3 +2220,91 @@ def RunServerWithCM():
 def RunClientWithCM():
     with socket.create_connection(('127.0.0.1', 10001)) as sock:
         sock.sendall(b'ping')
+
+
+
+#Errors processing with sockets
+
+def RunServerWithCMAndErrorHandling():
+    with socket.socket() as sock:
+        sock.bind(('', 10001))
+        sock.listen()
+        while True:
+            conn, addr = sock.accept()
+            conn.settimeout(5) # timeout = None | 0 | >0. None means blocking forever until receive data (default), 0 - non-clocking mode
+            with conn:
+                while True:
+                    try:
+                        data = conn.recv(1024)
+                    except socket.timeout:
+                        print('Close connection by timeout')
+                        break
+                    if not data:
+                        break
+                    print(data.decode('utf-8'))
+
+def RunClientWithCMAndErrorHandling():
+    with socket.create_connection(('127.0.0.1', 10001, 5)) as sock: # 5 is connect timeout, in case of exceeded just try to reconnect
+        sock.settimeout(2) # 2 is socket read timeout - timeout for all operations with opened socket
+        try:
+            sock.sendall(b'ping')
+        except socket.timeout:
+            print('Send data timeout')
+        except socket.error as ex:
+            print('Send data error', ex)
+
+
+#Multiple connections handling
+
+#sock.accept() blocks all other clients except one
+
+# It is possible to create new process to handle new connection but resources required to create process are
+# greater than resources required to handle connection, especially if we have 1000s connections.
+# If there are few connections - it is normal solution which helps to utilize all CPUs.
+# Another ways is to create threads for new connections, but there are GIL limitations.
+
+def ProcessRequest(conn, addr):
+    print('Connected client', addr)
+    with conn:
+        while True:
+            data = conn.recv(1024)
+            if not data:
+                break
+            print(data.decode('utf-8'))
+
+def RunServerMultiConnectionsThreads():
+    with socket.socket() as sock:
+        sock.bind(('', 10001))
+        sock.listen()
+        while True:
+            conn, addr = sock.accept() #blocks all other clients except one
+            th = threading.Thread(target=ProcessRequest, args=(conn, addr))
+            th.start() #main thread will continue to accept new connections after starting this thread
+            #somewhare later we must call th.join()
+
+#Better way is to use processes and threads together. But in this case call to socket.accept()
+#will awake all our processes and it adds some overhead
+
+import socket
+import threading
+import multiprocessing
+
+def worker(sock):
+    while True:
+        conn, addr = sock.accept()
+        print('pid:', os.getpid())
+        th = threading.Thread(target=ProcessRequest, args=(conn, addr))
+        th.start()
+
+
+def RunServerMultiConnectionsProcessesAndThreads():
+    with socket.socket() as sock:
+        sock.bind(('', 10001))
+        sock.listen()
+        workers_count = 3
+        workers_list = [multiprocessing.Process(target=worker, args=(sock,)) for _ in range(workers_count)]
+        for w in workers_list:
+            w.start()
+        for w in workers_list:
+            w.join()
+
