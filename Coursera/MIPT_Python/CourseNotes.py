@@ -2308,3 +2308,73 @@ def RunServerMultiConnectionsProcessesAndThreads():
         for w in workers_list:
             w.join()
 
+
+#"PARALLEL" CODE EXECUTION IN ONE THREAD (NON-BLOCKING I/O, MULTIPLEXING) - no process/thread overhead
+
+#SELECT
+
+import socket
+import select
+
+def NonBlockingServer():
+    sock = socket.socket()
+    sock.bind(('', 10001))
+    sock.listen()
+
+    conn1, addr1, = sock.accept()
+    conn2, addr2, = sock.accept()
+
+    #How to process requests for conn1 and conn2 simultaneously but without processes/threads
+
+    #Switch to non-blocking mode
+    #If we then try to call conn.recv but there is not data - the call will not block but will return system error about data absence
+    conn1.setblocking(0) #equal to settimeout(0.0)
+    conn2.setblocking(0)
+
+    #How to know which sockets are ready for reading and which are ready for writing?
+    #In Linux:
+    """
+    epoll = select.epoll()
+    epoll.register(conn1.fileno(), select.EPOLLIN | select.EPOLLOUT)
+    epoll.register(conn2.fileno(), select.EPOLLIN | select.EPOLLOUT)
+
+    conn_map = {
+        conn1.fileno(): conn1,
+        conn2.fileno(): conn2,
+        }
+    
+    while True:
+        events = epoll.poll(1)
+    
+    for fileno, event in events:
+        if event & select.EPOLLIN:
+            # Read from socket
+            data=conn_map[fileno].recv(1024)
+            print(data.decode("utf8"))
+        elif event & select.EPOLLOUT:
+            # Write to socket
+            conn_map[fileno].send("pong".encode("utf8"))        
+    """
+
+    #In Windows
+    """
+    connList = [conn1.fileno(), conn1.fileno()]
+    sel = select.select(rlist = connList , wlist = connList , xlist = connList) #In Linux there will be select.epoll
+    ...
+    See:
+    http://steelkiwi.com/blog/working-tcp-sockets/
+    """
+
+#Framework hides all logic with select:
+#Twisted, callback api
+#https://twistedmatrix.com
+#Gevent, greenlet, stackless python
+#http://www.gevent.org/
+#Tornado, generators api
+#http://www.tornadoweb.org
+#Asyncio, mainstream
+#https://docs.python.org/3/library/asyncio.html
+
+
+
+
