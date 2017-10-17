@@ -2376,5 +2376,44 @@ def NonBlockingServer():
 #https://docs.python.org/3/library/asyncio.html
 
 
+#ITERATORS AND GENERATORS
 
+#Iterator:
 
+class MyRangeIterator:
+    def __init__(self, top):
+        self.top = top
+        self.current = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.current >= self.top:
+            raise StopIteration
+        current = self.current
+        self.current += 1
+        return current
+
+mycounter = MyRangeIterator(3)
+print(mycounter )
+#<__main__.MyRangeIterator object at 0x035E4370>
+
+for it in mycounter: #__iter__ called, then __next__ called each round
+    print(it)
+#0 1 2
+
+#Generator
+
+def MyRangeGenrator(top):
+    current = 0 #just local variable, no state (it is saved on stack during yield
+    while current < top:
+        yield current #yield makes function generator, its stop flow, saves stack frame and returns value. Next time it restores stack and continues
+        current += 1
+
+mygenerator = MyRangeGenrator(3) #this doesn't call function, but creates object
+print(mygenerator)
+#<generator object MyRangeGenrator at 0x03C82C30>
+for g in mygenerator:
+    print(g)
+#0 1 2
