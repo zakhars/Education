@@ -1,4 +1,4 @@
-#USEFUL INFO
+# USEFUL INFO
 
 help(print) #any object
 print.__doc__
@@ -7,53 +7,52 @@ print.__doc__
     Multiline comment or doc
 """
 
-#BASIC TYPES
+# BASIC TYPES
 
-#Integers has unlimited size
-a = 23134327514327865381276483124832984102394321
-
-a = 13
+a = 23134327514327865381276483124832984102394321 # integer has unlimited size
 type(a) #<class 'int'>
 
 b = 100_123_234
 c = 100_234.567_891
 
 d = 1.5e2
-type(d) #<class 'float'>
+type(d) # <class 'float'>
 
+# Explicit cast
 e = int(d)
 f = float(a)
 
 import decimal
 import fractions
 
-a = 4.2 + 1 # = 5.2 #float
+a = 4.2 + 1 # =5.2 #float
 
-a = 2/4 # = 0.5 (always float)
+a = 2/4 # =0.5 (always float)
 
-a = 2 ** 4 #= 16
-a = 9 ** 0.5 #= 3
+# Power
+a = 2 ** 4 # =16
+a = 9 ** 0.5 # =3
 
 a = 10 // 3 #= 3
 
-a = 10 % 3 # = 1
+a = 10 % 3 # =1
 
 x = 3
 y = 4
 z = x ^ y, x & y, x | y, x << 2, y >> 1, ~x
 
-#swap:
+# Swap:
 a = 1
 b = 2
 a, b = b, a
 
-#Primitive types are immutable
+# Primitive types are immutable
 a = b = 1
 a += 1
 print(a) #2
 print(b) #1
 
-#Mutable:
+# Mutable:
 x = y = []
 x.append(1)
 print(x) #[1]
@@ -62,7 +61,7 @@ print(y) #[1]
 b = True
 type(b) #<class 'bool'>
 
-2 == 2 #= True
+2 == 2 # =True
 
 x = 2
 print(1 < x < 3) #True
@@ -148,7 +147,7 @@ for c in s:
 #'e'
 
 num_str = str(99.01) #'99.01'
-type(s) # <class 'str'>
+type(num_str) # <class 'str'>
 
 bool("nonempty") #True
 bool('') #False
@@ -391,7 +390,7 @@ print(opcode.opmap)
 empty_list1 = []
 empty_list2 = list()
 
-#can have various objects but usually single
+#can have various objects but usually one type
 lst = [10, 'str', [1, 2]]
 
 # 10 equal items
@@ -406,7 +405,7 @@ chars[-1] == 'd'
 
 'b' in chars #True
 
-#init from range
+#init from range (iterator)
 range_lst = list(range(10))
 
 #reverse list
@@ -424,7 +423,7 @@ for idx, c in enumerate(collections):
 #2 dict
 
 collections.append('tuple')
-collections.extend(['tuple', 'frozenset']) #new list added to the end
+collections.extend(['tuple', 'frozenset']) #new list contents added to the end
 collections += ['tuple', 'frozenset'] #equal
 collections += 'tuple' #NOT equal - adds 5 new items: 't', 'u' ...
 
@@ -434,9 +433,7 @@ print(', '.join(collections)) #set, list, dict, tuple, tuple
 
 sorted(collections) # return copy
 collections.sort() #in-place sort
-
 sorted(collections, reverse=True)
-
 print(reversed(collections))
 #<list_reverseiterator object at 0x132431243>
 print(list(reversed(collections))) #reversed is iterator
@@ -445,7 +442,7 @@ print(list(reversed(collections))) #reversed is iterator
 # zip
 questions = ['name', 'quest', 'favorite color']
 answers = ['lancelot', 'the holy grail', 'blue']
-for q, a in zip(questions, answers):
+for q, a in zip(questions, answers): #any number of containers, num of elements equal to shorter container size
     print('What is your {0}?  It is {1}.'.format(q, a))
 
 
@@ -486,7 +483,7 @@ collections_map = {
     }
 print(collections_map['immutable'])
 
-print('elem' in collections_map)
+print('elem' in collections_map) #searches in .keys
 print('elem' in collections_map.keys())
 print('elem' in collections_map.values())
 print(('elem', 'val') in collections_map.items())
@@ -524,7 +521,7 @@ print(lst_items) #now list of tuples
 #[('mutable', ['set', 'list']), ('immutable', ['tuple', 'frozenset')]
 
 from collections import OrderedDict
-ordered  = OrderedDict() # same as std::map C++
+ordered  = OrderedDict() # same as std::map in C++
 
 
 #SET
