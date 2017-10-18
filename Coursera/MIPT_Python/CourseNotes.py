@@ -1987,7 +1987,7 @@ with ThreadPoolExecutor(max_workers = 3) as pool:
 # results will be mixed in order (4, 1, 0, 9, 25...)
 
 
-#Queues - preferred way for synchronization instead of locks
+# Queues - preferred way for synchronization instead of locks
 from queue import Queue
 from threading import Thread
 
@@ -2417,3 +2417,228 @@ print(mygenerator)
 for g in mygenerator:
     print(g)
 #0 1 2
+
+#COROUTINES
+
+# Generators produce values, coroutines consume values
+
+
+#Courutine example:
+
+def grep(pattern):
+    print('Start grep')
+    while True:
+        line = yield #difference from generator: here function suspends and waits for data through method 'send'
+        if (pattern in line):
+            print(line)
+
+g = grep('python') #coroutine created (this is also generator)
+next(g) #g.send(None) - starts coroutine, it runs until yield and then flow returns to main (function stack with all local variables is saved) until we send something to coroutine
+#Start grep
+g.send('golang is better')
+g.send('python is simpler')
+#python is simpler
+
+
+#How to stop running coroutine
+
+def grep_stopable(pattern):
+    try:
+        while True:
+            line = yield
+            if (pattern in line):
+                print(line)
+    except GeneratorExit:
+        print('Coroutine stopped')
+
+g = grep_stopable('python')
+g.send(None)
+g.send('python is great!')
+g.close() #throws GeneratorExit exception at the place here coroutine suspended at this moment
+
+#Passing exception to coroutine (it also stops execution)
+
+g = grep_stopable('python')
+next(g) #or g.send(None)
+g.send('python is excellent')
+try:
+    g.throw(RuntimeError, 'Something wrong')
+except RuntimeError:
+    print('Coroutine stopped by exception')
+
+#Call one coroutine from another
+
+def grep_python_coroutine():
+    g = grep('python')
+    next(g)
+    g.send('python is great!')
+    g.close()
+
+g = grep_python_coroutine()
+print(g)
+#None (g is not coroutine, but regular function
+
+def grep_python_coroutine2():
+    g = grep('python')
+    yield from g #delegating the call
+
+g = grep_python_coroutine2()
+print(g)
+#<generator object grep_python_coroutine2 at 0x03E4D150>
+g.send(None)
+g.send('python wow!')
+g.close()
+
+#Using yield from in regular generators:
+
+def chain(x_iterable, y_iterable):
+    yield from x_iterable
+    yield from y_iterable
+
+def the_same_chain(x_iterable, y_iterable):
+    for x in x_iterable:
+        yield x
+    for y in y_iterable:
+        yield y
+
+a1 = [1,2,3]
+b1 = (4,5)
+
+for x in chain(a1, b1):
+    print(x)
+#1,2,3,4,5
+for x in the_same_chain(a1, b1):
+    print(x)
+#1,2,3,4,5
+
+
+
+#ASYNCIO - responsible for non-blocking i/o. Base is generators and corutines. Part of Python library. No callbacks.
+
+#Asyncio Hello, world!
+
+import asyncio
+
+@asyncio.coroutine
+def hello_world():
+    for _ in range(3):
+        print('Hello, world!')
+        yield from asyncio.sleep(0.5) #this is special sleep which suspends coroutine and allows other coroutines to work
+
+loop = asyncio.get_event_loop()
+print(loop)
+#<_WindowsSelectorEventLoop running=False closed=False debug=False>
+loop.run_until_complete(hello_world())
+#loop.close() we don't close it now as it is reused below (see https://stackoverflow.com/questions/43646768/cant-create-new-event-loop-after-calling-loop-close-asyncio-get-event-loop-in-p)
+
+#Event loop is the main concept in asyncio.
+#Event loop is a kind of scheduler of tasks (corouties) which are running in it. It is responsible for i/o,
+#manages signals, network operations, it switches context between coroutines.
+#It is especially effective if some coroutine waits long on i/o - event loop can easily switch to another coroutine.
+#We can run only coroutines in event loop. Synchronous functions can be executed with some tricks (see below) as they block the flow and event loop can't switch context.
+#Event loop runs all coroutines sequentially and switches context between them
+
+#New synthax starting from Python 3.5 and PEP 492: async and await
+
+async def hello_world2():
+    for _ in range(3):
+        print('Hello, world2!')
+        await asyncio.sleep(0.5) #this is special sleep which suspends coroutine and allows other coroutines to work
+#'async' guarantees that function is a coroutine (comparing to @asyncio.coroutine which doesn't guarantee this
+#we can't use yield from inside, but we must use await
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(hello_world2())
+#loop.close()
+
+#Simple TCP server on asyncio
+#This is linear and very clear code, no GIL issues etc.
+
+async def handle_echo(reader, writer):
+    data = await reader.read(1024)
+    message = data.decode()
+    addr = writer.get_extra_info('peername')
+    print('received %r from %r' % (message, addr))
+    writer.close()
+
+def StartServer():
+    loop = asyncio.get_event_loop()
+    coro = asyncio.start_server(handle_echo, '127.0.0.1', 10001, loop=loop)
+    server = loop.run_until_complete(coro)
+    try:
+        loop.run_forever()
+    except KeyboardInterrupt:
+        pass
+    server.close()
+    loop.run_until_complete(server.wait_closed())
+    loop.close()
+
+#Client for server above:
+
+async def tcp_echo_client(message, loop):
+    reader,writer = asyncio.open_connection('127.0.0.1', 10001, loop=loop)
+    print('send %r' % message)
+    writer.write(message.encode())
+    writer.close()
+
+def StartCleint():
+    loop = asyncio.get_event_loop()
+    message = 'Hello, world!'
+    loop.run_until_complete(tcp_echo_client(message, loop))
+    loop.close()
+
+#It is possible to create several clients, connect to several servers etc. And it will be without threads.
+
+
+# asyncio.Future (analogue of concurrent.futures.Future)
+# Future is the object which is still running
+
+async def slow_operation(future):
+    await asyncio.sleep(1)
+    future.set_result('Future is done!')
+
+loop = asyncio.get_event_loop()
+future = asyncio.Future()
+asyncio.ensure_future(slow_operation(future))
+loop.run_until_complete(future)
+print(future.result())
+#Future is done!
+#loop.close()
+
+#Run several coroutines inside single event loop - asyncio.Task (inherits from asyncio.Future)
+
+async def sleep_task(num):
+    for i in range(5):
+        print(f'process task: {num} iter: {i}')
+        await asyncio.sleep(1)
+    return num
+
+#ensure_future or create_task
+loop = asyncio.get_event_loop()
+task_list = [loop.create_task(sleep_task(i)) for i in range(2)]
+
+#3 ways to run:
+loop.run_until_complete(asyncio.wait(task_list))
+loop.run_until_complete(loop.create_task(sleep_task((3))))
+loop.run_until_complete(asyncio.gather(
+    sleep_task(10),
+    sleep_task(20),
+))
+
+#How to run synchronous functions inside event loop?
+
+from urllib.request import urlopen
+
+# synchronous function:
+def sync_get_url(url):
+    return urlopen(url).read()
+
+async def load_url(url, loop=None):
+    future = loop.run_in_executor(None, sync_get_url, url) #runs synchronous function in thread pool
+    response = await future
+    print(len(response))
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(load_url('https://google.com', loop=loop))
+
+#There are several libs in asyncio: aiohttp, aiomysql, aiomcache (see https://github.com/aio-libs)
