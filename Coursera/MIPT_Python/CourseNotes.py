@@ -918,8 +918,8 @@ print(hello())
 #It is a function that contains operator yield
 
 #Generator allows to store function state and return to it every time
-#It doesn't store all range in memory, just stores state
 
+#This particular generator doesn't store all range in memory, just stores state
 def even_range(start, end):
     cur = start
     while cur < end:
