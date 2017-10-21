@@ -13,7 +13,7 @@
 
     Модуль должен содержать классы Client и ClientError.
 
-    �тот unittest поможет вам выполнить задание и пройти проверку на курсере.
+    Этот unittest поможет вам выполнить задание и пройти проверку на курсере.
     Успехов!
 """
 
@@ -57,13 +57,13 @@ class ServerSocket:
         if data in self.rsp_map:
             self.response_buf.append(self.rsp_map[data])
         else:
-            raise ServerSocketException(f"запрос не соответствует протоколу: {data}")
+            raise ServerSocketException(f"request violates protocol: {data}")
 
     def recv(self, bytes_count):
         try:
             rsp = self.response_buf.popleft()
         except IndexError:
-            raise ServerSocketException("нет данных в сокете для чтения ответа")
+            raise ServerSocketException("no data in socket")
 
         return rsp
 
@@ -103,7 +103,7 @@ class TestClient(unittest.TestCase):
                 self.client.put(metric, value, timestamp)
             except ServerSocketException as exp:
                 message = exp.args[0]
-                self.fail(f"Ошибка вызова client.put("
+                self.fail(f"error calling client.put("
                           f"'{metric}', {value}, timestamp={timestamp})\n{message}")
 
     @patch("socket.create_connection", ServerSocket.create_connection)
@@ -113,7 +113,7 @@ class TestClient(unittest.TestCase):
             rsp = self.client.get("test")
         except ServerSocketException as exp:
             message = exp.args[0]
-            self.fail(f"Ошибка вызова client.get('test')\n{message}")
+            self.fail(f"error calling client.get('test')\n{message}")
 
         metrics_fixture = {
             "test": [(1, .5), (2, .4)],
@@ -127,7 +127,7 @@ class TestClient(unittest.TestCase):
             rsp = self.client.get("*")
         except ServerSocketException as exp:
             message = exp.args[0]
-            self.fail(f"Ошибка вызова client.get('*')\n{message}")
+            self.fail(f"error calling client.get('*')\n{message}")
 
         metrics_fixture = {
             "test": [(1, .5), (2, .4)],
@@ -142,7 +142,7 @@ class TestClient(unittest.TestCase):
             rsp = self.client.get("key_not_exists")
         except ServerSocketException as exp:
             message = exp.args[0]
-            self.fail(f"Ошибка вызова client.get('key_not_exists')\n{message}")
+            self.fail(f"error calling client.get('key_not_exists')\n{message}")
 
         self.assertEqual({}, rsp, "check rsp eq {}")
 
@@ -154,4 +154,4 @@ class TestClient(unittest.TestCase):
                               self.client.get, "get_client_error")
         except ServerSocketException as exp:
             message = exp.args[0]
-            self.fail(f"Некорректно обработано сообщение сервера об ошибке: {message}")
+            self.fail(f"server error message processed incorrectly: {message}")

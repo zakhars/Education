@@ -747,6 +747,9 @@ print(type(lambda x: x ** 2))
 numbers = list(range(10))
 print(list(map(str, numbers)))
 
+#Interesting map usage:
+day, month, year = map(int, '12-10-2017'.split('-'))
+
 #functools has very useful helpers!
 import functools
 def mult(a,b):
@@ -949,13 +952,13 @@ num = 13
 print(type(num)) # <class 'int'>
 
 print(isinstance(num, int)) #True
-print(isinstance(num, float)) #false
+print(isinstance(num, float)) #False
 
 class Robot:
     pass
-print(dir(Robot)) # ['__delattr__', '__dict__', '__doc__', '__init__', ...]
+print(dir(Robot)) # ['__class__', '__delattr__', '__dict__', '__doc__', '__init__', ...]
 robot = Robot()
-print(robot) # <__main__.Planet object at 0x10ea82b0>
+print(robot) # <__main__.Robot object at 0x10ea82b0>
 
 #Operate user objects as built-in:
 class MyPlanet:
@@ -1022,11 +1025,11 @@ del human # Goodbye!
 #But better to do some cleanup (close file etc) explicitly in methods because there
 #is not guarantee that del will be called
 
-print(earth.__dict__) # {'name' : Earth, 'ppulation' : [] }
+print(earth.__dict__) # {'name' : Earth, 'population' : [] }
 
 #Adding new member:
 earth.mass = 5.97e24
-print(earth.__dict__) # {'name' : Earth, 'ppulation' : [], 'mass' : 5.97e24 }
+print(earth.__dict__) # {'name' : Earth, 'population' : [], 'mass' : 5.97e24 }
 #Builtin types omit capability to add new member as an optimization
 #Via __slots__, you can also prevent this on user-defined classes.
 #But this is merely a space optimization (no need for a dictionary for every object), not a correctness thing.
@@ -1089,7 +1092,7 @@ class Animal:
 animal = Animal.get_from_puzzle('4-legs friend')
 print(animal.kind)
 
-#Example of @classmethod from  library:
+#Example of @classmethod from library:
 dct = dict.fromkeys("12345")
 
 #@staticmethod
@@ -1521,6 +1524,8 @@ class open_file:
 with open_file('log.txt', 'w') as f:
     f.write('Hello from context manager')
 
+os.remove('log.txt')
+
 # Context managers are useful for exceptions
 class suppress_exception:
     def __init__(self, exc_type):
@@ -1567,7 +1572,7 @@ class Descriptor: #name can be any
         print('get')
     def __set__(self, obj, obj_value):
         print('set')
-    def delete(self, obj):
+    def __delete__(self, obj):
         print('delete')
 
 class MyClass:
@@ -1641,7 +1646,7 @@ class_instance = Class()
 
 print(class_instance.method) #<bound method Class.method of <__main__.Class object at 0x0000000002DD9C50>>
 print(Class.method) #<function Class.method at 0x0000000002DE6620>
-#Same method returns different objects depending ont he way it accessed
+#Same method returns different objects depending on the way it accessed
 class_instance.method() #5
 Class.method(class_instance) #5
 
@@ -1783,8 +1788,8 @@ class TestPython(unittest.TestCase):
 
 # Another example with setUp and mock
 
-"""
-import requests
+import urllib.request
+import json
 
 class Asteroid:
     BASE_API_URL = 'https://api.nasa.gov/neo/rest/v1/neo/{}?api_key=DEMO_KEY'
@@ -1793,8 +1798,9 @@ class Asteroid:
         self.api_url = self.BASE_API_URL.format(spk_id)
 
     def get_data(self):
-        pass
-        return requests.get(self.api_url).json()
+        response = urllib.request.urlopen(self.api_url).read()
+        response = response.decode()
+        return json.loads(response)
 
     @property
     def name(self):
@@ -1823,15 +1829,12 @@ apophis = Asteroid(2099942)
 
 print(f'Name: {apophis.name}')
 print(f'Diameter: {apophis.diameter}m')
-Name: 99942 Apophis (2004 MN4)
-Diameter: 682m
+#Name: 99942 Apophis (2004 MN4)
+#Diameter: 682m
 
 import json
 import unittest
 from unittest.mock import patch
-
-from asteroid import Asteroid
-
 
 class TestAsteroid(unittest.TestCase):
     def setUp(self): #Method runs before each test case. Also there is a tearDown method 
@@ -1851,8 +1854,6 @@ class TestAsteroid(unittest.TestCase):
 
 print(f'Date: {apophis.closest_approach["date"]}')
 print(f'Distance: {apophis.closest_approach["distance"]:.2} LD')
-
-"""
 
 
 #PROCESSES
@@ -2123,7 +2124,7 @@ for tp, tg in zip(threads_put, threads_get):
 
 import time
 
-def cpu_bound(count = 10_000_000):
+def cpu_bound(count = 3_000_000):
     while count > 0:
         count -= 1
 
@@ -2142,7 +2143,7 @@ print('Parallel time: ', time.time() - t0)
 #Sequential time:  1.4420826435089111
 #Parallel time:  1.9200959205627441
 
-# как выполняется поток?
+# How thread runs?
 
 """
 
@@ -2160,25 +2161,23 @@ r - release GIL
 
 #SOCKETS
 #Sockets are cross-platform mechanism for data exchange between processes which can run on different hosts and can be written on different languages
-#It is implemented via system calls
+#They are implemented via system calls
 
 #Server
 
 import socket
 
-def RunServer():
+def RunEchoServer():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.bind(('127.0.0.1', 10001)) #Max port is 65535. Address 127.0.0.1 means server listens only local connections. Empty or 0.0.0.0 means any interface
+    sock.bind(('127.0.0.1', 10001)) #Max port is 65535. Address 127.0.0.1 means server listens only local connections. Empty '' or '0.0.0.0' means any interface
     sock.listen(socket.SOMAXCONN) #Parameter means size of queue for incoming connections. If overflow - "connection refused" is returned to client
     conn, addr = sock.accept() #Blocks until client connects. conn is duplex channel which supports read (recv) and write (send)
-
     while True:
-        data = conn.recv(buffersize=1024) #1024 is a buffersize
+        data = conn.recv(1024) #1024 is a buffer size
         if not data: # client closed connection
             break
         #process data
         print(data.decode('utf-8'))
-
     conn.close()
     sock.close()
 
@@ -2186,25 +2185,21 @@ def RunServer():
 
 import socket
 
-
 def RunClient():
     sock = socket.socket() #socket.AF_INET, socket.SOCK_STREAM are defaults
     sock.bind(('127.0.0.1', 10001))
-
-    #Sorter form of 2 locks above:
-    sock = socket.create_connection(('127.0.0.1', 10001))
-
+    #Shorter form of 2 LOCs above:
+    #sock = socket.create_connection(('127.0.0.1', 10001))
     sock.sendall('ping'.encode('utf-8'))
     #or: sock.sendall(b'ping')
     sock.close()
 
 #Using context managers to not forget to close connection and socket
 
-def RunServerWithCM():
+def RunEchoServerWithCM():
     with socket.socket() as sock:
-        sock.bind(('', 10001))
+        sock.bind(('', 10001)) # '0.0.0.0' or '' means any interface
         sock.listen()
-
         while True:
             conn, addr = sock.accept()
             with conn:
@@ -2217,7 +2212,6 @@ def RunServerWithCM():
 def RunClientWithCM():
     with socket.create_connection(('127.0.0.1', 10001)) as sock:
         sock.sendall(b'ping')
-
 
 
 #Errors processing with sockets
@@ -2258,7 +2252,7 @@ def RunClientWithCMAndErrorHandling():
 # It is possible to create new process to handle new connection but resources required to create process are
 # greater than resources required to handle connection, especially if we have 1000s connections.
 # If there are few connections - it is normal solution which helps to utilize all CPUs.
-# Another ways is to create threads for new connections, but there are GIL limitations.
+# Another way is to create threads for new connections, but there are GIL limitations.
 
 def ProcessRequest(conn, addr):
     print('Connected client', addr)
@@ -2277,7 +2271,8 @@ def RunServerMultiConnectionsThreads():
             conn, addr = sock.accept() #blocks all other clients except one
             th = threading.Thread(target=ProcessRequest, args=(conn, addr))
             th.start() #main thread will continue to accept new connections after starting this thread
-            #somewhare later we must call th.join()
+            #somewhere later we must call th.join()
+
 
 #Better way is to use processes and threads together. But in this case call to socket.accept()
 #will awake all our processes and it adds some overhead
@@ -2289,7 +2284,7 @@ import multiprocessing
 def worker(sock):
     while True:
         conn, addr = sock.accept()
-        print('pid:', os.getpid())
+        print('pid: ', os.getpid())
         th = threading.Thread(target=ProcessRequest, args=(conn, addr))
         th.start()
 
@@ -2373,7 +2368,7 @@ def NonBlockingServer():
 #https://docs.python.org/3/library/asyncio.html
 
 
-#ITERATORS AND GENERATORS
+#ITERATORS VS GENERATORS
 
 #Iterator:
 
@@ -2403,9 +2398,9 @@ for it in mycounter: #__iter__ called, then __next__ called each round
 #Generator
 
 def MyRangeGenrator(top):
-    current = 0 #just local variable, no state (it is saved on stack during yield
+    current = 0 #just local variable, no state (it is saved on stack during yield)
     while current < top:
-        yield current #yield makes function generator, its stop flow, saves stack frame and returns value. Next time it restores stack and continues
+        yield current #yield makes function generator, it stops flow, saves stack frame and returns value. Next time when called it restores stack and continues
         current += 1
 
 mygenerator = MyRangeGenrator(3) #this doesn't call function, but creates object
@@ -2420,12 +2415,12 @@ for g in mygenerator:
 # Generators produce values, coroutines consume values
 
 
-#Courutine example:
+# Coroutine example:
 
 def grep(pattern):
     print('Start grep')
     while True:
-        line = yield #difference from generator: here function suspends and waits for data through method 'send'
+        line = yield # difference from generator: here function suspends and waits for data through method 'send'
         if (pattern in line):
             print(line)
 
@@ -2473,7 +2468,7 @@ def grep_python_coroutine():
 
 g = grep_python_coroutine()
 print(g)
-#None (g is not coroutine, but regular function
+#None (g is not coroutine, but regular function)
 
 def grep_python_coroutine2():
     g = grep('python')
@@ -2486,12 +2481,13 @@ g.send(None)
 g.send('python wow!')
 g.close()
 
-#Using yield from in regular generators:
+# Using 'yield from' in regular generators:
 
 def chain(x_iterable, y_iterable):
     yield from x_iterable
     yield from y_iterable
 
+# Another way to do the same:
 def the_same_chain(x_iterable, y_iterable):
     for x in x_iterable:
         yield x
@@ -2510,7 +2506,7 @@ for x in the_same_chain(a1, b1):
 
 
 
-#ASYNCIO - responsible for non-blocking i/o. Base is generators and corutines. Part of Python library. No callbacks.
+#ASYNCIO - responsible for non-blocking i/o. Base is generators and coroutines. Part of Python library. No callbacks.
 
 #Asyncio Hello, world!
 
@@ -2535,12 +2531,12 @@ loop.run_until_complete(hello_world())
 #We can run only coroutines in event loop. Synchronous functions can be executed with some tricks (see below) as they block the flow and event loop can't switch context.
 #Event loop runs all coroutines sequentially and switches context between them
 
-#New synthax starting from Python 3.5 and PEP 492: async and await
+#New syntax starting from Python 3.5 and PEP 492: async and await
 
 async def hello_world2():
     for _ in range(3):
         print('Hello, world2!')
-        await asyncio.sleep(0.5) #this is special sleep which suspends coroutine and allows other coroutines to work
+        await asyncio.sleep(0.5)
 #'async' guarantees that function is a coroutine (comparing to @asyncio.coroutine which doesn't guarantee this
 #we can't use yield from inside, but we must use await
 
@@ -2555,7 +2551,7 @@ async def handle_echo(reader, writer):
     data = await reader.read(1024)
     message = data.decode()
     addr = writer.get_extra_info('peername')
-    print('received %r from %r' % (message, addr))
+    print(f'received {message} from {addr}')
     writer.close()
 
 def StartServer():
@@ -2573,7 +2569,7 @@ def StartServer():
 #Client for server above:
 
 async def tcp_echo_client(message, loop):
-    reader,writer = asyncio.open_connection('127.0.0.1', 10001, loop=loop)
+    reader,writer = await asyncio.open_connection('127.0.0.1', 10001, loop=loop)
     print('send %r' % message)
     writer.write(message.encode())
     writer.close()
