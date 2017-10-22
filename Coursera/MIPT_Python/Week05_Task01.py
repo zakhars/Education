@@ -13,22 +13,28 @@ class Client:
         try:
             if timestamp is None:
                 timestamp = str(int(time.time()))
-            self.sock.sendall(f'put {symbol} {value} {timestamp}\n'.encode())
+            request = f'put {symbol} {value} {timestamp}\n'.encode()
+            print(request)
+            self.sock.sendall(request)
             response = self.sock.recv(1024).decode()
             if response != 'ok\n\n':
                 raise ClientError
+            print(response)
         except Exception as ex:
             raise ClientError
 
     def get(self, mask):
         try:
             response = {}
-            self.sock.sendall(f'get {mask}\n'.encode())
+            request = f'get {mask}\n'.encode()
+            print(request)
+            self.sock.sendall(request)
             data = self.sock.recv(1024).decode()
             if 'ok' not in data:
                 raise ClientError
             if data != 'ok\n\n':
                 response = Client._dict_from_response(data)
+            print(response)
             return response
         except Exception:
             raise ClientError
@@ -43,6 +49,19 @@ class Client:
         for val in metrics.values():
             val.sort(key = lambda x: x[0])
         return metrics
+
+
+client = Client("127.0.0.1", 10001, timeout=None)
+
+client.put('test', 0.5, 1)
+client.put('test', 2.0, 2)
+client.put('test', 0.4, 2)
+client.put('load', 301, 3)
+client.get('key_not_exists')
+client.get('test')
+client.get('get_client_error')
+client.get('*')
+
 
 
 '''

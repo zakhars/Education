@@ -2181,7 +2181,7 @@ def RunEchoServer():
     conn.close()
     sock.close()
 
-#Client
+# Client
 
 import socket
 
@@ -2194,7 +2194,7 @@ def RunClient():
     #or: sock.sendall(b'ping')
     sock.close()
 
-#Using context managers to not forget to close connection and socket
+# Using context managers to not forget to close connection and socket
 
 def RunEchoServerWithCM():
     with socket.socket() as sock:
@@ -2235,7 +2235,7 @@ def RunServerWithCMAndErrorHandling():
                     print(data.decode('utf-8'))
 
 def RunClientWithCMAndErrorHandling():
-    with socket.create_connection(('127.0.0.1', 10001, 5)) as sock: # 5 is connect timeout, in case of exceeded just try to reconnect
+    with socket.create_connection(('127.0.0.1', 10001), 5) as sock: # 5 is connect timeout, in case of exceeded just try to reconnect
         sock.settimeout(2) # 2 is socket read timeout - timeout for all operations with opened socket
         try:
             sock.sendall(b'ping')
@@ -2245,9 +2245,9 @@ def RunClientWithCMAndErrorHandling():
             print('Send data error', ex)
 
 
-#Multiple connections handling
+# Multiple connections handling
 
-#sock.accept() blocks all other clients except one
+# sock.accept() blocks all other clients except one
 
 # It is possible to create new process to handle new connection but resources required to create process are
 # greater than resources required to handle connection, especially if we have 1000s connections.
