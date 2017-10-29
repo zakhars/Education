@@ -40,7 +40,7 @@ int main_02_17()
 			string w1, w2;
 			cin >> w1 >> w2;
 			if (synonims.count(w1) > 0 && synonims[w1].count(w2) > 0 ||
-				synonims.count(w2) > 0 && synonims[w2].count(w1) > 0)
+				 synonims.count(w2) > 0 && synonims[w2].count(w1) > 0)
 			{
 				cout << "YES" << endl;
 			}

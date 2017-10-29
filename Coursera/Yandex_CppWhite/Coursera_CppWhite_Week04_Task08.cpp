@@ -68,12 +68,11 @@ private:
 int main_04_08() {
 	using namespace w04_t08;
     {
-
-    	const Rational r(3, 10);
-        if (r.Numerator() != 3 || r.Denominator() != 10) {
-            cout << "Rational(3, 10) != 3/10" << endl;
-            return 1;
-        }
+      const Rational r(3, 10);
+      if (r.Numerator() != 3 || r.Denominator() != 10) {
+         cout << "Rational(3, 10) != 3/10" << endl;
+         return 1;
+      }
     }
 
     {

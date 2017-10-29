@@ -13,8 +13,8 @@ set<string> BuildMapValuesSet(const map<int, string>& m)
 	}
 	return values;
 }
-/*
-int main()
+
+int main_02_16()
 {
 	set<string> values = BuildMapValuesSet({
 	    {1, "odd"},
@@ -24,9 +24,10 @@ int main()
 	    {5, "odd"}
 	});
 
-	for (const string& value : values) {
+	for (const string& value : values) 
+   {
 	  cout << value << endl;
 	}
 	return 0;
 }
-*/
+

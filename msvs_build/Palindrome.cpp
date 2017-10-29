@@ -16,7 +16,7 @@ public:
 
 };
 
-int main()
+int main_palindrome()
 {
    string s = "test";
    A a(s);
