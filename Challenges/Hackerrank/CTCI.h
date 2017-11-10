@@ -924,8 +924,8 @@ namespace dfs
    int get_biggest_region(const vector<vector<int>>& grid) 
    {
       vector<int> region_sizes;
-      for(int row = 0; row < grid.size(); row++)
-         for(int col = 0; col < grid[0].size(); col++)
+      for(size_t row = 0; row < grid.size(); row++)
+         for(size_t col = 0; col < grid[0].size(); col++)
             if(grid[row][col] == 1 && !isVisited(make_pair(row, col)))
                region_sizes.push_back(get_region_size(make_pair(row, col), grid));
       if(region_sizes.empty()) return 0;
@@ -1161,20 +1161,20 @@ namespace ds
 namespace dpc
 {
 
-   vector<long long> num_ways;
-
    long long make_change(const vector<int>& coins, int money) 
    {
       if (money < 0 || coins.empty()) {
          return 0;
       }
-      if (money == 0) {
-         return 1;
-      }
-      if (num_ways[money] == 0)
-      {
-         for(auto coin : coins) {
-            num_ways[money] += make_change(coins, money - coin);
+
+      vector<long long> num_ways(money + 1, 0);
+      num_ways[0] = 1;
+
+      for (auto coin : coins) {
+         for(int amount = 1; amount <= money; ++amount) {
+            if (coin <= amount) {
+               num_ways[amount] += num_ways[amount-coin];
+            }
          }
       }
       return num_ways[money];
@@ -1183,8 +1183,8 @@ namespace dpc
    int run()
    {
       istream& input = istringstream(
-         "30 3\n"
-         "1 2 4\n"
+         "12 3\n"
+         "1 2 5\n"
       );
 
       //istream& input = cin;
@@ -1193,8 +1193,9 @@ namespace dpc
       input >> n >> m;
       vector<int> coins(m);
       copy_n(istream_iterator<int>(input), m, begin(coins));
-      num_ways.resize(n + 1, 0);
+   
       cout << endl << make_change(coins, n) << endl;
+      
       return 0;
    }
 
