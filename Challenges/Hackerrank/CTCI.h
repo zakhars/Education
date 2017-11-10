@@ -46,7 +46,7 @@ namespace ar
       const size_t sz = v.size();
       if (sz > 1)
       {
-         for (int i = 0; i < k % sz; i++) rotate_one(v, sz);
+         for (size_t i = 0; i < k % sz; i++) rotate_one(v, sz);
       }
    }
 
@@ -353,7 +353,7 @@ namespace bs
 
    bool isSorted(const vector<int>& v)
    {
-       for(int k = 1; k < v.size(); k++)
+       for(size_t k = 1; k < v.size(); k++)
        {
            if (v[k] <= v[k-1]) return false;
        }
@@ -703,7 +703,7 @@ namespace qs
       }
     
       vector<Player> answer = comparator(players);
-      for(int i = 0; i < answer.size(); i++) 
+      for(size_t i = 0; i < answer.size(); i++) 
       {
          cout << answer[i].name << " " << answer[i].score << endl;
       }
@@ -888,7 +888,10 @@ namespace dfs
 
    bool isValid(pair<int,int> point, const vector<vector<int>>& grid)
    {
-      return point.first >= 0 && point.second >= 0 && point.first < grid.size() && point.second < grid[0].size();
+      return point.first >= 0 && 
+             point.second >= 0 && 
+             point.first < static_cast<int>(grid.size()) && 
+             point.second < static_cast<int>(grid[0].size());
    }
 
    int get_region_size(pair<int,int> initial_point, const vector<vector<int>>& grid)
@@ -1045,14 +1048,14 @@ namespace bfs
             // add each edge to the graph
             graph.AddEdge(u, v);
          }
-         int vstart;
+         size_t vstart;
          input >> vstart;
          --vstart;
 
          // find shortest reach from node s
          vector<int> distances = graph.ShortestReach(vstart);
 
-         for (int i = 0; i < distances.size(); i++)
+         for (size_t i = 0; i < distances.size(); i++)
          {
             if (i != vstart)
             {
@@ -1158,16 +1161,30 @@ namespace ds
 namespace dpc
 {
 
-   long long make_change(vector<int> coins, int money) 
+   vector<long long> num_ways;
+
+   long long make_change(const vector<int>& coins, int money) 
    {
-      return 0l;
+      if (money < 0 || coins.empty()) {
+         return 0;
+      }
+      if (money == 0) {
+         return 1;
+      }
+      if (num_ways[money] == 0)
+      {
+         for(auto coin : coins) {
+            num_ways[money] += make_change(coins, money - coin);
+         }
+      }
+      return num_ways[money];
    }
 
    int run()
    {
       istream& input = istringstream(
-         "10 4\n"
-         "2 5 3 6\n"
+         "30 3\n"
+         "1 2 4\n"
       );
 
       //istream& input = cin;
@@ -1176,7 +1193,8 @@ namespace dpc
       input >> n >> m;
       vector<int> coins(m);
       copy_n(istream_iterator<int>(input), m, begin(coins));
-      cout << make_change(coins, n) << endl;
+      num_ways.resize(n + 1, 0);
+      cout << endl << make_change(coins, n) << endl;
       return 0;
    }
 
