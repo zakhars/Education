@@ -244,6 +244,9 @@
     <ClCompile Include="Palindrome.cpp">
       <Filter>Challenges\Personal</Filter>
     </ClCompile>
+    <ClCompile Include="..\Challenges\Personal\DetectGraphCycle.cpp">
+      <Filter>Challenges\Personal</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Challenges\Hackerrank\CTCI.h">
