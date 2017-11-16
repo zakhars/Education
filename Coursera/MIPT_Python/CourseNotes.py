@@ -186,6 +186,21 @@ s3 = 'http://' + domain + '/' + lang + '/' + path # 0.356 µs
 s4 = ''.join(('http://', domain, '/', lang, '/', path)) # 0.249 µs (notice that building a constant tuple is slightly faster than building a constant list).
 
 
+#F-strings allow to call ANY instructions inside:
+sf = f'Result ={s1 + s2}'
+
+#Filling strings with zeroes:
+
+n = 4
+print('%03d' % n)
+print(format(n, '03'))
+print('{0:03d}'.format(n))
+print('{foo:03d}'.format(foo=n))
+print('{:03d}'.format(n))
+print('{0:03d}'.format(n))
+print(f'{n:03}')
+
+
 #name = input('Enter your name: ')
 #print(name) #'Alex'
 

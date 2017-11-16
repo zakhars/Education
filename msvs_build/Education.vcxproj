@@ -215,6 +215,8 @@
     <ClCompile Include="Palindrome.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Challenges\Hackerrank\Algorithms.h" />
+    <ClInclude Include="..\Challenges\Hackerrank\Cpp.h" />
     <ClInclude Include="..\Challenges\Hackerrank\CTCI.h" />
     <ClInclude Include="..\Common\MinUnit.h" />
     <ClInclude Include="..\Common\Timer.h" />

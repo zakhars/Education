@@ -258,5 +258,11 @@
     <ClInclude Include="..\Common\Timer.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\Challenges\Hackerrank\Algorithms.h">
+      <Filter>Challenges\Hackerrank</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Challenges\Hackerrank\Cpp.h">
+      <Filter>Challenges\Hackerrank</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
