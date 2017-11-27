@@ -150,6 +150,7 @@
     <ClCompile Include="..\Challenges\Personal\InvertMostSign.cpp" />
     <ClCompile Include="..\Challenges\Personal\ListReverse.cpp" />
     <ClCompile Include="..\Challenges\Personal\ListRotate.cpp" />
+    <ClCompile Include="..\Challenges\Personal\Palindrome.cpp" />
     <ClCompile Include="..\Common\Source\MinUnit.cpp" />
     <ClCompile Include="..\Coursera\Stanford_Algorithms\Coursera_AlgStanford_Week01_Task01.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task01.cpp" />
@@ -212,7 +213,6 @@
     <ClCompile Include="..\Networks\Curl_GetPhoneBalance.cpp" />
     <ClCompile Include="..\Networks\Sockets_SimpleServer.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Palindrome.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Challenges\Hackerrank\Algorithms.h" />
