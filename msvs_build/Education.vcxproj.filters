@@ -264,5 +264,8 @@
     <ClInclude Include="..\Challenges\Hackerrank\Cpp.h">
       <Filter>Challenges\Hackerrank</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\Table.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

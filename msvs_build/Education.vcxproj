@@ -219,6 +219,7 @@
     <ClInclude Include="..\Challenges\Hackerrank\Cpp.h" />
     <ClInclude Include="..\Challenges\Hackerrank\CTCI.h" />
     <ClInclude Include="..\Common\MinUnit.h" />
+    <ClInclude Include="..\Common\Table.h" />
     <ClInclude Include="..\Common\Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
