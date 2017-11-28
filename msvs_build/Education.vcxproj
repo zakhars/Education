@@ -102,6 +102,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\;..\..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -143,6 +144,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Common\Source\MinUnit.cpp" />
     <ClCompile Include="..\Books\CLRS\Cormen_Chapter01.cpp" />
     <ClCompile Include="..\Challenges\Personal\BubbleSort.cpp" />
     <ClCompile Include="..\Challenges\Personal\DetectGraphCycle.cpp" />
@@ -151,7 +153,6 @@
     <ClCompile Include="..\Challenges\Personal\ListReverse.cpp" />
     <ClCompile Include="..\Challenges\Personal\ListRotate.cpp" />
     <ClCompile Include="..\Challenges\Personal\Palindrome.cpp" />
-    <ClCompile Include="..\Common\Source\MinUnit.cpp" />
     <ClCompile Include="..\Coursera\Stanford_Algorithms\Coursera_AlgStanford_Week01_Task01.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task01.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task02.cpp" />
@@ -215,12 +216,11 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Common\MinUnit.h" />
+    <ClInclude Include="..\..\Common\Timer.h" />
     <ClInclude Include="..\Challenges\Hackerrank\Algorithms.h" />
     <ClInclude Include="..\Challenges\Hackerrank\Cpp.h" />
     <ClInclude Include="..\Challenges\Hackerrank\CTCI.h" />
-    <ClInclude Include="..\Common\MinUnit.h" />
-    <ClInclude Include="..\Common\Table.h" />
-    <ClInclude Include="..\Common\Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

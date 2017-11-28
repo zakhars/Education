@@ -25,9 +25,6 @@
     <Filter Include="Challenges\Personal">
       <UniqueIdentifier>{c670f1df-ea24-4ad8-9578-12d762c73998}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Common">
-      <UniqueIdentifier>{087db006-c9e5-4e7d-9dd3-b71e25f292c6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Experiments">
       <UniqueIdentifier>{f8600929-fc5e-463e-8016-7f5a2e660bda}</UniqueIdentifier>
     </Filter>
@@ -36,6 +33,9 @@
     </Filter>
     <Filter Include="Networks">
       <UniqueIdentifier>{22acc70e-a1d5-476d-b445-40d56373cd06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{f5b05878-263d-402c-8cf4-7ff4f481d6e6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -208,9 +208,6 @@
     <ClCompile Include="..\Challenges\Personal\ListReverse.cpp">
       <Filter>Challenges\Personal</Filter>
     </ClCompile>
-    <ClCompile Include="..\Common\Source\MinUnit.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
     <ClCompile Include="..\Experiments\Alloc.cpp">
       <Filter>Experiments</Filter>
     </ClCompile>
@@ -247,16 +244,13 @@
     <ClCompile Include="..\Challenges\Personal\Palindrome.cpp">
       <Filter>Challenges\Personal</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Common\Source\MinUnit.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Challenges\Hackerrank\CTCI.h">
       <Filter>Challenges\Hackerrank</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\MinUnit.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Timer.h">
-      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\Challenges\Hackerrank\Algorithms.h">
       <Filter>Challenges\Hackerrank</Filter>
@@ -264,7 +258,10 @@
     <ClInclude Include="..\Challenges\Hackerrank\Cpp.h">
       <Filter>Challenges\Hackerrank</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Table.h">
+    <ClInclude Include="..\..\Common\MinUnit.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Timer.h">
       <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
