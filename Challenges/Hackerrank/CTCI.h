@@ -1,5 +1,4 @@
 #pragma once
-
 #include <algorithm>
 #include <vector>
 #include <functional>
@@ -32,66 +31,62 @@ namespace ctci // Cracking the Code Interview tasks
 
 // Arrays: Left Rotation
 // https://www.hackerrank.com/challenges/ctci-array-left-rotation
-namespace ar
+namespace array_left_rotation
 {
    void rotate_one(std::vector<int>& v, size_t sz)
    {
       int v0 = v[0];
-      memmove(&v[0], &v[1], (sz - 1) * sizeof(int));
-      v[sz - 1] = v0;
+      memmove(&v[0], &v[1], (sz-1)*sizeof(int));
+      v[sz-1] = v0;
    }
 
-   void array_left_rotation(std::vector<int>& v, int k)
+   auto solution = [](std::vector<int>& v, int k)
    {
       const size_t sz = v.size();
       if (sz > 1)
       {
          for (size_t i = 0; i < k % sz; i++) rotate_one(v, sz);
       }
-   }
+   };
 
-   int run()
+   // Author's solution
+   auto solution_orig = [](std::vector<int>& v, int d)
+   {
+      // Because the constraints state d < n, we need not concern ourselves with shifting > n units.
+      size_t n = v.size();
+
+      // Create new array for rotated elements:
+      vector<int> rotated(n);
+
+      // Copy segments of shifted elements to rotated array:
+      memcpy(&rotated[0], &v[d], (n-d)*sizeof(int));
+      memcpy(&rotated[n-d], &v[0], d*sizeof(int));
+
+      v = rotated;
+   };
+
+   template<typename Solution>
+   void run(Solution solution, bool output = true)
    {
       istream& input = istringstream("5 4\n1 2 3 4 5");
       //istream& input = cin;
 
       int n, k;
       input >> n >> k;
-      std::vector<int> v(n);
-      std::copy_n(std::istream_iterator<int>(input), n, std::begin(v));
+      vector<int> v(n);
+      copy_n(istream_iterator<int>(input), n, std::begin(v));
 
-      array_left_rotation(v, k);
+      solution(v, k);
 
-      for (auto vi : v) std::cout << vi << " ";
-      std::cout << std::endl;
-      return 0;
+      if (output) copy(v.begin(), v.end(), ostream_iterator<int>(cout, " "));
    }
-
-   /* Author's solution
-   
-   public static int[] rotateArray(int[] arr, int d) 
-   {
-      // Because the constraints state d < n, we need not concern ourselves with shifting > n units.
-      int n = arr.length;
-
-      // Create new array for rotated elements:
-      int[] rotated = new int[n];
-
-      // Copy segments of shifted elements to rotated array:
-      System.arraycopy(arr, d, rotated, 0, n - d);
-      System.arraycopy(arr, 0, rotated, n - d, d);
-
-      return rotated;
-   }
-   */
-
-} // ar
+} // array_left_rotation
 
 // Strings: Making Anagrams
 // https://www.hackerrank.com/challenges/ctci-making-anagrams
-namespace ag
+namespace anagrams
 {
-   size_t number_needed(string a, string b)
+   auto solution = [](string a, string b)
    {
       int num_deletions = 0;
       string b2;
@@ -111,20 +106,40 @@ namespace ag
       }
       return num_deletions + bsz - b2.size();
       // Another approach is to use set_intersection
-   }
+   };
 
-   int run()
+
+   // Author's solution
+   auto solution_orig = [](string a, string b)
+   {
+      int A[26] = {0};
+      int B[26] = {0};
+      for(size_t i = 0; i < a.length(); i++)
+         A[(a[i] - 'a')]++;
+      for(size_t i = 0; i < b.length(); i++)
+         B[(b[i] - 'a')]++;
+      int outp = 0;
+      for(size_t i=0; i < 26; i++)
+      {
+         outp = outp + A[i] + B[i] - 2*min(A[i],B[i]);
+      }
+      return outp;
+   };
+
+   template<typename Solution>
+   void run(Solution solution, bool output = true)
    {
       istream& input = istringstream("cde\n abc\n");
       //istream& input = cin;
 
       string a, b;
       input >> a >> b;
-      cout << number_needed(a, b) << endl;
-      return 0;
+      size_t n = solution(a, b);
+
+      if (output) cout << n << endl;
    }
 
-} // ag
+} // anagrams
 
 // HashTables: Ransom Note
 // https://www.hackerrank.com/challenges/ctci-ransom-note
@@ -994,7 +1009,7 @@ namespace bfs
          adjacents[v].insert(u);
       }
 
-      vector<int> ShortestReach(int v) {
+      vector<int> ShortestReach(size_t v) {
          vector<int> distances(adjacents.size(), -1);
          visited.clear();
          bfs(v, distances);
@@ -1002,17 +1017,17 @@ namespace bfs
       }
    private:
 
-      bool isVisited(int v) {
+      bool isVisited(size_t v) {
          return visited.count(v) != 0;
       }
 
-      void bfs(int v, vector<int>& distances) {
-         queue<int> vqueue;
+      void bfs(size_t v, vector<int>& distances) {
+         queue<size_t> vqueue;
          vqueue.push(v);
          visited.insert(v);
          distances[v] = 0;
          while (!vqueue.empty()) {
-            int vi = vqueue.front();
+            size_t vi = vqueue.front();
             vqueue.pop();
             for(auto u : adjacents[vi]) {
                if (!isVisited(u)) {
@@ -1024,8 +1039,8 @@ namespace bfs
          }
       }
 
-      vector<set<int>> adjacents;
-      set<int> visited;
+      vector<set<size_t>> adjacents;
+      set<size_t> visited;
       const int weight = 6;
    };
 
