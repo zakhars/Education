@@ -9,10 +9,9 @@
 
 using namespace std;
 
-int main()
-{
 
-   hrnk::cpp::dq::run();
+int main1_1()
+{
 
    return 0;
 }

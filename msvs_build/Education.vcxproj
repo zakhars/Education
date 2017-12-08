@@ -206,6 +206,8 @@
     <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task16.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week05_Task01.cpp" />
     <ClCompile Include="..\Experiments\Alloc.cpp" />
+    <ClCompile Include="..\Experiments\BitManipulation.cpp" />
+    <ClCompile Include="..\Experiments\ClassConstructors.cpp" />
     <ClCompile Include="..\Experiments\Exceptions.cpp" />
     <ClCompile Include="..\Experiments\Inheritance.cpp" />
     <ClCompile Include="..\Experiments\PerfTests.cpp" />

@@ -247,6 +247,12 @@
     <ClCompile Include="..\..\Common\Source\MinUnit.cpp">
       <Filter>Common</Filter>
     </ClCompile>
+    <ClCompile Include="..\Experiments\ClassConstructors.cpp">
+      <Filter>Experiments</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Experiments\BitManipulation.cpp">
+      <Filter>Experiments</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Challenges\Hackerrank\CTCI.h">
