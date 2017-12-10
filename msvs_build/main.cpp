@@ -3,6 +3,7 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include <cstdio>
 
 #include "Challenges/Hackerrank/CTCI.h"
 #include "Challenges/Hackerrank/Cpp.h"
@@ -15,13 +16,7 @@ using namespace hrnk::ctci;
 
 int main()
 {
-   common::timer t;
-   for(int i = 0; i < 1000000; i++)
-   {
-      anagrams::run(anagrams::solution_orig, false);
-   }
-   cout << t.get_duration_us() << endl;
-
+   printf("\");
    return 0;
 }
 
