@@ -30,7 +30,7 @@ inline void setbitto(int& value, unsigned bit, char to)
    value ^= (-to ^ value) & (1ul << bit);
 }
 
-int main()
+int main_bm()
 {
    int a = 1;  // 0b00000000000000000000000000000001
    a++;        // 0b00000000000000000000000000000010 or 2

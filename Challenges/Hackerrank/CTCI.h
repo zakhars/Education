@@ -33,11 +33,14 @@ namespace ctci // Cracking the Code Interview tasks
 // https://www.hackerrank.com/challenges/ctci-array-left-rotation
 namespace array_left_rotation
 {
-   void rotate_one(std::vector<int>& v, size_t sz)
+   namespace priv
    {
-      int v0 = v[0];
-      memmove(&v[0], &v[1], (sz-1)*sizeof(int));
-      v[sz-1] = v0;
+      void rotate_one(std::vector<int>& v, size_t sz)
+      {
+         int v0 = v[0];
+         memmove(&v[0], &v[1], (sz-1)*sizeof(int));
+         v[sz-1] = v0;
+      }
    }
 
    auto solution = [](std::vector<int>& v, int k)
@@ -45,7 +48,7 @@ namespace array_left_rotation
       const size_t sz = v.size();
       if (sz > 1)
       {
-         for (size_t i = 0; i < k % sz; i++) rotate_one(v, sz);
+         for (size_t i = 0; i < k % sz; i++) priv::rotate_one(v, sz);
       }
    };
 
@@ -66,9 +69,9 @@ namespace array_left_rotation
    };
 
    template<typename Solution>
-   void run(Solution solution, bool output = true)
+   void run(Solution solution, string& input_string = "", bool output = true)
    {
-      istream& input = istringstream("5 4\n1 2 3 4 5");
+      istream& input = (input_string == "") ? istringstream("5 4\n1 2 3 4 5") : istringstream(input_string);
       //istream& input = cin;
 
       int n, k;
