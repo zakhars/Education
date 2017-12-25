@@ -24,15 +24,16 @@ using namespace hrnk::ctci;
 
 int main()
 {
-   common::rand_int rnd;
-   vector<int> v(1000000);
-   generate(begin(v), end(v), rnd);
-   string input = common::to_string(v);
 
    common::timer t;
-   //array_left_rotation::run(array_left_rotation::solution, v, false);
-   //array_left_rotation::run(array_left_rotation::solution_orig, false);
-   cout << "duration is " << t.get_duration_us() << " us" << endl;
+   //string input = array_left_rotation::gen_input();
+   //array_left_rotation::run(array_left_rotation::solution, input, false);
+
+   string input = anagrams::gen_input();
+   //anagrams::run(anagrams::solution, input, false);
+
+   cout << "Duration is " << t.us() << " us" << endl;
+
    return 0;
 }
 

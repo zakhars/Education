@@ -18,6 +18,9 @@
 #include <unordered_map>
 #include <set>
 #include <map>
+#include "common/Timer.h"
+#include "common/Random.h"
+#include "common/Utils.h"
 
 #undef lst1
 #undef lst2
@@ -68,10 +71,20 @@ namespace array_left_rotation
       v = rotated;
    };
 
-   template<typename Solution>
-   void run(Solution solution, string& input_string = "", bool output = true)
+   string gen_input()
    {
-      istream& input = (input_string == "") ? istringstream("5 4\n1 2 3 4 5") : istringstream(input_string);
+      common::rand_int rnd;
+      vector<int> v(100000);
+      generate(begin(v), end(v), rnd);
+      string input = to_string(v.size()) + " " + to_string(v.size() - 3) + "\n" + common::to_string(v);
+      return input;
+   }
+
+   template<typename Solution>
+   void run(Solution solution, string input_string, bool output = true)
+   {
+      istream& input = istringstream{input_string};
+      //istream& input = istringstream("5 4\n1 2 3 4 5");
       //istream& input = cin;
 
       int n, k;
@@ -118,21 +131,37 @@ namespace anagrams
       int A[26] = {0};
       int B[26] = {0};
       for(size_t i = 0; i < a.length(); i++)
+      {
          A[(a[i] - 'a')]++;
+      }
       for(size_t i = 0; i < b.length(); i++)
+      {
          B[(b[i] - 'a')]++;
+      }
       int outp = 0;
       for(size_t i=0; i < 26; i++)
       {
-         outp = outp + A[i] + B[i] - 2*min(A[i],B[i]);
+         outp = outp + A[i] + B[i] - 2 * min(A[i], B[i]);
       }
       return outp;
    };
 
-   template<typename Solution>
-   void run(Solution solution, bool output = true)
+   string gen_input()
    {
-      istream& input = istringstream("cde\n abc\n");
+      common::rand_int rnd(0, 255);
+      vector<char> v1(100000);
+      vector<char> v2(50000);
+      generate(begin(v1), end(v1), rnd);
+      generate(begin(v2), end(v2), rnd);
+      string input = common::to_string(v1) + "\n" + common::to_string(v2) + "\n";
+      return input;
+   }
+
+   template<typename Solution>
+   void run(Solution solution, string input_string, bool output = true)
+   {
+      istream& input = istringstream{input_string};
+      //istream& input = istringstream("cde\n abc\n");
       //istream& input = cin;
 
       string a, b;
@@ -916,14 +945,14 @@ namespace ms
 // https://www.hackerrank.com/challenges/ctci-connected-cell-in-a-grid
 namespace dfs
 {
-   vector<pair<int,int>> visited;
+   vector<pair<size_t,size_t>> visited;
 
-   bool isVisited(pair<int,int> point)
+   bool isVisited(pair<size_t,size_t> point)
    {
       return find(begin(visited), end(visited), point) != end(visited);
    }
 
-   bool isValid(pair<int,int> point, const vector<vector<int>>& grid)
+   bool isValid(pair<size_t,size_t> point, const vector<vector<size_t>>& grid)
    {
       return point.first >= 0 && 
              point.second >= 0 && 
@@ -931,10 +960,10 @@ namespace dfs
              point.second < static_cast<int>(grid[0].size());
    }
 
-   int get_region_size(pair<int,int> initial_point, const vector<vector<int>>& grid)
+   int get_region_size(pair<size_t,size_t> initial_point, const vector<vector<size_t>>& grid)
    {
-      int row = initial_point.first;
-      int col = initial_point.second;
+      size_t row = initial_point.first;
+      size_t col = initial_point.second;
 
       if (isVisited(initial_point) || !isValid(initial_point, grid) || grid[row][col] == 0) return 0;
       visited.push_back(initial_point);
@@ -958,7 +987,7 @@ namespace dfs
                + get_region_size(p8, grid);      
    }
 
-   int get_biggest_region(const vector<vector<int>>& grid) 
+   int get_biggest_region(const vector<vector<size_t>>& grid) 
    {
       vector<int> region_sizes;
       for(size_t row = 0; row < grid.size(); row++)
@@ -983,7 +1012,7 @@ namespace dfs
 
       int n, m;
       input >> n >> m;
-      vector<vector<int>> grid(n, vector<int>(m));
+      vector<vector<size_t>> grid(n, vector<size_t>(m));
       for (int i = 0; i < n; i++)
       {
          for (int j = 0; j < m; j++)

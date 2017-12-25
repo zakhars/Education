@@ -35,15 +35,15 @@ void RealSleep()
 
       common::timer t;
       //BubbleSort(v);
-      cout << endl << "Duration is: " << t.get_duration_us() << " microseconds" << endl;
+      cout << endl << "Duration is: " << t.us() << " microseconds" << endl;
 
-      t.save_time();
+      t.spot();
       sort(begin(v), end(v));
-      cout << endl << "Duration is: " << t.get_duration_us() << " microseconds" << endl;
+      cout << endl << "Duration is: " << t.us() << " microseconds" << endl;
 
-      t.save_time();
+      t.spot();
       stable_sort(begin(v), end(v));
-      cout << endl << "Duration is: " << t.get_duration_us() << " microseconds" << endl;
+      cout << endl << "Duration is: " << t.us() << " microseconds" << endl;
    }
 
    void MeasureHashPerf()
