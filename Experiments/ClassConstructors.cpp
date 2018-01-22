@@ -82,7 +82,7 @@ public:
         : m_size(other.m_size),
           m_pdata(m_size ? new int[m_size] : nullptr)
     {
-        std::copy(other.m_pdata, other.m_pdata + m_size, m_pdata);
+        memcpy(m_pdata, other.m_pdata, m_size * sizeof(int));
     }
       
     // destructor

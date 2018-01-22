@@ -5,7 +5,7 @@ using namespace std;
 
 void NextMonth(vector<vector<string>>& month, int new_days)
 {
-   int old_days = month.size();
+   int old_days = static_cast<int>(month.size());
 
    vector<string> records_left;
    if (new_days < old_days)

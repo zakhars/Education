@@ -6,8 +6,8 @@ using namespace std;
 
 bool IsPalindrom(const string& s)
 {
-   int first = 0;
-   int last = s.size() - 1;
+   size_t first = 0;
+   size_t last = s.size() - 1;
    while (last > first)
    {
       if (s[last--] != s[first++]) return false;

@@ -15,7 +15,7 @@ int find2nd_f()
    {
       if (s[i] == 'f')
       {
-         index = i;
+         index = static_cast<int>(i);
          result++;
       }
       if (result == 0)

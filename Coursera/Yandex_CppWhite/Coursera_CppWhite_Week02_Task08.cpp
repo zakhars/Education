@@ -9,7 +9,7 @@ int average(const vector<int>& v)
    {
       avg += vi;
    }
-   return avg / v.size();
+   return avg / static_cast<int>(v.size());
 }
 
 int print()
