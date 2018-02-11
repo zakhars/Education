@@ -37,6 +37,9 @@
     <Filter Include="Common">
       <UniqueIdentifier>{f5b05878-263d-402c-8cf4-7ff4f481d6e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Coursera\Yandex_CppYellow">
+      <UniqueIdentifier>{e293c394-ffc8-4113-ab7d-d7835614fe85}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -252,6 +255,18 @@
     </ClCompile>
     <ClCompile Include="..\Experiments\BitManipulation.cpp">
       <Filter>Experiments</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week01_Task01.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week01_Task02.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week01_Task03.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week01_Task04.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

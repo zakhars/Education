@@ -22,7 +22,7 @@ using namespace hrnk::ctci;
 //}
 
 
-int main()
+int main_main()
 {
 
    common::timer t;

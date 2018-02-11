@@ -206,6 +206,10 @@
     <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task15.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week04_Task16.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week05_Task01.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week01_Task01.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week01_Task02.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week01_Task03.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week01_Task04.cpp" />
     <ClCompile Include="..\Experiments\Alloc.cpp" />
     <ClCompile Include="..\Experiments\BitManipulation.cpp" />
     <ClCompile Include="..\Experiments\ClassConstructors.cpp" />
