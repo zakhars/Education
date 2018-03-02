@@ -268,6 +268,9 @@
     <ClCompile Include="..\Coursera\Yandex_CppYellow\Week01_Task04.cpp">
       <Filter>Coursera\Yandex_CppYellow</Filter>
     </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week01_Task05.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Challenges\Hackerrank\CTCI.h">

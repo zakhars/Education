@@ -83,7 +83,7 @@ void PrintTasksInfo(TasksInfo tasks_info)
         << tasks_info[TaskStatus::DONE] << " tasks are done" << endl;
 }
 
-int main() 
+int main_cpp_yellow_week01_task04() 
 {
    TeamTasks tasks;
    tasks.AddNewTask("Ilia");
