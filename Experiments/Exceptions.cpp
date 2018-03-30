@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-void f2()
+void f_ex()
 {
 	try
 	{

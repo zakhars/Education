@@ -40,6 +40,9 @@
     <Filter Include="Coursera\Yandex_CppYellow">
       <UniqueIdentifier>{e293c394-ffc8-4113-ab7d-d7835614fe85}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CodePatterns">
+      <UniqueIdentifier>{0ffbda9e-7ad1-4718-8135-2154b87be060}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -270,6 +273,12 @@
     </ClCompile>
     <ClCompile Include="..\Coursera\Yandex_CppYellow\Week01_Task05.cpp">
       <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CodePatterns\Patterns.cpp">
+      <Filter>CodePatterns</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Challenges\Personal\Fibonacci.cpp">
+      <Filter>Challenges\Personal</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

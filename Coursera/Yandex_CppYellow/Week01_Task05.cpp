@@ -43,8 +43,8 @@ map<key, value> Sqr(const map<key, value>& m)
    return mr;
 }
 
-
-int main()
+//int main_cpp_yellow_week01_task05()
+int main_cpp_yellow_week01_task05()
 {
    vector<int> v = { 1, 2, 3 };
    cout << "vector:";
@@ -64,4 +64,6 @@ int main()
    {
       cout << x.first << ' ' << x.second.first << ' ' << x.second.second << endl;
    }*/
+   return 0;
 }
+

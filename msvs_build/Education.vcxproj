@@ -149,11 +149,13 @@
     <ClCompile Include="..\Books\CLRS\Cormen_Chapter01.cpp" />
     <ClCompile Include="..\Challenges\Personal\BubbleSort.cpp" />
     <ClCompile Include="..\Challenges\Personal\DetectGraphCycle.cpp" />
+    <ClCompile Include="..\Challenges\Personal\Fibonacci.cpp" />
     <ClCompile Include="..\Challenges\Personal\FizzBuzz.cpp" />
     <ClCompile Include="..\Challenges\Personal\InvertMostSign.cpp" />
     <ClCompile Include="..\Challenges\Personal\ListReverse.cpp" />
     <ClCompile Include="..\Challenges\Personal\ListRotate.cpp" />
     <ClCompile Include="..\Challenges\Personal\Palindrome.cpp" />
+    <ClCompile Include="..\CodePatterns\Patterns.cpp" />
     <ClCompile Include="..\Coursera\Stanford_Algorithms\Coursera_AlgStanford_Week01_Task01.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task01.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task02.cpp" />
