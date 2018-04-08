@@ -6,34 +6,30 @@
 
 using namespace std;
 
-// Перечислимый тип для статуса задачи
 enum class TaskStatus {
-   NEW,          // новая
-   IN_PROGRESS,  // в разработке
-   TESTING,      // на тестировании
-   DONE          // завершена
+   NEW,
+   IN_PROGRESS,
+   TESTING,
+   DONE
 };
 
-// Объявляем тип-синоним для map<TaskStatus, int>,
-// позволяющего хранить количество задач каждого статуса
 using TasksInfo = map<TaskStatus, int>;
 
-class TeamTasks 
+class TeamTasks
 {
 public:
-   // Получить статистику по статусам задач конкретного разработчика
+   // Get tasks status for given person
    const TasksInfo& GetPersonTasksInfo(const string& person) const;
 
-   // Добавить новую задачу (в статусе NEW) для конкретного разработчитка
+   // Add task (in NEW status) for person
    void AddNewTask(const string& person);
 
-   // Обновить статусы по данному количеству задач конкретного разработчика,
-   // подробности см. ниже
+   // Update statuses for task_count tasks for given person
    tuple<TasksInfo, TasksInfo> PerformPersonTasks(const string& person, int task_count);
 
 private:
 
-   TaskStatus getNextStatus(TaskStatus ts)
+   TaskStatus nextStatus(TaskStatus ts)
    {
       switch (ts)
       {
@@ -41,40 +37,57 @@ private:
          case TaskStatus::IN_PROGRESS: return TaskStatus::TESTING;
          case TaskStatus::TESTING: return TaskStatus::DONE;
       }
+      return TaskStatus::DONE;
    }
 
-   map<string, TasksInfo> personTasks;
+   map<string, TasksInfo> m_personTasks;
 };
 
 const TasksInfo& TeamTasks::GetPersonTasksInfo(const string & person) const
 {
-   return personTasks.at(person);
+   // Skip check person exists as it is impossible per task description
+   return m_personTasks.at(person);
 }
 
 void TeamTasks::AddNewTask(const string & person)
 {
-   personTasks[person][TaskStatus::NEW]++;
+   m_personTasks[person][TaskStatus::NEW]++;
 }
 
 tuple<TasksInfo, TasksInfo> TeamTasks::PerformPersonTasks(const string& person, int task_count)
 {
-   auto& tasks = personTasks[person];
+   const TasksInfo& tasks = m_personTasks[person];
    TasksInfo updatedTasks;
+   TasksInfo remainingTasks = tasks; // except those which are DONE
 
-   for (auto& status: tasks)
+   for (const auto& [status, count] : tasks)
    {
-      
+      if (status != TaskStatus::DONE && task_count > 0)
+      {
+         TaskStatus next_status = nextStatus(status);
+         if (count < task_count)
+         {
+            updatedTasks[next_status] = count;
+            remainingTasks.erase(status);
+            task_count -= count;
+         }
+         else
+         {
+            updatedTasks[next_status] = task_count;
+            remainingTasks[status] -= task_count;
+            task_count = 0;
+         }
+      }
    }
 
 
-   return tie(updatedTasks, tasks);
+   return tie(updatedTasks, remainingTasks);
 }
 
 
 
-// Принимаем словарь по значению, чтобы иметь возможность
-// обращаться к отсутствующим ключам с помощью [] и получать 0,
-// не меняя при этом исходный словарь
+// Get dict by value to be able to address absent keys with [] and get 0
+// without changing original dictionary
 void PrintTasksInfo(TasksInfo tasks_info) 
 {
    cout << tasks_info[TaskStatus::NEW] << " new tasks" << ", " 
@@ -83,7 +96,7 @@ void PrintTasksInfo(TasksInfo tasks_info)
         << tasks_info[TaskStatus::DONE] << " tasks are done" << endl;
 }
 
-int main_cpp_yellow_week01_task04() 
+int main() 
 {
    TeamTasks tasks;
    tasks.AddNewTask("Ilia");

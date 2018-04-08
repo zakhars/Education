@@ -8,7 +8,7 @@ int fib(int n)
    return fib(n - 1) + fib(n - 2);
 }
 
-int main()
+int main_fib()
 {
    common::timer t;
    for (volatile int i = 0; i < 100000; ++i)
