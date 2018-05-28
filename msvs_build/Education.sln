@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Education", "Education.vcxproj", "{748EC04F-886D-478B-BF0C-2251702F32BE}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MIPT_Python", "..\Coursera\MIPT_Python\MIPT_Python.pyproj", "{9675CE1D-4BBF-43EF-AD47-C3B1733A8C1E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,12 +25,6 @@ Global
 		{748EC04F-886D-478B-BF0C-2251702F32BE}.Release|x64.Build.0 = Release|x64
 		{748EC04F-886D-478B-BF0C-2251702F32BE}.Release|x86.ActiveCfg = Release|Win32
 		{748EC04F-886D-478B-BF0C-2251702F32BE}.Release|x86.Build.0 = Release|Win32
-		{9675CE1D-4BBF-43EF-AD47-C3B1733A8C1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9675CE1D-4BBF-43EF-AD47-C3B1733A8C1E}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{9675CE1D-4BBF-43EF-AD47-C3B1733A8C1E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9675CE1D-4BBF-43EF-AD47-C3B1733A8C1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9675CE1D-4BBF-43EF-AD47-C3B1733A8C1E}.Release|x64.ActiveCfg = Release|Any CPU
-		{9675CE1D-4BBF-43EF-AD47-C3B1733A8C1E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
