@@ -1,8 +1,29 @@
 #include <tuple>
 #include <string>
 #include <map>
+#include <functional>
 
 using namespace std;
+namespace map_custom_compare
+{
+   struct dbl_less : public binary_function<double, double, bool>
+   {
+      bool operator()(const double& lhs, const double& rhs) const
+      {
+         return lhs < rhs;
+      }
+   } dblless;
+   struct dbl_gt : public binary_function<double, double, bool>
+   {
+      bool operator()(const double& lhs, const double& rhs) const
+      {
+         return lhs >= rhs;
+      }
+   } dblgt;
+   map<double, double, binary_function<double, double, bool>> md1(dblless);
+   map<double, double, binary_function<double, double, bool>> md2(dblgt);
+   void f1(map<double, double, binary_function<double, double, bool>>) {}
+}
 
 tuple<const int&, const string&, const int&> f1()
 {

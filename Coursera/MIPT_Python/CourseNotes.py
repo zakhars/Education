@@ -1,7 +1,9 @@
 # USEFUL INFO
 
-help(print) #any object
-print.__doc__
+help(print)  # any object
+print(print.__doc__)
+
+# single line comment
 
 """
     Multiline comment or doc
@@ -9,14 +11,14 @@ print.__doc__
 
 # BASIC TYPES
 
-a = 23134327514327865381276483124832984102394321 # integer has unlimited size
-type(a) #<class 'int'>
+a = 23134327514327865381276483124832984102394321  # integer has unlimited size
+print(type(a))  # <class 'int'>
 
 b = 100_123_234
 c = 100_234.567_891
 
 d = 1.5e2
-type(d) # <class 'float'>
+type(d)  # <class 'float'>
 
 # Explicit cast
 e = int(d)
@@ -25,17 +27,16 @@ f = float(a)
 import decimal
 import fractions
 
-a = 4.2 + 1 # =5.2 #float
+a = 4.2 + 1  # =5.2 #float
 
-a = 2/4 # =0.5 (always float)
+a = 2 / 4  # =0.5 (always float)
+a = 10 // 3  # = 3
 
 # Power
-a = 2 ** 4 # =16
-a = 9 ** 0.5 # =3
+a = 2 ** 4  # =16
+a = 9 ** 0.5  # =3
 
-a = 10 // 3 #= 3
-
-a = 10 % 3 # =1
+a = 10 % 3  # =1
 
 x = 3
 y = 4
@@ -49,54 +50,54 @@ a, b = b, a
 # Primitive types are immutable
 a = b = 1
 a += 1
-print(a) #2
-print(b) #1
+print(a)  # 2
+print(b)  # 1
 
 # Mutable:
 x = y = []
 x.append(1)
-print(x) #[1]
-print(y) #[1]
+print(x)  # [1]
+print(y)  # [1]
 
 b = True
-type(b) #<class 'bool'>
+type(b)  # <class 'bool'>
 
-2 == 2 # =True
+2 == 2  # =True
 
 x = 2
-print(1 < x < 3) #True
+print(1 < x < 3)  # True
 
-bool(12) #True
+# True
+bool(12)
 
-bool(None) #False
+# False
+bool(None)
 
 b = None
-if b is None: # or if b == None, but not idiomatic
+if b is None:  # or if b == None, but not idiomatic
     print('Not initialized yet')
 elif not b:
     print('b = 0')
 
-x,y = True, False
-print(x and y) #False
-print(not y) #True
+x, y = True, False
+print(x and y)  # False
+print(not y)  # True
 
-#Lazy logical expressions
+# Lazy logical expressions
 x = 12
 y = False
-print(x or y) #12: result is a value of x, y was not calculated
+print(x or y)  # 12: result is a value of x, y was not calculated
 
 x = 12
 z = 'boom'
 v = x and z
-print(v) #boom : last calculated value
+print(v)  # boom : last calculated value
 
+# STRINGS
 
+# Strings are immutable
 
-#STRINGS
-
-#Strings are immutable
-
-#Quote types
+# Quote types
 print('abc')
 print("def")
 print("abc 'def' qwe")
@@ -104,7 +105,7 @@ print('abc "def" qwe')
 print("qwe \"abc\" asd")
 print("drive c:\\\\")
 print(r"drive c:\\")
-multiline = "abc"\
+multiline = "abc" \
             "def"
 multiline_with_spaces = """
 There are two
@@ -114,82 +115,81 @@ B. Stroustup
 """
 print(multiline_with_spaces)
 
-s = "one" + "two" #ineffective as string is immutable: new allocation
+s = "one" + "two"  # ineffective as string is immutable: new allocation
 
 s = "hello"
-print (id(s)) #address: 42321313432
+print(id(s))  # address: 42321313432
 s += "world"
-print (id(s)) #address: 42321313485 (new allocation - immutable!)
+print(id(s))  # address: 42321313485 (new allocation - immutable!)
 
+s = "one " * 3  # 'one one one '
 
-s = "one " * 3 #'one one one '
-
-#Slices: [start:stop:step]
+# Slices: [start:stop:step]
 s = "Python course on Coursera"
-s[7:] # 'course on Coursera'
-s[7:12] # 'course'
-s[-8:] # 'Coursera'
+print(s[7:])  # 'course on Coursera'
+print(s[7:12])  # 'course'
+print(s[-8:])  # 'Coursera'
 s = '023456789'
-s[::2] # '02468'
+print(s[::2])  # '02468'
 s = 'Moscow'
-s[::-1] # 'wocsoM'
-"Moscow".capitalize() # "MOSCOW"
-"2017".isdigit() # True
+print(s[::-1])  # 'wocsoM'
+"Moscow".capitalize()  # "MOSCOW"
+"2017".isdigit()  # True
 
-#Operator "in"
-"3.14" in "Pi = 3.1415" #True
+# Operator "in"
+"3.14" in "Pi = 3.1415"  # True
 
 s = 'one'
 for c in s:
-   print(c)
-#'o'
-#'n'
-#'e'
+    print(c)
+# 'o'
+# 'n'
+# 'e'
 
-num_str = str(99.01) #'99.01'
-type(num_str) # <class 'str'>
+num_str = str(99.01)  # '99.01'
+type(num_str)  # <class 'str'>
 
-bool("nonempty") #True
-bool('') #False
+bool("nonempty")  # True
+bool('')  # False
 
-#Formatting:
+# Formatting:
 
-#Way 1
+# Way 1
 s = "%s, Mr. %s"
-print(s % ("Hello", "Bob")) #"Hello, Mr. Bob"
+print(s % ("Hello", "Bob"))  # "Hello, Mr. Bob"
 
-#Way 2
+# Way 2
 s = '{} is {} years old'.format('John', 25)
-s = '{name} is {age} years old'.format(name = 'John', age = 25)
+s = '{name} is {age} years old'.format(name='John', age=25)
 
-#Way 3
-#f-strings (Python 3.6+)
+# Way 3
+# f-strings (Python 3.6+)
 name = 'John'
 age = 25
 s = f'{name} is {age} years old'
 num = 10
 s = f'Binary {num} = {num:#b}'
-num = 7/3
-s = f'Result = {num:.3f}' #Result = 2.333
+num = 7 / 3
+s = f'Result = {num:.3f}'  # Result = 2.333
 
-#Way 4 - join
+# Way 4 - join
 # From SO:
-#Python 3.6 changed strings that have known components with Literal String Interpolation.
+# Python 3.6 changed strings that have known components with Literal String Interpolation.
 
 domain = 'some_really_long_example.com'
 lang = 'en'
 path = 'some/really/long/path/'
 
-s1 = f'http://{domain}/{lang}/{path}' # 0.151 µs
-s2 = 'http://%s/%s/%s' % (domain, lang, path) # 0.321 µs
-s3 = 'http://' + domain + '/' + lang + '/' + path # 0.356 µs
-s4 = ''.join(('http://', domain, '/', lang, '/', path)) # 0.249 µs (notice that building a constant tuple is slightly faster than building a constant list).
+s1 = f'http://{domain}/{lang}/{path}'  # 0.151 µs
+s2 = 'http://%s/%s/%s' % (domain, lang, path)  # 0.321 µs
+s3 = 'http://' + domain + '/' + lang + '/' + path  # 0.356 µs
+s4 = ''.join(('http://', domain, '/', lang, '/',
+              path))  # 0.249 µs (notice that building a constant tuple is slightly faster than building a constant list).
 
-
-#F-strings allow to call ANY instructions inside:
+# F-strings allow to call ANY instructions inside:
 sf = f'Result ={s1 + s2}'
 
-#Filling strings with zeroes:
+# Filling strings with zeroes:
 
 n = 4
 print('%03d' % n)
@@ -200,35 +200,33 @@ print('{:03d}'.format(n))
 print('{0:03d}'.format(n))
 print(f'{n:03}')
 
+# name = input('Enter your name: ')
+# print(name) #'Alex'
 
-#name = input('Enter your name: ')
-#print(name) #'Alex'
-
-#Byte strings (bytes):
+# Byte strings (bytes):
 example_bytes = b'hello'
-type(example_bytes) #<class 'bytes'>
+type(example_bytes)  # <class 'bytes'>
 for b in example_bytes:
-   print(b)
-#104
-#101
-#108
-#108
-#111
+    print(b)
+# 104
+# 101
+# 108
+# 108
+# 111
 
-#s = b'привет'
-#Error! (Unicode values > 255)
+# s = b'привет'
+# Error! (Unicode values > 255)
 
 s = 'привет'
-encoded_s = s.encode(encoding = "utf-8")
-print(encoded_s) #b'\xd0\xbf\xd1\x80\xd0\xb8\xd0\xb2\xd0\xb5\xd1\x82' # 'п' = 0xd0bf
-#<class 'bytes'>
+encoded_s = s.encode(encoding="utf-8")
+print(encoded_s)  # b'\xd0\xbf\xd1\x80\xd0\xb8\xd0\xb2\xd0\xb5\xd1\x82' # 'п' = 0xd0bf
+# <class 'bytes'>
 
-decoded_s = encoded_s.decode(encoding = "utf-8")
+decoded_s = encoded_s.decode(encoding="utf-8")
 print(decoded_s)
 'привет'
 
-
-#FLOW CONTROL
+# FLOW CONTROL
 
 s = "hello, world"
 if "world" in s and 2 + 2 == 4:
@@ -251,7 +249,7 @@ mylist = somelist or []
 
 i = 0
 while i < 100:
-   i += 1
+    i += 1
 
 s = 'hello'
 for c in s:
@@ -259,32 +257,32 @@ for c in s:
 
 for i in range(3):
     print(i)
-#0
-#1
-#2
+# 0
+# 1
+# 2
 
-for i in range(5,8):
+for i in range(5, 8):
     print(i)
-#5
-#6
-#7
+# 5
+# 6
+# 7
 
-for i in range(1,10,2):
+for i in range(1, 10, 2):
     print(i)
-#1
-#3
-#5
-#7
-#9
+# 1
+# 3
+# 5
+# 7
+# 9
 
-for i in range(1,4,-1):
+for i in range(4, 1, -1):
     print(i)
-#4
-#3
-#2
+# 4
+# 3
+# 2
 
 for _ in range(10):
-   print('Ops!')
+    print('Ops!')
 
 while False:
     pass
@@ -292,7 +290,7 @@ while False:
 val = 1
 while True:
     val += 1
-    if(val > 100):
+    if (val > 100):
         break
 
 sum1 = 0
@@ -301,68 +299,79 @@ for a in range(12):
         continue
     sum1 += a
 
+# MODULES
 
-#MODULES
+import time
 
-#Python executes all top level instructions when module is imported:
-#mymodule.py:
+time.sleep(1)
+
+from time import sleep
+
+sleep(1)
+
+from time import *
+
+sleep(1)
+
+# Python executes all top level instructions when module is imported:
+# mymodule.py:
 print('hello')
-#>>> import mymodule
-#>>> hello
-#>>> import mymodule
-#>>>
-#second call ignored
+# >>> import mymodule
+# >>> hello
+# >>> import mymodule
+# >>>
+# second call ignored
 
-#mkdir mypackage
-#vim mypackage/__init__.py
-#~ print("importing mypackage")
-#python3
-#>>>import mypackage
-#>>>importing mypackage
-#<module 'mypackage' from ...>
+# mkdir mypackage
+# vim mypackage/__init__.py
+# ~ print("importing mypackage")
+# python3
+# >>>import mypackage
+# >>>importing mypackage
+# <module 'mypackage' from ...>
 
-#module1.py:
-#if __name__ == "__main__":
+# module1.py:
+# if __name__ == "__main__":
 #   print("direct call")
 
-#python3 module1.py
-#direct call
+# python3 module1.py
+# direct call
 
-#import module1
-#<no output - indirect call>
+# import module1
+# <no output - indirect call>
 
-#vim mypackage/utils.py
-#python3
-#>>> import mypackage.utils
-#>>> mypackage.utils.myfun(1,2)
+# vim mypackage/utils.py
+# python3
+# >>> import mypackage.utils
+# >>> mypackage.utils.myfun(1,2)
 
-#>>> from mypackage.utils import myfun
-#>>> myfun(1,2)
+# >>> from mypackage.utils import myfun
+# >>> myfun(1,2)
 
-#>>> from mypackage.utils import *
-#>>> myfun1(1,2)
-#>>> myfun2(1)
+# >>> from mypackage.utils import *
+# >>> myfun1(1,2)
+# >>> myfun2(1)
 
-#VIRTUAL ENVIRONMENT
+# VIRTUAL ENVIRONMENT
 
-#python -m venv myenv
-#source myenv/bin/activate
-#(myenv): pip install requests
-#deactivate
+# python -m venv myenv
+# source myenv/bin/activate
+# (myenv): pip install requests
+# deactivate
 #:
-#source myenv/bin/activate
-#(myenv) pip install jupyter-notebook
-#(myenv) python jupyter-notebook
-#(myenv) pip install requests
-#(myenv) python
-#(myenv) >>> import requests
-#(myenv) >>> print(requests.get("http://freegeoip.net/json").json())
+# source myenv/bin/activate
+# (myenv) pip install jupyter-notebook
+# (myenv) python jupyter-notebook
+# (myenv) pip install requests
+# (myenv) python
+# (myenv) >>> import requests
+# (myenv) >>> print(requests.get("http://freegeoip.net/json").json())
 
 
-#INTERNALS
+# INTERNALS
 
 a.__add__(2)
-dir(a) #['__abs__', '__add__,...] #30+ methods
+dir(a)  # ['__abs__', '__add__,...] #30+ methods
 
 """
 Every variable, class, function, module is:
@@ -378,141 +387,141 @@ typedef struct {
 } PyVarObject;
 """
 
-#BYTECODE
+# BYTECODE
 
-#pyc - bytecode
-#mutiply.__code__.co_code()
-#b'|\x00|\x01\x14\x00S\x00'
+# pyc - bytecode
+# mutiply.__code__.co_code()
+# b'|\x00|\x01\x14\x00S\x00'
 import dis
+
 
 def multiply(a, b):
     return a * b
 
+
 dis.dis(multiply)
-#2      0 LOAD_FAST         0 (a)
+# 2      0 LOAD_FAST         0 (a)
 #       2 LOAD_FAST         1 (b)
 #       4 BINARY_MULTIPLY
 #       6 RETURN_VALUE
 
 import opcode
+
 print(opcode.opmap)
 
+# LISTS
 
-#LISTS
-
-#List is mutable
+# List is mutable
 
 empty_list1 = []
 empty_list2 = list()
 
-#can have various objects but usually one type
+# can have various objects but usually one type
 lst = [10, 'str', [1, 2]]
 
 # 10 equal items
 lst = ['equals'] * 10
 
-len(lst) #-> constant time call
+len(lst)  # -> constant time call
 
-#index
+# index
 chars = ['a', 'b', 'c', 'd']
 chars[1] == 'b'
 chars[-1] == 'd'
 
-'b' in chars #True
+'b' in chars  # True
 
-#init from range (iterator)
+# init from range (iterator)
 range_lst = list(range(10))
 
-#reverse list
+# when use slicing - new copy is created:
+range_lst is range_lst[:]  # False
+
+# reverse list
 chars[::-1]
 
-#when use slicing - new copy is created:
-range_lst is range_lst[:] #False
-
-#iterate through list with index
+# iterate through list with index
 collections = ['set', 'list', 'dict']
 for idx, c in enumerate(collections):
-   print(idx, c)
-#0 set
-#1 list
-#2 dict
+    print(idx, c)
+# 0 set
+# 1 list
+# 2 dict
 
 collections.append('tuple')
-collections.extend(['tuple', 'frozenset']) #new list contents added to the end
-collections += ['tuple', 'frozenset'] #equal
-collections += 'tuple' #NOT equal - adds 5 new items: 't', 'u' ...
+collections.extend(['tuple', 'frozenset'])  # new list contents added to the end
+collections += ['tuple', 'frozenset']  # equal
+collections += 'tuple'  # NOT equal - adds 5 new items: 't', 'u' ...
 
 del collections[3]
 
-print(', '.join(collections)) #set, list, dict, tuple, tuple
+print(', '.join(collections))  # set, list, dict, tuple, tuple
 
-sorted(collections) # return copy
-collections.sort() #in-place sort
+sorted(collections)  # return copy
+collections.sort()  # in-place sort
 sorted(collections, reverse=True)
 print(reversed(collections))
-#<list_reverseiterator object at 0x132431243>
-print(list(reversed(collections))) #reversed is iterator
-#tuple, dict, list, set
+# <list_reverseiterator object at 0x132431243>
+print(list(reversed(collections)))  # reversed is iterator
+# tuple, dict, list, set
 
 # zip
 questions = ['name', 'quest', 'favorite color']
 answers = ['lancelot', 'the holy grail', 'blue']
-for q, a in zip(questions, answers): #any number of containers, num of elements equal to shorter container size
+for q, a in zip(questions, answers):  # any number of containers, num of elements equal to shorter container size
     print('What is your {0}?  It is {1}.'.format(q, a))
 
-
-#TUPLES
+# TUPLES
 
 empty_tuple = ()
 empty_tuple = tuple()
 
-#Immutable
+# Immutable
 
 immutables = (int, float, str)
-#immutables[0] = (list,) #error - can't change tuple!
+# immutables[0] = (list,) #error - can't change tuple!
 blink = ([], [])
-blink[0].append(1) # Ok - element is mutable
+blink[0].append(1)  # Ok - element is mutable
 
 int in immutables
 
 # Can be hashed
-hash(tuple()) #131324
+hash(tuple())  # 131324
 
 # Add coma for one element
 one_elem_tuple = (1,)
 guess_what = (1)
-type(guess_what) # int
+type(guess_what)  # int
 
-
-#DICTIONARIES
+# DICTIONARIES
 
 # Mutable, unsorted!(hash)
 
 empty_dict = {}
 empty_dict = dict()
 
-#Const time search (hash)
+# Const time search (hash)
 collections_map = {
-    'mutable' : [ 'list', 'set', 'dict' ],
-    'immutable' : [ 'tuple', 'frozenset' ]
-    }
+    'mutable': ['list', 'set', 'dict'],
+    'immutable': ['tuple', 'frozenset']
+}
 print(collections_map['immutable'])
 
-print('elem' in collections_map) #searches in .keys
+print('elem' in collections_map)  # searches in .keys
 print('elem' in collections_map.keys())
 print('elem' in collections_map.values())
 print(('elem', 'val') in collections_map.items())
 
 # Absent key:
-#print(collections_map['irresistable']) # KeyError: not found
-print(collections_map.get('irresistable', 'not found')) # return default
-#not found
-#Add absent:
+# print(collections_map['irresistable']) # KeyError: not found
+print(collections_map.get('irresistable', 'not found'))  # return default
+# not found
+# Add absent:
 collections_map['irresistable'] = ['some']
 
-#Operator "in"
+# Operator "in"
 print('mutable' in collections_map)
-#True
+# True
 
 # Remove:
 del collections_map['irresistable']
@@ -521,10 +530,10 @@ del collections_map['irresistable']
 print(collections_map.pop('mutable'))
 
 # Update existing
-collections_map.update({'irresistable' : 'some2'})
+collections_map.update({'irresistable': 'some2'})
 
 # Iteration
-for key in collections_map: # or collections_map.keys
+for key in collections_map:  # or collections_map.keys
     print(key)
 for val in collections_map.values():
     print(val)
@@ -532,335 +541,405 @@ for key, val in collections_map.items():
     print(key, val)
 
 lst_items = collections_map.items()
-print(lst_items) #now list of tuples
-#[('mutable', ['set', 'list']), ('immutable', ['tuple', 'frozenset')]
+print(lst_items)  # now list of tuples
+# [('mutable', ['set', 'list']), ('immutable', ['tuple', 'frozenset')]
 
 from collections import OrderedDict
-ordered  = OrderedDict() # same as std::map in C++
 
+ordered = OrderedDict()  # same as std::map in C++
 
-#SET
+# SET
 
 # Mutable, unique, unordered(hash!)
 
 empty_set = set()
-nonempty_set = {1,2,3,3}
+nonempty_set = {1, 2, 3, 3}
 print(nonempty_set)
-#{1,2,3}
+# {1,2,3}
 
 # Adding/removing/search
 nonempty_set.add(5)
 nonempty_set.remove(2)
-nonempty_set.pop() # remove and return some value (undefined)
+nonempty_set.pop()  # remove and return some value (undefined)
 print('elem' in nonempty_set)
 
 # Mathematical operations
 
 set1 = {1}
-set2 = {1,2}
+set2 = {1, 2}
 
 union_set = set1 | set2
 intersection_set = set1 & set2
 difference_set = set1 - set2
 symmetric_difference_set = set1 ^ set2
 
-
-#FROZENSET
+# FROZENSET
 
 # Immutable
 
 frozen = frozenset(['Anna', 'Elsa', 'Kristoff'])
-#frozen.add('Olaf') #-> error!
 
 
-#FUNCTIONS
+# frozen.add('Olaf') #-> error!
+
+
+# FUNCTIONS
 
 def myfun(param):
     """Function documentation"""
     c = 2 + param
     return c
 
+
 print(myfun.__doc__)
 print(myfun.__name__)
+
 
 def fun_without_return():
     pass
 
-a = fun_without_return() #None
 
-#Types annotation
-def add(a : int, b : int) -> int:
+a = fun_without_return()  # None
+
+
+# Types annotation
+def add(a: int, b: int) -> int:
     return a + b
 
-add(1,2) # 3
-add('still ', 'works') # 'still works'
 
-#Params passed by reference
+add(1, 2)  # 3
+add('still ', 'works')  # 'still works'
+
+
+# Params passed by reference
 def extender(src_list, ext):
     src_list.extend(ext)
 
-a = [1,2,3]
-b = [4,5]
+
+a = [1, 2, 3]
+b = [4, 5]
 
 extender(a, b)
-print(a) #1,2,3,4,5
+print(a)  # 1,2,3,4,5
 
-#But immutable types will not change inside functions:
+
+# But immutable types will not change inside functions:
 def replacer(tuple1, new_tuple):
     tuple1 = new_tuple
 
-tuple1 = (1,2)
-replacer(tuple1, (3,4))
 
-print(tuple1) #(1,2)
+tuple1 = (1, 2)
+replacer(tuple1, (3, 4))
 
-#Better to not change values inside functions but return new val
+print(tuple1)  # (1,2)
 
-#Named args:
+
+# Better to not change values inside functions but return new val
+
+# Named args:
 
 def hello(people, message):
     print(people, ', ', message)
 
-hello(people = 'John', message = 'hi!') #John, hi!
-hello(message = 'hi!', people = 'John') #John, hi!
-hello('John', 'hi!') #John, hi!
 
-#Function doesn't change global val
+hello(people='John', message='hi!')  # John, hi!
+hello(message='hi!', people='John')  # John, hi!
+hello('John', 'hi!')  # John, hi!
+
+# Function doesn't change global val
 counter = 1
+
+
 def inc(val):
     val += 1
-#inc(counter) -> Error
 
-#Default args
+
+# inc(counter) -> Error
+
+# Default args
 def helloer(name, msg='hello, '):
     return msg + name
+
+
 helloer('Vasya')
 
-#Variable num of args
+
+# Variable num of args
 def printer(*args):
-    type(args) #<class 'tuple'>
+    type(args)  # <class 'tuple'>
     for arg in args:
         print(arg)
 
-print(1,2,3,4)
-#<class 'tuple'>
-#1
-#2
-#3
-#4
 
-#We can unfold list into list of args
+print(1, 2, 3, 4)
+# <class 'tuple'>
+# 1
+# 2
+# 3
+# 4
+
+# We can unfold list into list of args
 lst = ['red', 'green', 'blue']
 printer(lst)
-#<class 'tuple'>
-#red
-#green
-#blue
+
+
+# <class 'tuple'>
+# red
+# green
+# blue
 
 def caller1(func, params):
-    return func(*params) #pass variable number of args to another function
+    return func(*params)  # pass variable number of args to another function
 
-#Variable num args and dict
+
+# Variable num args and dict
 def printer2(**kv_args):
-    type(kv_args) #<class 'dict'>
-    for k,v in kv_args.items():
-        print('{key} : {val}'.format(key = k, val = v))
+    type(kv_args)  # <class 'dict'>
+    for k, v in kv_args.items():
+        print('{key} : {val}'.format(key=k, val=v))
+
 
 printer2(a=10, b=5)
-#<class 'dict'>
-#a: 10
-#b: 5
+# <class 'dict'>
+# a: 10
+# b: 5
 
-#unfold dict to kvargs
+# unfold dict to kvargs
 
-mydict = {'k1': 25, 'k2' : 50}
+mydict = {'k1': 25, 'k2': 50}
 printer2(**mydict)
 
-
-#FILES
+# FILES
 
 text_modes = ['r', 'w', 'a', 'r+']
 binary_modes = ['br', 'bw', 'ba', 'br+']
 f = open('filename', text_modes[1])
 
 num_symbols_written = f.write('Some multiline\nstring')
-print(num_symbols_written) #21
+print(num_symbols_written)  # 21
 
 f.close()
-#better way (will be closed):
+# better way (will be closed):
 with open('filename', 'r+') as f:
     s = f.write('tst')
-#file will be closed anyway when program exits or by GC,
-#but better to close as soon as we don't need it since descriptors can end
+# file will be closed anyway when program exits or by GC,
+# but better to close as soon as we don't need it since descriptors can end
 
 f = open('filename', 'r')
-s2 = f.read(2) #2 symbols
-s1 = f.read() #entre file
-f.tell() # 123
-f.read() # ''
+s2 = f.read(2)  # 2 symbols
+s1 = f.read()  # entre file
+f.tell()  # 123
+f.read()  # ''
 f.seek(0)
-f.tell() # 0
+f.tell()  # 0
 
 s = f.readline()
-lst = f.readlines() # ['line1\n', 'line2\n',...]
+lst = f.readlines()  # ['line1\n', 'line2\n',...]
 
 f.close()
 import os
+
 os.remove('filename')
-#f.read() ->i/o error
 
 
-#FUNCTIONAL PROGRAMMING
+# f.read() ->i/o error
 
-#Function is a 1st class object. It can be passed as argument, created inplace etc
+
+# FUNCTIONAL PROGRAMMING
+
+# Function is a 1st class object. It can be passed as argument, created inplace etc
 
 def caller(func, args):
     return func(*args)
+
+
 def printer(who, from_city):
     print("I'm {} from {}".format(who, from_city))
+
+
 caller(printer, ['Vasya', 'Moscow'])
+
 
 def get_multiplier():
     def multiplier_inner(a, b):
         return a * b
-    return multiplier_inner
-multiplier = get_multiplier()
-print(multiplier(2,3)) #6
-print(multiplier.__name__) #multiplier_inner
 
-#Closure
+    return multiplier_inner
+
+
+multiplier = get_multiplier()
+print(multiplier(2, 3))  # 6
+print(multiplier.__name__)  # multiplier_inner
+
+
+# Closure
 def get_multiplier(by):
     def inner(a):
         return a * by
+
     return inner
 
+
 multiplier_by_2 = get_multiplier(2)
-print(multiplier_by_2(5)) #10
+print(multiplier_by_2(5))  # 10
 
-#Library functions which simplify functional programming
 
-#Apply function to all elements in container
+# Library functions which simplify functional programming
+
+# Apply function to all elements in container
 def squarify(a):
     return a ** 2
+
+
 results = map(squarify, range(5))
 for item in results:
-    print(item) #0,1,4,9,16
-#Second way
-print(list(map(squarify, range(5)))) #[0, 1, 4, 9, 16]
+    print(item)  # 0,1,4,9,16
+# Second way
+print(list(map(squarify, range(5))))  # [0, 1, 4, 9, 16]
 
-#Filter by predicate
+
+# Filter by predicate
 def is_positive(n):
     return n >= 0
-print(list(filter(is_positive, range(-2,3)))) #[0,1,2]
 
-#Lambdas or anonymous functions (when we don't need separate function)
+
+print(list(filter(is_positive, range(-2, 3))))  # [0,1,2]
+
+# Lambdas or anonymous functions (when we don't need separate function)
 print(list(map(lambda x: x ** 2, range(10))))
 
 print(type(lambda x: x ** 2))
-#<class 'function'>
+# <class 'function'>
 
 numbers = list(range(10))
 print(list(map(str, numbers)))
 
-#Interesting map usage:
+# Interesting map usage:
 day, month, year = map(int, '12-10-2017'.split('-'))
 
-#functools has very useful helpers!
+# functools has very useful helpers!
 import functools
-def mult(a,b):
-    return a * b
-print(functools.reduce(mult, [1,3,5,7,8]))
-#mult(1,3)=3
-#mult(3,5)=15
-#mult(15,7)=105
-#mult(105,8)=840
-#840
 
-#second way
-print(functools.reduce(lambda a,b: a * b, [1,3,5,7,8]))
+
+def mult(a, b):
+    return a * b
+
+
+print(functools.reduce(mult, [1, 3, 5, 7, 8]))
+# mult(1,3)=3
+# mult(3,5)=15
+# mult(15,7)=105
+# mult(105,8)=840
+# 840
+
+# second way
+print(functools.reduce(lambda a, b: a * b, [1, 3, 5, 7, 8]))
+
+
 def greeter(person, greeting):
     print('{}, {}!'.format(greeting, person))
-hier = functools.partial(greeter, greeting = 'Hi')
-helloer = functools.partial(greeter, greeting = 'Hello')
+
+
+hier = functools.partial(greeter, greeting='Hi')
+helloer = functools.partial(greeter, greeting='Hello')
 hier('Vasya')
 helloer('Ivan Ivanovich')
 
-#List comprehensions: a bit faster than regular loop, as well as shorter
-#Can be used instead of map and filter
+# List comprehensions: a bit faster than regular loop, as well as shorter
+# Can be used instead of map and filter
 squares = [x ** 2 for x in range(10)]
 print(squares)
 even_list = [x for x in range(20) if x % 2 == 0]
 print(even_list)
 
-#Dict and set comprehensions in same way
-num_to_str = {num : str(num) for num in range(10)}
+# Dict and set comprehensions in same way
+num_to_str = {num: str(num) for num in range(10)}
 print(list(num_to_str.items()))
 
-even_set = { x for x in range(10) if x % 2 == 0}
+even_set = {x for x in range(10) if x % 2 == 0}
 print(list(even_set))
 
-#Type of comprehension is generator
+# Type of comprehension is generator
 print(type(x for x in range(3)))
-#<class 'generator'>
+# <class 'generator'>
 
-#zip - join sequences
+# zip - join sequences
 numbers = list(range(5))
 squares = [x ** 2 for x in numbers]
 for tpl in zip(numbers, squares):
     print(tpl)
-#(0,0) (1,1) (2,4) (3,9 (4,16)
+# (0,0) (1,1) (2,4) (3,9 (4,16)
 
 print(list(zip(
-  filter(bool, range(3)),
-  [x for x in range(3) if x]
+    filter(bool, range(3)),
+    [x for x in range(3) if x]
 )))
-#(1,1) (2,2)
 
 
-#DECORATORS
+# (1,1) (2,2)
 
-#Decorator is function which accepts function and returns function
-#Used to modify function(s) behavior
 
-#Simplest decorator - return same function
+# DECORATORS
+
+# Decorator is function which accepts function and returns function
+# Used to modify function(s) behavior
+
+# Simplest decorator - return same function
 def decorator(func):
     return func
-#Synthatic sugar:
+
+
+# Synthatic sugar:
 @decorator
 def decorated():
     print('hello')
-#It is equal to:
+
+
+# It is equal to:
 decorated = decorator(decorated)
 
-#Decorator which redefines function
+
+# Decorator which redefines function
 def decorator2(func):
     def new_func():
         pass
+
     return new_func
+
+
 @decorator2
 def decorated2():
     print('hello')
-#same as decorated2 = decorator2(decorated2)
-print(decorated2.__name__)
-#new_func
 
-#Decorate generic function - write result to logfile
+
+# same as decorated2 = decorator2(decorated2)
+print(decorated2.__name__)
+
+
+# new_func
+
+# Decorate generic function - write result to logfile
 def logger(func):
-    @functools.wraps(func) #this is required to save original function name
-    def wrapped(*args, **kwargs): #handle any arguments, args should come before kwargs (positional before named)
+    @functools.wraps(func)  # this is required to save original function name
+    def wrapped(*args, **kwargs):  # handle any arguments, args should come before kwargs (positional before named)
         result = func(*args, **kwargs)
         with open('log.txt', 'w') as f:
             f.write(str(result))
-        return result #preserves function behavior - keeps return value for function
+        return result  # preserves function behavior - keeps return value for function
+
     return wrapped
+
 
 @logger
 def summator(num_list):
     return sum(num_list)
-print('Summator: {}'.format(summator([1, 2, 3, 4]))) #10
-print(summator.__name__) #summator - because of functools.wraps call
 
-#Decorator with parameter - custom filename
+
+print('Summator: {}'.format(summator([1, 2, 3, 4])))  # 10
+print(summator.__name__)  # summator - because of functools.wraps call
+
+
+# Decorator with parameter - custom filename
 def logger(filename):
     def decorator(func):
         def wrapped(*args, **kwargs):
@@ -868,12 +947,17 @@ def logger(filename):
             with open(filename, 'w') as f:
                 f.write(str(result))
             return result
+
         return wrapped
+
     return decorator
+
 
 @logger('new_log.txt')
 def summator(num_list):
     return sum(num_list)
+
+
 # Equal to:
 # summator = logger('new_log.txt')(summator) #logger() returns function
 # and we call it with argument (summator) to get decorated function
@@ -885,178 +969,220 @@ os.remove('new_log.txt')
 os.remove('log.txt')
 
 
-#Apply two decorators:
+# Apply two decorators:
 def first_decorator(func):
     def wrapped():
         print('Inside first_decorator product')
         return func()
+
     return wrapped
+
+
 def second_decorator(func):
     def wrapped():
         print('Inside second_decorator product')
         return func()
+
     return wrapped
+
 
 @first_decorator
 @second_decorator
 def decorated3():
     print('Finally called...')
+
+
 # Equal to:
 # decorated3 = first_decorator(second_decorator(decorated)) #second decorator applied first
 decorated3()
-#Inside first_decorator product
-#Inside second_decorator product
-#Finally called...
 
-#Useful example of 2 decorators:
+
+# Inside first_decorator product
+# Inside second_decorator product
+# Finally called...
+
+# Useful example of 2 decorators:
 def bold(func):
     def wrapped():
         return "<b>" + func() + "</b>"
+
     return wrapped
+
 
 def italic(func):
     def wrapped():
         return "<i>" + func() + "</i>"
+
     return wrapped
+
 
 @bold
 @italic
 def hello():
     return "hello world"
+
+
 # Equal to:
 # hello = bold(italic(hello))
 
 print(hello())
-#<b><i>hello world</i></b>
 
 
+# <b><i>hello world</i></b>
 
-#GENERATORS
 
-#It is a function that contains operator yield
+# GENERATORS
 
-#Generator allows to store function state and return to it every time
+# It is a function that contains operator yield
 
-#This particular generator doesn't store all range in memory, just stores state
+# Generator allows to store function state and return to it every time
+
+# This particular generator doesn't store all range in memory, just stores state
 def even_range(start, end):
     cur = start
     while cur < end:
         yield cur
         cur += 2
-print(list(even_range(2,15)))
 
-#another way to iterate:
-ranger = even_range(2,5)
+
+print(list(even_range(2, 15)))
+
+# another way to iterate:
+ranger = even_range(2, 5)
 print(next(ranger))
 print(next(ranger))
-#print(next(ranger)) #-> error, out-of-range
 
-#Useful example
+
+# print(next(ranger)) #-> error, out-of-range
+
+# Useful example
 def fibonacci(number):
     a = b = 1
     for _ in range(number):
         yield a
         a, b = b, a + b
+
+
 for num in fibonacci(10):
     print(num)
 
-
-#CLASSES
+# CLASSES
 
 num = 13
-print(type(num)) # <class 'int'>
+print(type(num))  # <class 'int'>
 
-print(isinstance(num, int)) #True
-print(isinstance(num, float)) #False
+print(isinstance(num, int))  # True
+print(isinstance(num, float))  # False
+
 
 class Robot:
     pass
-print(dir(Robot)) # ['__class__', '__delattr__', '__dict__', '__doc__', '__init__', ...]
-robot = Robot()
-print(robot) # <__main__.Robot object at 0x10ea82b0>
 
-#Operate user objects as built-in:
+
+print(dir(Robot))  # ['__class__', '__delattr__', '__dict__', '__doc__', '__init__', ...]
+robot = Robot()
+print(robot)  # <__main__.Robot object at 0x10ea82b0>
+
+
+# Operate user objects as built-in:
 class MyPlanet:
     pass
+
 
 solarsystem = []
 for _ in range(8):
     planet = MyPlanet()
     solarsystem.append(planet)
 
-#Object is HASHABLE!
+# Object is HASHABLE!
 solar_system = {}
 for i in range(8):
     planet = MyPlanet()
     solar_system[planet] = i
 
-#Constructors
+
+# Constructors
 
 class Planet:
     def __init__(self, name):
         self.name = name
+
+
 earth = Planet("Earth")
-print(earth.name) #Earth
-print(earth) #<class 'Planet'>
+print(earth.name)  # Earth
+print(earth)  # <class 'Planet'>
+
 
 class Planet2:
     def __init__(self, name):
         self.name = name
+
     def __str__(self):
-        return self.name #print will print this string
-print(earth) #Earth
-#but:
+        return self.name  # print will print this string
+
+
+print(earth)  # Earth
+# but:
 lst2 = [Planet2('Mars'), Planet2('Venus')]
-print(lst2) #[<__main__.Planet2 object...
+print(lst2)  # [<__main__.Planet2 object...
+
 
 class Planet3:
     def __init__(self, name):
         self.name = name
+
     def __repr__(self):
         return 'Planet ' + self.name
+
+
 lst3 = [Planet3('Mars'), Planet3('Venus')]
-print(lst3) #['Planet Mars', ...]
+print(lst3)  # ['Planet Mars', ...]
 
 
-#Class attributes (same as static members in C++)
+# Class attributes (same as static members in C++)
 class Planet4:
     count = 0
-    def __init__(self, name, population = None):
+
+    def __init__(self, name, population=None):
         self.name = name
         self.population = population or []
         Planet4.count += 1
 
+
 earth = Planet4("Earth")
 mars = Planet4("Mars")
-print(Planet4.count) #2
-print(mars.count) #2 - also valid
+print(Planet4.count)  # 2
+print(mars.count)  # 2 - also valid
 
-#Destructor
+
+# Destructor
 class Human:
     def __del__(self):
-        print ("Goodbye!")
+        print("Goodbye!")
+
+
 human = Human()
-del human # Goodbye!
-#But better to do some cleanup (close file etc) explicitly in methods because there
-#is not guarantee that del will be called
+del human  # Goodbye!
+# But better to do some cleanup (close file etc) explicitly in methods because there
+# is not guarantee that del will be called
 
-print(earth.__dict__) # {'name' : Earth, 'population' : [] }
+print(earth.__dict__)  # {'name' : Earth, 'population' : [] }
 
-#Adding new member:
+# Adding new member:
 earth.mass = 5.97e24
-print(earth.__dict__) # {'name' : Earth, 'population' : [], 'mass' : 5.97e24 }
-#Builtin types omit capability to add new member as an optimization
-#Via __slots__, you can also prevent this on user-defined classes.
-#But this is merely a space optimization (no need for a dictionary for every object), not a correctness thing.
-#Theoretical base is here:
-#https://stackoverflow.com/questions/12569018/why-is-adding-attributes-to-an-already-instantiated-object-allowed
+print(earth.__dict__)  # {'name' : Earth, 'population' : [], 'mass' : 5.97e24 }
+# Builtin types omit capability to add new member as an optimization
+# Via __slots__, you can also prevent this on user-defined classes.
+# But this is merely a space optimization (no need for a dictionary for every object), not a correctness thing.
+# Theoretical base is here:
+# https://stackoverflow.com/questions/12569018/why-is-adding-attributes-to-an-already-instantiated-object-allowed
 
 
-#But trying to access non-existing member will fail:
-#print(earth.radius) #'Planet4' object has no attribute 'radius'
-#print(mars.mass) #Also fails!
+# But trying to access non-existing member will fail:
+# print(earth.radius) #'Planet4' object has no attribute 'radius'
+# print(mars.mass) #Also fails!
 
-#Check attr exists:
+# Check attr exists:
 if hasattr(earth, 'weight'):
     print(earth.weight)
 else:
@@ -1064,36 +1190,44 @@ else:
 if hasattr(earth, 'mass'):
     print(earth.mass)
 
-#Constructor:
+
+# Constructor:
 class Planet5:
     def __new__(cls, *args, **kwargs):
         print('__new__ called')
         obj = super().__new__(cls)
         return obj
+
     def __init__(self, name):
         print("__init__ called")
         self.name = name
 
+
 earth5 = Planet5('Earth')
-#__new__ called
-#__init__ called
-#This call is equal to:
+# __new__ called
+# __init__ called
+# This call is equal to:
 
 earth52 = Planet5.__new__(Planet5, 'Earth')
 if isinstance(earth52, Planet5):
     Planet5.__init__(earth52, 'Earth')
 
-#Convention for private members - name with _:
+
+# Convention for private members - name with _:
 class Human1:
     def _say(self, text):
         print(text)
-#But it is possible to access any class member:
+
+
+# But it is possible to access any class member:
 hm = Human1()
 hm._say('hi!')
 
-#@classmethod - returns class instance
+
+# @classmethod - returns class instance
 def solve_puzzle(text):
     return 'Dog'
+
 
 class Animal:
     def __init__(self, kind):
@@ -1104,13 +1238,15 @@ class Animal:
         kind_ = solve_puzzle(puzzle_text)
         return cls(kind_)
 
+
 animal = Animal.get_from_puzzle('4-legs friend')
 print(animal.kind)
 
-#Example of @classmethod from library:
+# Example of @classmethod from library:
 dct = dict.fromkeys("12345")
 
-#@staticmethod
+
+# @staticmethod
 class Car:
 
     def __init__(self, num_whells):
@@ -1120,9 +1256,11 @@ class Car:
     def is_valid_num_whells(num_whells):
         return num_whells == 4
 
+
 print(Car.is_valid_num_whells(3))
 
-#@property
+
+# @property
 class Robot:
     def __init__(self, power):
         self._power = power
@@ -1145,63 +1283,67 @@ class Robot:
         print('Make robot useless')
         del self._power
 
-#Shorter way if we need only reader
+
+# Shorter way if we need only reader
 class Robot2:
     def __init__(self, power):
         self._power = power
 
     @property
     def power(self):
-        #some optional calculations
+        # some optional calculations
         return self._power
 
 
-#Inheritance
+# Inheritance
 class Pet:
-    def __init__(self, name = None):
+    def __init__(self, name=None):
         self.name = name or 'Pet'
 
+
 class Dog(Pet):
-    def __init__(self, name, breed = None):
+    def __init__(self, name, breed=None):
         super().__init__(name)
         self.breed = breed
+
     def say(self):
         return f'{self.name}, waw!'
 
-#Multiple inheritance:
+
+# Multiple inheritance:
 
 class Baby:
     def __init__(self):
         self.__size = 'small'
 
+
 class SmallDog(Dog, Baby):
-    def __init__(self, name, breed = None):
+    def __init__(self, name, breed=None):
         # Explicit specification
         super(SmallDog, self).__init__(name)
 
 
+# Test for predecessor:
+print(issubclass(Dog, object))  # True: any class inherited from object!
+print(issubclass(int, object))  # True
+print(issubclass(SmallDog, Dog))  # True
+print(issubclass(Dog, int))  # False
 
-#Test for predecessor:
-print(issubclass(Dog, object)) #True: any class inherited from object!
-print(issubclass(int, object)) #True
-print(issubclass(SmallDog, Dog)) #True
-print(issubclass(Dog, int)) #False
-
-#Test if object has class:
+# Test if object has class:
 smalldog = SmallDog('Black')
-print(isinstance(smalldog, Dog)) #True
-print(isinstance(smalldog, SmallDog)) #True
-print(isinstance(smalldog, int)) #False
+print(isinstance(smalldog, Dog))  # True
+print(isinstance(smalldog, SmallDog))  # True
+print(isinstance(smalldog, int))  # False
 
-#investigate class hierarchy:
-print(SmallDog.__mro__) #Member Resolution Order (order in which Python searches for member)
+# investigate class hierarchy:
+print(SmallDog.__mro__)  # Member Resolution Order (order in which Python searches for member)
 
-#Details about multiple inheritance are here: https://docs.python.org/3/tutorial/classes.html#inheritance
+# Details about multiple inheritance are here: https://docs.python.org/3/tutorial/classes.html#inheritance
 
 
-#EXCEPTIONS
+# EXCEPTIONS
 
-#Inherit exceptions from Exception class, not BaseException
+# Inherit exceptions from Exception class, not BaseException
 """
 BaseException
  +-- SystemExit
@@ -1256,20 +1398,20 @@ BaseException
 """
 
 try:
-    1/0
-except: #catch all exception types
+    1 / 0
+except:  # catch all exception types
     print("Divide by zero")
 
-#The above can be bad if we press Ctrl-C inside try block since KeyboardInterrupt will also be handled
-#try:
-    # n = input("Enter number")
-#except:
-    #print("Wrong number")
+# The above can be bad if we press Ctrl-C inside try block since KeyboardInterrupt will also be handled
+# try:
+# n = input("Enter number")
+# except:
+# print("Wrong number")
 
 try:
-    lst = [1,2]
+    lst = [1, 2]
     print(lst[4])
-except LookupError: #catch Exception successors (KeyError, IndexError)
+except LookupError:  # catch Exception successors (KeyError, IndexError)
     print('LookupError')
 
 try:
@@ -1279,9 +1421,9 @@ except:
 else:
     print(n)
 
-#Several exception types:
+# Several exception types:
 try:
-    n = 1/ 0
+    n = 1 / 0
 except ValueError:
     print('ValueError')
 except ZeroDivisionError:
@@ -1296,13 +1438,13 @@ finally:
     print("We're in 'finally' block")
     f.close()
 
-#Access exception info
+# Access exception info
 try:
     f = open('etc/hosts1')
 except OSError as ex:
     print(ex.errno, ':', ex.strerror)
 
-#Raising exception and reading args
+# Raising exception and reading args
 try:
     filename = '/etc/kadabra'
     if not os.path.exists(filename):
@@ -1312,7 +1454,7 @@ except ValueError as ve:
     msg, filename = ve.args[0], ve.args[1]
     print(msg, filename, ve.args)
 
-#Get trace after exception:
+# Get trace after exception:
 import traceback
 
 try:
@@ -1322,27 +1464,28 @@ except OSError as err:
     trace = traceback.format_exc()
     print(trace)
 
-#Passing exception to the next level:
+# Passing exception to the next level:
 try:
     1 / 0
 except ZeroDivisionError as ex:
     print(ex.args)
-    #raise
-    #or:
-    #raise Exception from ex #The above exception was the direct cause of the following exception:
+    # raise
+    # or:
+    # raise Exception from ex #The above exception was the direct cause of the following exception:
 
-#Assert
+# Assert
 
 try:
     assert 1 == 0, "1 != 0"
 except AssertionError as ae:
     print(ae.args[0])
-#In real life we don't need to handle AsserionError
-#Instead we can disable them by specifying flag -O to Python
+# In real life we don't need to handle AsserionError
+# Instead we can disable them by specifying flag -O to Python
 
-#Exception adds valuable performance cost
+# Exception adds valuable performance cost
 
 import timeit
+
 s1 = """
 mydict = {'foo' : 1}
 for _ in range(1000):
@@ -1361,14 +1504,16 @@ for _ in range(1000):
         _ = mydict['bar']
 """
 print(timeit.timeit(stmt=s2, number=1))
+
+
 # 1000 loops, best of 3: 78.3 us per loop
 
 
-#MAGIC METHODS
+# MAGIC METHODS
 
-#__init__, ___new__, __str__ already described above
+# __init__, ___new__, __str__ already described above
 
-#__hash__, __eq__
+# __hash__, __eq__
 
 class User:
     def __init__(self, name, email):
@@ -1381,50 +1526,58 @@ class User:
     def __eq__(self, other):
         return self.email == other.email
 
+
 john = User('John', 'john@mail.ru')
 jack = User('Jack', 'john@mail.ru')
 
-print(john == jack) #True
+print(john == jack)  # True
 
-print(hash(john)) # 125274383719749823
-print(hash(jack)) # 125274383719749823
+print(hash(john))  # 125274383719749823
+print(hash(jack))  # 125274383719749823
 
-#__getattr__: defines behavior when attribute not found, called only when attr not found
-#__getattribute__: called always when we access to attribute. We can, e.g. log access to attribute
+
+# __getattr__: defines behavior when attribute not found, called only when attr not found
+# __getattribute__: called always when we access to attribute. We can, e.g. log access to attribute
 
 class Researcher:
     def __getattr__(self, name):
         return 'Nothing found'
 
     def __getattribute__(self, name):
-        print('Looking for {}'.format(name)) #override
-        return object.__getattribute__(self, name)  #call original __getattribute__
+        print('Looking for {}'.format(name))  # override
+        return object.__getattribute__(self, name)  # call original __getattribute__
+
 
 obj = Researcher()
 
 print(obj.attr)
-#Loking for attr
-#Nothing found
+# Loking for attr
+# Nothing found
 obj.myattr = 1
 print(obj.myattr)
-#Loking for method
-#1
 
-#__setattr__
+
+# Loking for method
+# 1
+
+# __setattr__
 class Ignorant:
     def __setattr__(self, name, value):
         print('Not gonna set {}'.format(name))
 
+
 obj = Ignorant()
 
 obj.myattr = '3.14'
+
+
 # Not gonna set myattr
 
-#print(obj.myattr)
-#AttributeError: 'Ignorant' object has no attribute 'myattr'
+# print(obj.myattr)
+# AttributeError: 'Ignorant' object has no attribute 'myattr'
 
-#__delattr__
-#We can delete or not delete attribute in this method
+# __delattr__
+# We can delete or not delete attribute in this method
 
 class Deleter:
     def __delattr__(self, item):
@@ -1432,13 +1585,16 @@ class Deleter:
         print(f'Goodbye {item}, you were {value}')
         object.__delattr__(self, item)
 
+
 obj = Deleter()
 obj.myattr = 10
 del obj.myattr
-#Goodbye myattr, you were 10
 
-#__call__
-#Called when class is called
+
+# Goodbye myattr, you were 10
+
+# __call__
+# Called when class is called
 
 class Logger:
     def __init__(self, filename):
@@ -1448,47 +1604,62 @@ class Logger:
         with open(self.filename, 'w') as f:
             f.write('Oh yes!')
         return func
+
+
 logger = Logger('log.txt')
+
+
 @logger
 def useless_func():
     pass
-useless_func() # will do nothing but will log 'Oh yes!' to a file
 
-#__add__, __sub__
-#Redefine +/-
+
+useless_func()  # will do nothing but will log 'Oh yes!' to a file
+
+# __add__, __sub__
+# Redefine +/-
 import random
+
+
 class NoisyInt:
     def __init__(self, val):
         self.val = val
+
     def __add__(self, other):
-        noise = random.randint(1,10)
+        noise = random.randint(1, 10)
         return self.val + other.val + noise
+
+
 a = NoisyInt(10)
 b = NoisyInt(20)
 for _ in range(3):
-    print(a+b)
-#40
-#39
-#35
+    print(a + b)
 
-#__getitem__, __setitem__
-#Defines object behavior during access by index
-#Defines object behavior during setting value by index
+
+# 40
+# 39
+# 35
+
+# __getitem__, __setitem__
+# Defines object behavior during access by index
+# Defines object behavior during setting value by index
 class PascalArray:
-    def __init__(self, other_list = None):
+    def __init__(self, other_list=None):
         self.lst = other_list or []
+
     def __getitem__(self, key):
-        return self.lst[key-1]
+        return self.lst[key - 1]
+
     def __setitem__(self, key, value):
-        self.lst[key-1] = value
-orig_lst = [1,3,5,7,9]
+        self.lst[key - 1] = value
+
+
+orig_lst = [1, 3, 5, 7, 9]
 pascal_array = PascalArray(orig_lst)
 pascal_array[4] = 8
-print(pascal_array[3], pascal_array[4]) #5, 8
+print(pascal_array[3], pascal_array[4])  # 5, 8
 
-
-
-#ITERATORS
+# ITERATORS
 
 for number in range(5):
     print(number)
@@ -1496,23 +1667,27 @@ for number in range(5):
 for letter in 'python':
     print(letter)
 
-for item in [1,2,3]:
+for item in [1, 2, 3]:
     print(item)
 
-iterator = iter([1,2,3])
+iterator = iter([1, 2, 3])
 print(next(iterator))
 print(next(iterator))
 print(next(iterator))
-#print(next(iterator)) raises StopIteration that means we should e.g. break for loop
 
 
-#Writting own iterator: implement __iter__ and __next__
+# print(next(iterator)) raises StopIteration that means we should e.g. break for loop
+
+
+# Writting own iterator: implement __iter__ and __next__
 class SquareIter:
     def __init__(self, start, end):
         self.current = start
         self.end = end
+
     def __iter__(self):
         return self
+
     def __next__(self):
         if self.current >= self.end:
             raise StopIteration
@@ -1520,109 +1695,142 @@ class SquareIter:
         self.current += 1
         return result
 
-for num in SquareIter(1,4):
+
+for num in SquareIter(1, 4):
     print(num)
-#1,4,9
 
 
-#CONTEXT MANAGERS (with...)
+# 1,4,9
 
-#To define own context manager we need to redefine 2 magic methods __enter__ and __exit__
+
+# CONTEXT MANAGERS (with...)
+
+# To define own context manager we need to redefine 2 magic methods __enter__ and __exit__
 
 class open_file:
     def __init__(self, filename, mode):
         self.f = open(filename, mode)
+
     def __enter__(self):
-        return self.f #for using "as f" if needed
+        return self.f  # for using "as f" if needed
+
     def __exit__(self, *args):
         self.f.close()
+
+
 with open_file('log.txt', 'w') as f:
     f.write('Hello from context manager')
 
 os.remove('log.txt')
 
+
 # Context managers are useful for exceptions
 class suppress_exception:
     def __init__(self, exc_type):
         self.exc_type = exc_type
+
     def __enter__(self):
         return
-        #pass also valid
+        # pass also valid
+
     def __exit__(self, exc_type, exc_val, trackback):
         if exc_type == self.exc_type:
             print('Nothing happened')
-            return True #mandatory to not re-throw exception
+            return True  # mandatory to not re-throw exception
+
+
 with suppress_exception(ZeroDivisionError):
     a = 1 / 0
-    #Nothing happened
+    # Nothing happened
 
-#Exception suppressing already exists in library
+# Exception suppressing already exists in library
 import contextlib
+
 with contextlib.suppress(ValueError):
     raise ValueError
 
-#Useful application:
+# Useful application:
 import time
+
+
 class timer:
     def __init__(self):
         self.start = time.time()
+
     def get_ellapsed(self):
         return time.time() - self.start
+
     def __enter__(self):
         return self
+
     def __exit__(self, *args):
         print('Ellapsed: {}'.format(t.get_ellapsed()))
+
+
 with timer() as t:
     time.sleep(0.1)
     print('Current: {}'.format(t.get_ellapsed()))
     time.sleep(0.1)
 
 
-#DESCRIPTORS
-#Allow to work classes, objects, methods
+# DESCRIPTORS
+# Allow to work classes, objects, methods
 
-#Contain up to 3 methods:
-class Descriptor: #name can be any
+# Contain up to 3 methods:
+class Descriptor:  # name can be any
     def __get__(self, obj, obj_type):
         print('get')
+
     def __set__(self, obj, obj_value):
         print('set')
+
     def __delete__(self, obj):
         print('delete')
+
 
 class MyClass:
     attr = Descriptor()
 
-instance = MyClass()
-instance.attr #get
-instance.attr = 5 #set
-#del instance.attr #delete
 
-#Descriptors allow to redefine classes behavior invisibly for users
-#Example:
+instance = MyClass()
+instance.attr  # get
+instance.attr = 5  # set
+
+
+# del instance.attr #delete
+
+# Descriptors allow to redefine classes behavior invisibly for users
+# Example:
 class Value:
     def __init__(self):
         self.value = None
+
     @staticmethod
     def _prepare_value(val):
         return val * 10
+
     def __get__(self, obj, obj_type):
         return self.value
+
     def __set__(self, obj, value):
         self.value = self._prepare_value(value)
+
 
 class MyVal:
     attr = Value()
 
+
 myval = MyVal()
 myval.attr = 10
-print(myval.attr) #100
+print(myval.attr)  # 100
 
-#Example: descriptor which saves all assignments to file
+
+# Example: descriptor which saves all assignments to file
 
 class ImportantValue:
     def __init__(self, amount):
         self.amount = amount
+
     def __get__(self, obj, obj_type):
         """
         What will be in obj and obj_type:
@@ -1639,73 +1847,86 @@ class ImportantValue:
         obj -> new_obj, obj_type -> Class
         """
         return self.amount
+
     def __set__(self, obj, value):
         with open('log.txt', 'a') as f:
             f.write('{}\n'.format(value))
         self.amount = value
 
+
 class Account:
     amount = ImportantValue(100)
 
-bobs_account = Account()
-bobs_account.amount = 150 #This change is logged to a file
 
-#Bound methods/unbound methods (functions):
+bobs_account = Account()
+bobs_account.amount = 150  # This change is logged to a file
+
+
+# Bound methods/unbound methods (functions):
 class Class:
     def __init__(self):
         self.a = 5
+
     def method(self):
         print(self.a)
 
+
 class_instance = Class()
 
-print(class_instance.method) #<bound method Class.method of <__main__.Class object at 0x0000000002DD9C50>>
-print(Class.method) #<function Class.method at 0x0000000002DE6620>
-#Same method returns different objects depending on the way it accessed
-class_instance.method() #5
-Class.method(class_instance) #5
-
-#Property, ClassMethod and StaticMethod are descriptors
+print(class_instance.method)  # <bound method Class.method of <__main__.Class object at 0x0000000002DD9C50>>
+print(Class.method)  # <function Class.method at 0x0000000002DE6620>
+# Same method returns different objects depending on the way it accessed
+class_instance.method()  # 5
+Class.method(class_instance)  # 5
 
 
-#SLOTS
+# Property, ClassMethod and StaticMethod are descriptors
 
-#Limits the possible class attributes with some predefined dict
+
+# SLOTS
+
+# Limits the possible class attributes with some predefined dict
 
 class Class1:
     __slots__ = ['name']
+
     def __init__(self):
         self.name = 'Vasya'
 
+
 obj1 = Class1()
-#obj1.familyname = 'Petrov' #AttributeError: 'Class1' object has no attribute 'familyname'
-
-#Slots implemented as descriptors for each attribute
 
 
-#METACLASSES
+# obj1.familyname = 'Petrov' #AttributeError: 'Class1' object has no attribute 'familyname'
 
-#Class which creates other classes
+# Slots implemented as descriptors for each attribute
+
+
+# METACLASSES
+
+# Class which creates other classes
 
 class Class2:
     pass
 
+
 obj = Class2()
 
-print(type(obj)) # <class '__main__.Class2'>
-print(type(Class2)) #'type' - it creates our class. 'type' is metaclass - it creates other classes
-print(type(type)) #'type' - recursive closure
+print(type(obj))  # <class '__main__.Class2'>
+print(type(Class2))  # 'type' - it creates our class. 'type' is metaclass - it creates other classes
+print(type(type))  # 'type' - recursive closure
 
-#Creation and inheritance are different:
-print(issubclass(Class2, type)) #False
-print(issubclass(Class2, object)) #True
+# Creation and inheritance are different:
+print(issubclass(Class2, type))  # False
+print(issubclass(Class2, object))  # True
 
-#Create class on-the-fly:
-NewClass = type('NewClass', (), {}) #class without parents and attrs
-print(NewClass) #<class '__main__.NewClass'>
-print(NewClass()) #<__main__.NewClass object at 0x0000000003931A90>
+# Create class on-the-fly:
+NewClass = type('NewClass', (), {})  # class without parents and attrs
+print(NewClass)  # <class '__main__.NewClass'>
+print(NewClass())  # <__main__.NewClass object at 0x0000000003931A90>
 
-#Create our own meta-class
+
+# Create our own meta-class
 class Meta(type):
     def __new__(cls, name, parents, attrs):
         print('Creating {}'.format(name))
@@ -1718,7 +1939,9 @@ class Meta(type):
 
 class A(metaclass=Meta):
     pass
-#Creating A
+
+
+# Creating A
 
 
 class Meta2(type):
@@ -1732,57 +1955,73 @@ class Meta2(type):
 
         super().__init__(name, bases, attrs)
 
+
 class Base(metaclass=Meta2): pass
+
+
 class A2(Base): pass
+
+
 class B(Base): pass
-#Initializing — Base
-#Initializing — A2
-#Initializing — B
-print(Base.registry) #{'a': <class '__main__.A'>, 'b': <class '__main__.B'>}
-print(Base.__subclasses__()) #[<class '__main__.A'>, <class '__main__.B'>]
 
 
-#ABSTRACT METHODS
+# Initializing — Base
+# Initializing — A2
+# Initializing — B
+print(Base.registry)  # {'a': <class '__main__.A'>, 'b': <class '__main__.B'>}
+print(Base.__subclasses__())  # [<class '__main__.A'>, <class '__main__.B'>]
+
+# ABSTRACT METHODS
 
 from abc import ABCMeta, abstractmethod
+
 
 class Sender(metaclass=ABCMeta):
     @abstractmethod
     def send(self):
         """Do something"""
 
+
 class Child(Sender): pass
-#Child()
-#TypeError: Can't instantiate abstract class Child with abstract methods send
+
+
+# Child()
+# TypeError: Can't instantiate abstract class Child with abstract methods send
 class Child2(Sender):
     def send(self):
         print('Sending')
-print(Child2()) #<__main__.Child2 at 0x110cfa860>
 
-#Better to use the following form of abstract class:
+
+print(Child2())  # <__main__.Child2 at 0x110cfa860>
+
+
+# Better to use the following form of abstract class:
 class PythonWay:
     def send(self):
         raise NotImplementedError
 
 
-#DEBUGGING
+# DEBUGGING
 
 def f():
-    #import pdb
-    #pdb.set_trace()
-    #type: step, next, ll, b [line], continue, p, ..., q, help, help [command]
+    # import pdb
+    # pdb.set_trace()
+    # type: step, next, ll, b [line], continue, p, ..., q, help, help [command]
     a = 1
+
+
 f()
 
-#Another way:
-#python -m pdb <code.py>
+# Another way:
+# python -m pdb <code.py>
 
 
-#UNITTESTS
+# UNITTESTS
 
 # test_python.py
 
 import unittest
+
 
 class TestPython(unittest.TestCase):
     def test_float_to_int_coercion(self):
@@ -1797,14 +2036,16 @@ class TestPython(unittest.TestCase):
     def test_integer_division(self):
         self.assertIs(10 / 5, 2)
 
-#To run:
-#>> python3 - m unittest test_python.py
+
+# To run:
+# >> python3 - m unittest test_python.py
 
 
 # Another example with setUp and mock
 
 import urllib.request
 import json
+
 
 class Asteroid:
     BASE_API_URL = 'https://api.nasa.gov/neo/rest/v1/neo/{}?api_key=DEMO_KEY'
@@ -1840,26 +2081,28 @@ class Asteroid:
                 })
         return closest
 
+
 apophis = Asteroid(2099942)
 
 print(f'Name: {apophis.name}')
 print(f'Diameter: {apophis.diameter}m')
-#Name: 99942 Apophis (2004 MN4)
-#Diameter: 682m
+# Name: 99942 Apophis (2004 MN4)
+# Diameter: 682m
 
 import json
 import unittest
 from unittest.mock import patch
 
+
 class TestAsteroid(unittest.TestCase):
-    def setUp(self): #Method runs before each test case. Also there is a tearDown method 
+    def setUp(self):  # Method runs before each test case. Also there is a tearDown method
         self.asteroid = Asteroid(2099942)
 
     def mocked_get_data(self):
-        with open('apophis_fixture.txt') as f: #file contains json downloaded before 
+        with open('apophis_fixture.txt') as f:  # file contains json downloaded before
             return json.loads(f.read())
 
-    @patch('asteroid.Asteroid.get_data', mocked_get_data) #Decorator replaces given method with mock  
+    @patch('asteroid.Asteroid.get_data', mocked_get_data)  # Decorator replaces given method with mock
     def test_name(self):
         self.assertEqual(self.asteroid.name, '99942 Apophis (2004 MN4)')
 
@@ -1867,18 +2110,19 @@ class TestAsteroid(unittest.TestCase):
     def test_diameter(self):
         self.assertEqual(self.asteroid.diameter, 682)
 
+
 print(f'Date: {apophis.closest_approach["date"]}')
 print(f'Distance: {apophis.closest_approach["distance"]:.2} LD')
 
-
-#PROCESSES
-#Commands: top, ps aux | grep <your_process>, lsof (show open files, including stdin, stdout, stderr - 0,1,2), strace -p <pid> (system calls)
+# PROCESSES
+# Commands: top, ps aux | grep <your_process>, lsof (show open files, including stdin, stdout, stderr - 0,1,2), strace -p <pid> (system calls)
 
 import os
+
 print(os.getpid())
 
-#Fork - creates copy of parent process, with all resources and same code
-#This code works in *nix:
+# Fork - creates copy of parent process, with all resources and same code
+# This code works in *nix:
 """
 import os
 import time
@@ -1961,16 +2205,19 @@ if __name__ == '__main__':
     p.join()
 """
 
-#Threads
+# Threads
 
 from threading import Thread
+
 
 def ft(name):
     print('Hello from thread,', name)
 
-thread1 = Thread(target = ft, args = ('Bob',))
+
+thread1 = Thread(target=ft, args=('Bob',))
 thread1.start()
 thread1.join()
+
 
 class MyThread(Thread):
     def __init__(self, name):
@@ -1980,19 +2227,22 @@ class MyThread(Thread):
     def run(self):
         print('Hello from thread,', self.name)
 
+
 thread2 = MyThread('Mike')
 thread2.start()
 thread2.join()
 
-#Thread pool
+# Thread pool
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
+
 
 def ftp(a):
     return a * a
 
+
 # .shutdown() on exit
-with ThreadPoolExecutor(max_workers = 3) as pool:
+with ThreadPoolExecutor(max_workers=3) as pool:
     results = [pool.submit(ftp, i) for i in range(10)]
 
     for future in as_completed(results):
@@ -2004,36 +2254,41 @@ with ThreadPoolExecutor(max_workers = 3) as pool:
 from queue import Queue
 from threading import Thread
 
+
 def tfq(q, n):
     while True:
         item = q.get()
-        if item is None: #There is no way to close process in Python (to avoid inconsistent state) so we're putting special value to queue
+        if item is None:  # There is no way to close process in Python (to avoid inconsistent state) so we're putting special value to queue
             break
         print("Process data in thread {}: get item {}".format(n, item))
 
-q = Queue(5) #max number of elements
+
+q = Queue(5)  # max number of elements
 th1 = Thread(target=tfq, args=(q, 1))
 th2 = Thread(target=tfq, args=(q, 2))
-th1.start(); th2.start()
+th1.start()
+th2.start()
 
 for i in range(50):
-    q.put(i) # if size is already 5 the "put" blocks until item is popped from queue
+    q.put(i)  # if size is already 5 the "put" blocks until item is popped from queue
 
 q.put(None)
 q.put(None)
 
-th1.join(); th2.join()
+th1.join()
+th2.join()
 
-
-#Locks
+# Locks
 
 import threading
 
-#With context manager:
+
+# With context manager:
 class Point:
     def __init__(self):
         self.mutex = threading.RLock()
-        self.x = 0; self.y = 0
+        self.x = 0;
+        self.y = 0
 
     def get(self):
         with self.mutex:
@@ -2043,10 +2298,12 @@ class Point:
         with self.mutex:
             self.x, self.y = x, y
 
-#Without context manager:
+
+# Without context manager:
 
 mutex1 = threading.RLock()
 mutex2 = threading.RLock()
+
 
 def foo():
     try:
@@ -2054,7 +2311,7 @@ def foo():
         mutex2.acquire()
         print('Acquire')
     finally:
-        mutex1.release() #Can cause deadlock if called from different threads since we release in incorrect order
+        mutex1.release()  # Can cause deadlock if called from different threads since we release in incorrect order
         mutex2.release()
         print('Release')
 
@@ -2068,7 +2325,7 @@ for td in threads:
     td.join()
 
 
-#Conditional variables
+# Conditional variables
 
 class MyQueue:
 
@@ -2076,39 +2333,44 @@ class MyQueue:
         self._queue = []
         self._size = size
         self._mutex = threading.RLock()
-        self._empty = threading.Condition(self._mutex) #There is default lock object for CV, but for dependent CVs we have to use common lock object
-        self._full  = threading.Condition(self._mutex)
+        self._empty = threading.Condition(
+            self._mutex)  # There is default lock object for CV, but for dependent CVs we have to use common lock object
+        self._full = threading.Condition(self._mutex)
 
     def put(self, item):
         with self._full:
             print('trying to push element')
             while len(self._queue) >= self._size:
                 print('queue is full, waiting')
-                self._full.wait() #wait until queue is ready to accept new item
+                self._full.wait()  # wait until queue is ready to accept new item
             print('element pushed')
             self._queue.append(item)
-            self._empty.notify() #notify all other waiting threads that there is item in queue
+            self._empty.notify()  # notify all other waiting threads that there is item in queue
 
     def get(self):
         with self._empty:
             print('trying to get element')
             while len(self._queue) == 0:
                 print('queue is empty, waiting')
-                self._empty.wait() #wait for element
+                self._empty.wait()  # wait for element
             print('element popped')
             ret = self._queue.pop(0)
-            self._full.notify() #notify all threads which wait trying to put element into a full queue
+            self._full.notify()  # notify all threads which wait trying to put element into a full queue
             return ret
 
+
 myqueue = MyQueue()
+
 
 def qput():
     for _ in range(100):
         myqueue.put(1)
 
+
 def qget():
     for _ in range(100):
         myqueue.get()
+
 
 threads_put = [Thread(target=qput) for _ in range(10)]
 threads_get = [Thread(target=qget) for _ in range(10)]
@@ -2121,27 +2383,28 @@ for tp, tg in zip(threads_put, threads_get):
     tp.join()
     tg.join()
 
+# GIL (Global Interpreter Lock)
 
-#GIL (Global Interpreter Lock)
+# Python's GIL is intended to serialize access to interpreter internals from different threads
+# On multi-core systems, it means that multiple threads can't effectively make use of multiple cores.
+# Note that Python's GIL is only really an issue for CPython, the reference implementation. Jython and IronPython don't have a GIL.
+# C extension writers need to release the GIL when their extensions do blocking I/O, so that other threads in the Python process get a chance to run.
 
-#Python's GIL is intended to serialize access to interpreter internals from different threads
-#On multi-core systems, it means that multiple threads can't effectively make use of multiple cores.
-#Note that Python's GIL is only really an issue for CPython, the reference implementation. Jython and IronPython don't have a GIL.
-#C extension writers need to release the GIL when their extensions do blocking I/O, so that other threads in the Python process get a chance to run.
+# It is better to execute CPU-bound tasks sequentially
+# It is better to execute I/O-bound tasks or system calls simultaneously in threads
 
-#It is better to execute CPU-bound tasks sequentially
-#It is better to execute I/O-bound tasks or system calls simultaneously in threads
+# GIL implemented as threading.Lock (non-recursive)
+# Every thread slips for 5 ms waiting for releasing GIL
 
-#GIL implemented as threading.Lock (non-recursive)
-#Every thread slips for 5 ms waiting for releasing GIL
-
-#CPU-bound example:
+# CPU-bound example:
 
 import time
 
-def cpu_bound(count = 3_000_000):
+
+def cpu_bound(count=3_000_000):
     while count > 0:
         count -= 1
+
 
 t0 = time.time()
 cpu_bound()
@@ -2149,14 +2412,16 @@ cpu_bound()
 print('Sequential time: ', time.time() - t0)
 
 t0 = time.time()
-tcpu1 = Thread(target = cpu_bound())
-tcpu2 = Thread(target = cpu_bound())
-tcpu1.start(); tcpu2.start()
-tcpu1.join(); tcpu2.join()
+tcpu1 = Thread(target=cpu_bound())
+tcpu2 = Thread(target=cpu_bound())
+tcpu1.start();
+tcpu2.start()
+tcpu1.join();
+tcpu2.join()
 print('Parallel time: ', time.time() - t0)
 
-#Sequential time:  1.4420826435089111
-#Parallel time:  1.9200959205627441
+# Sequential time:  1.4420826435089111
+# Parallel time:  1.9200959205627441
 
 # How thread runs?
 
@@ -2173,47 +2438,52 @@ r - release GIL
 
 """
 
+# SOCKETS
+# Sockets are cross-platform mechanism for data exchange between processes which can run on different hosts and can be written on different languages
+# They are implemented via system calls
 
-#SOCKETS
-#Sockets are cross-platform mechanism for data exchange between processes which can run on different hosts and can be written on different languages
-#They are implemented via system calls
-
-#Server
+# Server
 
 import socket
 
+
 def RunEchoServer():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.bind(('127.0.0.1', 10001)) #Max port is 65535. Address 127.0.0.1 means server listens only local connections. Empty '' or '0.0.0.0' means any interface
-    sock.listen(socket.SOMAXCONN) #Parameter means size of queue for incoming connections. If overflow - "connection refused" is returned to client
-    conn, addr = sock.accept() #Blocks until client connects. conn is duplex channel which supports read (recv) and write (send)
+    sock.bind(('127.0.0.1',
+               10001))  # Max port is 65535. Address 127.0.0.1 means server listens only local connections. Empty '' or '0.0.0.0' means any interface
+    sock.listen(
+        socket.SOMAXCONN)  # Parameter means size of queue for incoming connections. If overflow - "connection refused" is returned to client
+    conn, addr = sock.accept()  # Blocks until client connects. conn is duplex channel which supports read (recv) and write (send)
     while True:
-        data = conn.recv(1024) #1024 is a buffer size
-        if not data: # client closed connection
+        data = conn.recv(1024)  # 1024 is a buffer size
+        if not data:  # client closed connection
             break
-        #process data
+        # process data
         print(data.decode('utf-8'))
     conn.close()
     sock.close()
+
 
 # Client
 
 import socket
 
+
 def RunClient():
-    sock = socket.socket() #socket.AF_INET, socket.SOCK_STREAM are defaults
+    sock = socket.socket()  # socket.AF_INET, socket.SOCK_STREAM are defaults
     sock.bind(('127.0.0.1', 10001))
-    #Shorter form of 2 LOCs above:
-    #sock = socket.create_connection(('127.0.0.1', 10001))
+    # Shorter form of 2 LOCs above:
+    # sock = socket.create_connection(('127.0.0.1', 10001))
     sock.sendall('ping'.encode('utf-8'))
-    #or: sock.sendall(b'ping')
+    # or: sock.sendall(b'ping')
     sock.close()
+
 
 # Using context managers to not forget to close connection and socket
 
 def RunEchoServerWithCM():
     with socket.socket() as sock:
-        sock.bind(('', 10001)) # '0.0.0.0' or '' means any interface
+        sock.bind(('', 10001))  # '0.0.0.0' or '' means any interface
         sock.listen()
         while True:
             conn, addr = sock.accept()
@@ -2224,12 +2494,13 @@ def RunEchoServerWithCM():
                         break
                     print(data.decode('utf-8'))
 
+
 def RunClientWithCM():
     with socket.create_connection(('127.0.0.1', 10001)) as sock:
         sock.sendall(b'ping')
 
 
-#Errors processing with sockets
+# Errors processing with sockets
 
 def RunServerWithCMAndErrorHandling():
     with socket.socket() as sock:
@@ -2237,7 +2508,8 @@ def RunServerWithCMAndErrorHandling():
         sock.listen()
         while True:
             conn, addr = sock.accept()
-            conn.settimeout(5) # timeout = None | 0 | >0. None means blocking forever until receive data (default), 0 - non-clocking mode
+            conn.settimeout(
+                5)  # timeout = None | 0 | >0. None means blocking forever until receive data (default), 0 - non-clocking mode
             with conn:
                 while True:
                     try:
@@ -2249,9 +2521,11 @@ def RunServerWithCMAndErrorHandling():
                         break
                     print(data.decode('utf-8'))
 
+
 def RunClientWithCMAndErrorHandling():
-    with socket.create_connection(('127.0.0.1', 10001), 5) as sock: # 5 is connect timeout, in case of exceeded just try to reconnect
-        sock.settimeout(2) # 2 is socket read timeout - timeout for all operations with opened socket
+    with socket.create_connection(('127.0.0.1', 10001),
+                                  5) as sock:  # 5 is connect timeout, in case of exceeded just try to reconnect
+        sock.settimeout(2)  # 2 is socket read timeout - timeout for all operations with opened socket
         try:
             sock.sendall(b'ping')
         except socket.timeout:
@@ -2278,23 +2552,25 @@ def ProcessRequest(conn, addr):
                 break
             print(data.decode('utf-8'))
 
+
 def RunServerMultiConnectionsThreads():
     with socket.socket() as sock:
         sock.bind(('', 10001))
         sock.listen()
         while True:
-            conn, addr = sock.accept() #blocks all other clients except one
+            conn, addr = sock.accept()  # blocks all other clients except one
             th = threading.Thread(target=ProcessRequest, args=(conn, addr))
-            th.start() #main thread will continue to accept new connections after starting this thread
-            #somewhere later we must call th.join()
+            th.start()  # main thread will continue to accept new connections after starting this thread
+            # somewhere later we must call th.join()
 
 
-#Better way is to use processes and threads together. But in this case call to socket.accept()
-#will awake all our processes and it adds some overhead
+# Better way is to use processes and threads together. But in this case call to socket.accept()
+# will awake all our processes and it adds some overhead
 
 import socket
 import threading
 import multiprocessing
+
 
 def worker(sock):
     while True:
@@ -2316,12 +2592,13 @@ def RunServerMultiConnectionsProcessesAndThreads():
             w.join()
 
 
-#"PARALLEL" CODE EXECUTION IN ONE THREAD (NON-BLOCKING I/O, MULTIPLEXING) - no process/thread overhead
+# "PARALLEL" CODE EXECUTION IN ONE THREAD (NON-BLOCKING I/O, MULTIPLEXING) - no process/thread overhead
 
-#SELECT
+# SELECT
 
 import socket
 import select
+
 
 def NonBlockingServer():
     sock = socket.socket()
@@ -2331,15 +2608,15 @@ def NonBlockingServer():
     conn1, addr1, = sock.accept()
     conn2, addr2, = sock.accept()
 
-    #How to process requests for conn1 and conn2 simultaneously but without processes/threads
+    # How to process requests for conn1 and conn2 simultaneously but without processes/threads
 
-    #Switch to non-blocking mode
-    #If we then try to call conn.recv but there is not data - the call will not block but will return system error about data absence
-    conn1.setblocking(0) #equal to settimeout(0.0)
+    # Switch to non-blocking mode
+    # If we then try to call conn.recv but there is not data - the call will not block but will return system error about data absence
+    conn1.setblocking(0)  # equal to settimeout(0.0)
     conn2.setblocking(0)
 
-    #How to know which sockets are ready for reading and which are ready for writing?
-    #In Linux:
+    # How to know which sockets are ready for reading and which are ready for writing?
+    # In Linux:
     """
     epoll = select.epoll()
     epoll.register(conn1.fileno(), select.EPOLLIN | select.EPOLLOUT)
@@ -2363,7 +2640,7 @@ def NonBlockingServer():
             conn_map[fileno].send("pong".encode("utf8"))        
     """
 
-    #In Windows
+    # In Windows
     """
     connList = [conn1.fileno(), conn1.fileno()]
     sel = select.select(rlist = connList , wlist = connList , xlist = connList) #In Linux there will be select.epoll
@@ -2372,20 +2649,21 @@ def NonBlockingServer():
     http://steelkiwi.com/blog/working-tcp-sockets/
     """
 
-#Framework hides all logic with select:
-#Twisted, callback api
-#https://twistedmatrix.com
-#Gevent, greenlet, stackless python
-#http://www.gevent.org/
-#Tornado, generators api
-#http://www.tornadoweb.org
-#Asyncio, mainstream
-#https://docs.python.org/3/library/asyncio.html
+
+# Framework hides all logic with select:
+# Twisted, callback api
+# https://twistedmatrix.com
+# Gevent, greenlet, stackless python
+# http://www.gevent.org/
+# Tornado, generators api
+# http://www.tornadoweb.org
+# Asyncio, mainstream
+# https://docs.python.org/3/library/asyncio.html
 
 
-#ITERATORS VS GENERATORS
+# ITERATORS VS GENERATORS
 
-#Iterator:
+# Iterator:
 
 class MyRangeIterator:
     def __init__(self, top):
@@ -2402,30 +2680,36 @@ class MyRangeIterator:
         self.current += 1
         return current
 
+
 mycounter = MyRangeIterator(3)
-print(mycounter )
-#<__main__.MyRangeIterator object at 0x035E4370>
+print(mycounter)
+# <__main__.MyRangeIterator object at 0x035E4370>
 
-for it in mycounter: #__iter__ called, then __next__ called each round
+for it in mycounter:  # __iter__ called, then __next__ called each round
     print(it)
-#0 1 2
 
-#Generator
+
+# 0 1 2
+
+# Generator
 
 def MyRangeGenrator(top):
-    current = 0 #just local variable, no state (it is saved on stack during yield)
+    current = 0  # just local variable, no state (it is saved on stack during yield)
     while current < top:
-        yield current #yield makes function generator, it stops flow, saves stack frame and returns value. Next time when called it restores stack and continues
+        yield current  # yield makes function generator, it stops flow, saves stack frame and returns value. Next time when called it restores stack and continues
         current += 1
 
-mygenerator = MyRangeGenrator(3) #this doesn't call function, but creates object
+
+mygenerator = MyRangeGenrator(3)  # this doesn't call function, but creates object
 print(mygenerator)
-#<generator object MyRangeGenrator at 0x03C82C30>
+# <generator object MyRangeGenrator at 0x03C82C30>
 for g in mygenerator:
     print(g)
-#0 1 2
 
-#COROUTINES
+
+# 0 1 2
+
+# COROUTINES
 
 # Generators produce values, coroutines consume values
 
@@ -2435,19 +2719,23 @@ for g in mygenerator:
 def grep(pattern):
     print('Start grep')
     while True:
-        line = yield # difference from generator: here function suspends and waits for data through method 'send'
+        line = yield  # difference from generator: here function suspends and waits for data through method 'send'
         if (pattern in line):
             print(line)
 
-g = grep('python') #coroutine created (this is also generator)
-next(g) #g.send(None) - starts coroutine, it runs until yield and then flow returns to main (function stack with all local variables is saved) until we send something to coroutine
-#Start grep
+
+g = grep('python')  # coroutine created (this is also generator)
+next(
+    g)  # g.send(None) - starts coroutine, it runs until yield and then flow returns to main (function stack with all local variables is saved) until we send something to coroutine
+# Start grep
 g.send('golang is better')
 g.send('python is simpler')
-#python is simpler
 
 
-#How to stop running coroutine
+# python is simpler
+
+
+# How to stop running coroutine
 
 def grep_stopable(pattern):
     try:
@@ -2458,22 +2746,24 @@ def grep_stopable(pattern):
     except GeneratorExit:
         print('Coroutine stopped')
 
+
 g = grep_stopable('python')
 g.send(None)
 g.send('python is great!')
-g.close() #throws GeneratorExit exception at the place here coroutine suspended at this moment
+g.close()  # throws GeneratorExit exception at the place here coroutine suspended at this moment
 
-#Passing exception to coroutine (it also stops execution)
+# Passing exception to coroutine (it also stops execution)
 
 g = grep_stopable('python')
-next(g) #or g.send(None)
+next(g)  # or g.send(None)
 g.send('python is excellent')
 try:
     g.throw(RuntimeError, 'Something wrong')
 except RuntimeError:
     print('Coroutine stopped by exception')
 
-#Call one coroutine from another
+
+# Call one coroutine from another
 
 def grep_python_coroutine():
     g = grep('python')
@@ -2481,26 +2771,32 @@ def grep_python_coroutine():
     g.send('python is great!')
     g.close()
 
+
 g = grep_python_coroutine()
 print(g)
-#None (g is not coroutine, but regular function)
+
+
+# None (g is not coroutine, but regular function)
 
 def grep_python_coroutine2():
     g = grep('python')
-    yield from g #delegating the call
+    yield from g  # delegating the call
+
 
 g = grep_python_coroutine2()
 print(g)
-#<generator object grep_python_coroutine2 at 0x03E4D150>
+# <generator object grep_python_coroutine2 at 0x03E4D150>
 g.send(None)
 g.send('python wow!')
 g.close()
+
 
 # Using 'yield from' in regular generators:
 
 def chain(x_iterable, y_iterable):
     yield from x_iterable
     yield from y_iterable
+
 
 # Another way to do the same:
 def the_same_chain(x_iterable, y_iterable):
@@ -2509,58 +2805,67 @@ def the_same_chain(x_iterable, y_iterable):
     for y in y_iterable:
         yield y
 
-a1 = [1,2,3]
-b1 = (4,5)
+
+a1 = [1, 2, 3]
+b1 = (4, 5)
 
 for x in chain(a1, b1):
     print(x)
-#1,2,3,4,5
+# 1,2,3,4,5
 for x in the_same_chain(a1, b1):
     print(x)
-#1,2,3,4,5
+# 1,2,3,4,5
 
 
+# ASYNCIO - responsible for non-blocking i/o. Base is generators and coroutines. Part of Python library. No callbacks.
 
-#ASYNCIO - responsible for non-blocking i/o. Base is generators and coroutines. Part of Python library. No callbacks.
-
-#Asyncio Hello, world!
+# Asyncio Hello, world!
 
 import asyncio
+
 
 @asyncio.coroutine
 def hello_world():
     for _ in range(3):
         print('Hello, world!')
-        yield from asyncio.sleep(0.5) #this is special sleep which suspends coroutine and allows other coroutines to work
+        yield from asyncio.sleep(
+            0.5)  # this is special sleep which suspends coroutine and allows other coroutines to work
+
 
 loop = asyncio.get_event_loop()
 print(loop)
-#<_WindowsSelectorEventLoop running=False closed=False debug=False>
+# <_WindowsSelectorEventLoop running=False closed=False debug=False>
 loop.run_until_complete(hello_world())
-#loop.close() we don't close it now as it is reused below (see https://stackoverflow.com/questions/43646768/cant-create-new-event-loop-after-calling-loop-close-asyncio-get-event-loop-in-p)
 
-#Event loop is the main concept in asyncio.
-#Event loop is a kind of scheduler of tasks (corouties) which are running in it. It is responsible for i/o,
-#manages signals, network operations, it switches context between coroutines.
-#It is especially effective if some coroutine waits long on i/o - event loop can easily switch to another coroutine.
-#We can run only coroutines in event loop. Synchronous functions can be executed with some tricks (see below) as they block the flow and event loop can't switch context.
-#Event loop runs all coroutines sequentially and switches context between them
 
-#New syntax starting from Python 3.5 and PEP 492: async and await
+# loop.close() we don't close it now as it is reused below (see https://stackoverflow.com/questions/43646768/cant-create-new-event-loop-after-calling-loop-close-asyncio-get-event-loop-in-p)
+
+# Event loop is the main concept in asyncio.
+# Event loop is a kind of scheduler of tasks (corouties) which are running in it. It is responsible for i/o,
+# manages signals, network operations, it switches context between coroutines.
+# It is especially effective if some coroutine waits long on i/o - event loop can easily switch to another coroutine.
+# We can run only coroutines in event loop. Synchronous functions can be executed with some tricks (see below) as they block the flow and event loop can't switch context.
+# Event loop runs all coroutines sequentially and switches context between them
+
+# New syntax starting from Python 3.5 and PEP 492: async and await
 
 async def hello_world2():
     for _ in range(3):
         print('Hello, world2!')
         await asyncio.sleep(0.5)
-#'async' guarantees that function is a coroutine (comparing to @asyncio.coroutine which doesn't guarantee this
-#we can't use yield from inside, but we must use await
+
+
+# 'async' guarantees that function is a coroutine (comparing to @asyncio.coroutine which doesn't guarantee this
+# we can't use yield from inside, but we must use await
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(hello_world2())
-#loop.close()
 
-#Simple TCP server on asyncio
-#This is linear and very clear code, no GIL issues etc.
+
+# loop.close()
+
+# Simple TCP server on asyncio
+# This is linear and very clear code, no GIL issues etc.
 
 async def handle_echo(reader, writer):
     data = await reader.read(1024)
@@ -2568,6 +2873,7 @@ async def handle_echo(reader, writer):
     addr = writer.get_extra_info('peername')
     print(f'received {message} from {addr}')
     writer.close()
+
 
 def StartServer():
     loop = asyncio.get_event_loop()
@@ -2581,13 +2887,15 @@ def StartServer():
     loop.run_until_complete(server.wait_closed())
     loop.close()
 
-#Client for server above:
+
+# Client for server above:
 
 async def tcp_echo_client(message, loop):
-    reader,writer = await asyncio.open_connection('127.0.0.1', 10001, loop=loop)
+    reader, writer = await asyncio.open_connection('127.0.0.1', 10001, loop=loop)
     print('send %r' % message)
     writer.write(message.encode())
     writer.close()
+
 
 def StartCleint():
     loop = asyncio.get_event_loop()
@@ -2595,7 +2903,8 @@ def StartCleint():
     loop.run_until_complete(tcp_echo_client(message, loop))
     loop.close()
 
-#It is possible to create several clients, connect to several servers etc. And it will be without threads.
+
+# It is possible to create several clients, connect to several servers etc. And it will be without threads.
 
 
 # asyncio.Future (analogue of concurrent.futures.Future)
@@ -2605,15 +2914,18 @@ async def slow_operation(future):
     await asyncio.sleep(1)
     future.set_result('Future is done!')
 
+
 loop = asyncio.get_event_loop()
 future = asyncio.Future()
 asyncio.ensure_future(slow_operation(future))
 loop.run_until_complete(future)
 print(future.result())
-#Future is done!
-#loop.close()
 
-#Run several coroutines inside single event loop - asyncio.Task (inherits from asyncio.Future)
+
+# Future is done!
+# loop.close()
+
+# Run several coroutines inside single event loop - asyncio.Task (inherits from asyncio.Future)
 
 async def sleep_task(num):
     for i in range(5):
@@ -2621,11 +2933,12 @@ async def sleep_task(num):
         await asyncio.sleep(1)
     return num
 
-#ensure_future or create_task
+
+# ensure_future or create_task
 loop = asyncio.get_event_loop()
 task_list = [loop.create_task(sleep_task(i)) for i in range(2)]
 
-#3 ways to run:
+# 3 ways to run:
 loop.run_until_complete(asyncio.wait(task_list))
 loop.run_until_complete(loop.create_task(sleep_task((3))))
 loop.run_until_complete(asyncio.gather(
@@ -2633,20 +2946,23 @@ loop.run_until_complete(asyncio.gather(
     sleep_task(20),
 ))
 
-#How to run synchronous functions inside event loop?
+# How to run synchronous functions inside event loop?
 
 from urllib.request import urlopen
+
 
 # synchronous function:
 def sync_get_url(url):
     return urlopen(url).read()
 
+
 async def load_url(url, loop=None):
-    future = loop.run_in_executor(None, sync_get_url, url) #runs synchronous function in thread pool
+    future = loop.run_in_executor(None, sync_get_url, url)  # runs synchronous function in thread pool
     response = await future
     print(len(response))
+
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(load_url('https://google.com', loop=loop))
 
-#There are several libs in asyncio: aiohttp, aiomysql, aiomcache (see https://github.com/aio-libs)
+# There are several libs in asyncio: aiohttp, aiomysql, aiomcache (see https://github.com/aio-libs)
