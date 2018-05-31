@@ -40,7 +40,7 @@ a = 10 % 3  # =1
 
 x = 3
 y = 4
-z = x ^ y, x & y, x | y, x << 2, y >> 1, ~x
+z = x ^ y,  x & y, x | y, x << 2, y >> 1, ~x
 
 # Swap:
 a = 1
