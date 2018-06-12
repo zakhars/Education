@@ -215,6 +215,7 @@
     <ClCompile Include="..\Coursera\Yandex_CppYellow\Week01_Task03.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppYellow\Week01_Task04.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppYellow\Week01_Task05.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week01_Task06.cpp" />
     <ClCompile Include="..\Experiments\Alloc.cpp" />
     <ClCompile Include="..\Experiments\BitManipulation.cpp" />
     <ClCompile Include="..\Experiments\ClassConstructors.cpp" />

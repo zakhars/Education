@@ -3,6 +3,7 @@
 #include <map>
 #include <functional>
 
+/*
 using namespace std;
 namespace map_custom_compare
 {
@@ -50,3 +51,4 @@ void f3()
 
    tie(success, s_result) = get_some_tuple();
 }
+*/

@@ -280,6 +280,9 @@
     <ClCompile Include="..\Challenges\Personal\Fibonacci.cpp">
       <Filter>Challenges\Personal</Filter>
     </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week01_Task06.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Challenges\Hackerrank\CTCI.h">
