@@ -283,6 +283,21 @@
     <ClCompile Include="..\Coursera\Yandex_CppYellow\Week01_Task06.cpp">
       <Filter>Coursera\Yandex_CppYellow</Filter>
     </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week02_Task01.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week02_Task02.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week02_Task03.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week02_Task04.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week02_Task05.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Challenges\Hackerrank\CTCI.h">
@@ -304,6 +319,9 @@
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Common\Utils.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\CppUT.h">
       <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
