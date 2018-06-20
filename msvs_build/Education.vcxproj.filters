@@ -298,6 +298,27 @@
     <ClCompile Include="..\Coursera\Yandex_CppYellow\Week02_Task05.cpp">
       <Filter>Coursera\Yandex_CppYellow</Filter>
     </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week03_Task02.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week03_Task01.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week03_Task03.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week03_Task04_query.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week03_Task04_responses.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week03_Task04_main.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week03_Task04_bus_manager.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Challenges\Hackerrank\CTCI.h">
@@ -323,6 +344,15 @@
     </ClInclude>
     <ClInclude Include="..\..\Common\CppUT.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Coursera\Yandex_CppYellow\Week03_Task04_query.h">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Coursera\Yandex_CppYellow\Week03_Task04_responses.h">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Coursera\Yandex_CppYellow\Week03_Task04_bus_manager.h">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

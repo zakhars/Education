@@ -100,197 +100,202 @@ int main() {
 
 using namespace std;
 
-enum class QueryType {
-    NewBus,
-    BusesForStop,
-    StopsForBus,
-    AllBuses
-};
+namespace {
 
-struct Query {
-    QueryType type;
-    string bus;
-    string stop;
-    vector<string> stops;
-};
 
-istream& operator >> (istream& is, Query& q) 
-{
-    string operation_code;
-    cin >> operation_code;
+    enum class QueryType {
+        NewBus,
+        BusesForStop,
+        StopsForBus,
+        AllBuses
+    };
 
-    if (operation_code == "NEW_BUS")
+    struct Query {
+        QueryType type;
+        string bus;
+        string stop;
+        vector<string> stops;
+    };
+
+    istream& operator >> (istream& is, Query& q)
     {
-        q.type = QueryType::NewBus;
-        cin >> q.bus;
-        int stop_count;
-        cin >> stop_count;
-        q.stops.resize(stop_count);
-        for (string& stop : q.stops) 
+        string operation_code;
+        cin >> operation_code;
+
+        if (operation_code == "NEW_BUS")
         {
-            cin >> stop;
-        }
-    }
-    else if (operation_code == "BUSES_FOR_STOP") 
-    {
-        q.type = QueryType::BusesForStop;
-        cin >> q.stop;
-    }
-    else if (operation_code == "STOPS_FOR_BUS") 
-    {
-        q.type = QueryType::StopsForBus;
-        cin >> q.bus;
-    }
-    else if (operation_code == "ALL_BUSES") 
-    {
-        q.type = QueryType::AllBuses;
-    }
-    return is;
-}
-
-struct BusesForStopResponse 
-{
-    string stop;
-    vector<string> buses;
-};
-
-ostream& operator << (ostream& os, const BusesForStopResponse& r) 
-{
-    if (r.buses.empty()) 
-    {
-        os << "No stop";// << endl;
-    }
-    else 
-    {
-        for (const string& bus : r.buses) 
-        {
-            os << bus << " ";
-        }
-        os << endl;
-    }
-    return os;
-}
-
-struct StopsForBusResponse 
-{
-    string bus;
-    vector<pair<string, vector<string>>> stops; // {stop, {interchanges}}
-};
-
-ostream& operator << (ostream& os, const StopsForBusResponse& r) 
-{
-    if (r.stops.empty()) 
-    {
-        cout << "No bus";// << endl;
-    }
-    else 
-    {
-        for (const auto& stop : r.stops) 
-        {
-            cout << "Stop " << stop.first << ": ";
-            if (stop.second.size() == 0) 
+            q.type = QueryType::NewBus;
+            cin >> q.bus;
+            int stop_count;
+            cin >> stop_count;
+            q.stops.resize(stop_count);
+            for (string& stop : q.stops)
             {
-                cout << "no interchange";
+                cin >> stop;
             }
-            else 
+        }
+        else if (operation_code == "BUSES_FOR_STOP")
+        {
+            q.type = QueryType::BusesForStop;
+            cin >> q.stop;
+        }
+        else if (operation_code == "STOPS_FOR_BUS")
+        {
+            q.type = QueryType::StopsForBus;
+            cin >> q.bus;
+        }
+        else if (operation_code == "ALL_BUSES")
+        {
+            q.type = QueryType::AllBuses;
+        }
+        return is;
+    }
+
+    struct BusesForStopResponse
+    {
+        string stop;
+        vector<string> buses;
+    };
+
+    ostream& operator << (ostream& os, const BusesForStopResponse& r)
+    {
+        if (r.buses.empty())
+        {
+            os << "No stop";// << endl;
+        }
+        else
+        {
+            for (const string& bus : r.buses)
             {
-                for (const string& bus : stop.second) 
+                os << bus << " ";
+            }
+            os << endl;
+        }
+        return os;
+    }
+
+    struct StopsForBusResponse
+    {
+        string bus;
+        vector<pair<string, vector<string>>> stops; // {stop, {interchanges}}
+    };
+
+    ostream& operator << (ostream& os, const StopsForBusResponse& r)
+    {
+        if (r.stops.empty())
+        {
+            cout << "No bus";// << endl;
+        }
+        else
+        {
+            for (const auto& stop : r.stops)
+            {
+                cout << "Stop " << stop.first << ": ";
+                if (stop.second.size() == 0)
                 {
-                    cout << bus << " ";
+                    cout << "no interchange";
                 }
-            }
-            cout << endl;
-        }
-    }
-
-    return os;
-}
-
-struct AllBusesResponse 
-{
-    vector<pair<string, vector<string>>> buses; // {bus, {stops}}
-};
-
-ostream& operator << (ostream& os, const AllBusesResponse& r) 
-{
-    if (r.buses.empty()) 
-    {
-        cout << "No buses";// << endl;
-    }
-    else 
-    {
-        for (const auto& bus : r.buses) 
-        {
-            cout << "Bus " << bus.first << ": ";
-            for (const string& stop : bus.second) 
-            {
-                cout << stop << " ";
-            }
-            cout << endl;
-        }
-    }
-    return os;
-}
-
-class BusManager 
-{
-    map<string, vector<string>> buses_to_stops;
-    map<string, vector<string>> stops_to_buses;
-public:
-    void AddBus(const string& bus, const vector<string>& stops) 
-    {
-        buses_to_stops[bus] = stops;
-        for (const string& stop : stops) 
-        {
-            stops_to_buses[stop].push_back(bus);
-        }
-    }
-
-    BusesForStopResponse GetBusesForStop(const string& stop) const 
-    {
-        BusesForStopResponse r = { stop, {} };
-        if (stops_to_buses.count(stop) > 0)
-        {
-            r.buses = stops_to_buses.at(stop);
-        }
-        return r;
-    }
-
-    StopsForBusResponse GetStopsForBus(const string& bus) const 
-    {
-        StopsForBusResponse r = { bus, {} };
-        if (buses_to_stops.count(bus) > 0) 
-        {
-            for (const string& stop : buses_to_stops.at(bus))
-            {
-                vector<string> interchanges;
-                for (const string& other_bus : stops_to_buses.at(stop)) 
+                else
                 {
-                    if (bus != other_bus) 
+                    for (const string& bus : stop.second)
                     {
-                        interchanges.push_back(other_bus);
+                        cout << bus << " ";
                     }
                 }
-                r.stops.push_back({ stop, interchanges });
+                cout << endl;
             }
         }
-        return r;
+
+        return os;
     }
 
-    AllBusesResponse GetAllBuses() const 
+    struct AllBusesResponse
     {
-        AllBusesResponse r;
+        vector<pair<string, vector<string>>> buses; // {bus, {stops}}
+    };
 
-        for (const auto& bus_item : buses_to_stops) 
+    ostream& operator << (ostream& os, const AllBusesResponse& r)
+    {
+        if (r.buses.empty())
         {
-            r.buses.push_back({ bus_item.first, bus_item.second });
+            cout << "No buses";// << endl;
+        }
+        else
+        {
+            for (const auto& bus : r.buses)
+            {
+                cout << "Bus " << bus.first << ": ";
+                for (const string& stop : bus.second)
+                {
+                    cout << stop << " ";
+                }
+                cout << endl;
+            }
+        }
+        return os;
+    }
+
+    class BusManager
+    {
+        map<string, vector<string>> buses_to_stops;
+        map<string, vector<string>> stops_to_buses;
+    public:
+        void AddBus(const string& bus, const vector<string>& stops)
+        {
+            buses_to_stops[bus] = stops;
+            for (const string& stop : stops)
+            {
+                stops_to_buses[stop].push_back(bus);
+            }
         }
 
-        return r;
-    }
-};
+        BusesForStopResponse GetBusesForStop(const string& stop) const
+        {
+            BusesForStopResponse r = { stop, {} };
+            if (stops_to_buses.count(stop) > 0)
+            {
+                r.buses = stops_to_buses.at(stop);
+            }
+            return r;
+        }
 
-// Не меняя тела функции main, реализуйте функции и классы выше
+        StopsForBusResponse GetStopsForBus(const string& bus) const
+        {
+            StopsForBusResponse r = { bus, {} };
+            if (buses_to_stops.count(bus) > 0)
+            {
+                for (const string& stop : buses_to_stops.at(bus))
+                {
+                    vector<string> interchanges;
+                    for (const string& other_bus : stops_to_buses.at(stop))
+                    {
+                        if (bus != other_bus)
+                        {
+                            interchanges.push_back(other_bus);
+                        }
+                    }
+                    r.stops.push_back({ stop, interchanges });
+                }
+            }
+            return r;
+        }
+
+        AllBusesResponse GetAllBuses() const
+        {
+            AllBusesResponse r;
+
+            for (const auto& bus_item : buses_to_stops)
+            {
+                r.buses.push_back({ bus_item.first, bus_item.second });
+            }
+
+            return r;
+        }
+    };
+
+    // Не меняя тела функции main, реализуйте функции и классы выше
+
+}
 
 int main_yellow_w2_t1() {
     int query_count;

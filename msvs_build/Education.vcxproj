@@ -221,6 +221,13 @@
     <ClCompile Include="..\Coursera\Yandex_CppYellow\Week02_Task03.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppYellow\Week02_Task04.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppYellow\Week02_Task05.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week03_Task01.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week03_Task02.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week03_Task03.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week03_Task04_bus_manager.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week03_Task04_main.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week03_Task04_query.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week03_Task04_responses.cpp" />
     <ClCompile Include="..\Experiments\Alloc.cpp" />
     <ClCompile Include="..\Experiments\BitManipulation.cpp" />
     <ClCompile Include="..\Experiments\ClassConstructors.cpp" />
@@ -242,6 +249,9 @@
     <ClInclude Include="..\Challenges\Hackerrank\Algorithms.h" />
     <ClInclude Include="..\Challenges\Hackerrank\Cpp.h" />
     <ClInclude Include="..\Challenges\Hackerrank\CTCI.h" />
+    <ClInclude Include="..\Coursera\Yandex_CppYellow\Week03_Task04_bus_manager.h" />
+    <ClInclude Include="..\Coursera\Yandex_CppYellow\Week03_Task04_query.h" />
+    <ClInclude Include="..\Coursera\Yandex_CppYellow\Week03_Task04_responses.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
