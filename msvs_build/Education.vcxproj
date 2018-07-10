@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Common\Source\CppUT.cpp" />
     <ClCompile Include="..\..\Common\Source\MinUnit.cpp" />
     <ClCompile Include="..\Books\CLRS\Cormen_Chapter01.cpp" />
     <ClCompile Include="..\Challenges\Personal\BubbleSort.cpp" />
@@ -228,6 +229,15 @@
     <ClCompile Include="..\Coursera\Yandex_CppYellow\Week03_Task04_main.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppYellow\Week03_Task04_query.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppYellow\Week03_Task04_responses.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week04_Task01.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week04_Task02.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week04_Task03.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week04_Task04.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week04_Task05.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week04_Task06.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week04_Task07.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week04_Task08.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week04_Task09.cpp" />
     <ClCompile Include="..\Experiments\Alloc.cpp" />
     <ClCompile Include="..\Experiments\BitManipulation.cpp" />
     <ClCompile Include="..\Experiments\ClassConstructors.cpp" />

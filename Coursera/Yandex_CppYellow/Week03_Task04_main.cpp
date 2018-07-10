@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int main() {
+int main_cppy_w3_t4() {
     int query_count;
     Query q;
 
