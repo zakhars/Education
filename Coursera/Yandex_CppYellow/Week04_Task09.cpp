@@ -75,7 +75,7 @@ namespace
     };
 }
 
-int main() {
+int main_cppy_w4_t9() {
     Person person;
 
     person.ChangeFirstName(1965, "Polina");

@@ -347,7 +347,28 @@
       <Filter>Coursera\Yandex_CppYellow</Filter>
     </ClCompile>
     <ClCompile Include="..\Coursera\Yandex_CppYellow\Week04_Task09.cpp">
-      <Filter>Coursera</Filter>
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week04_Task10.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week04_Task11.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week05_Task01.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week05_Task02.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week05_Task03.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week05_Task04.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week05_Task05.cpp">
+      <Filter>Coursera\Yandex_CppYellow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
