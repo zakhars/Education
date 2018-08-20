@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-#include "Common/CppUT.h"
+#include "test_runner.h"
 
 using namespace std;
 

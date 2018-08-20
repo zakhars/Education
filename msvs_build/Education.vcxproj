@@ -102,7 +102,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\;..\..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Common;..\;..\..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -147,8 +147,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Common\Source\CppUT.cpp" />
-    <ClCompile Include="..\..\Common\Source\MinUnit.cpp" />
     <ClCompile Include="..\Books\CLRS\Cormen_Chapter01.cpp" />
     <ClCompile Include="..\Challenges\Personal\BubbleSort.cpp" />
     <ClCompile Include="..\Challenges\Personal\DetectGraphCycle.cpp" />
@@ -160,6 +158,7 @@
     <ClCompile Include="..\Challenges\Personal\Palindrome.cpp" />
     <ClCompile Include="..\CodePatterns\Patterns.cpp" />
     <ClCompile Include="..\Coursera\Stanford_Algorithms\Coursera_AlgStanford_Week01_Task01.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppRed\CppYellow_Week01_Task01.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task01.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task02.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppWhite\Coursera_CppWhite_Week01_Task03.cpp" />
@@ -245,6 +244,13 @@
     <ClCompile Include="..\Coursera\Yandex_CppYellow\Week05_Task03.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppYellow\Week05_Task04.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppYellow\Week05_Task05.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week06_Task01_condition_parser.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week06_Task01_condition_parser_test.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week06_Task01_database.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week06_Task01_date.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week06_Task01_main.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week06_Task01_node.cpp" />
+    <ClCompile Include="..\Coursera\Yandex_CppYellow\Week06_Task01_token.cpp" />
     <ClCompile Include="..\Experiments\Alloc.cpp" />
     <ClCompile Include="..\Experiments\BitManipulation.cpp" />
     <ClCompile Include="..\Experiments\ClassConstructors.cpp" />
@@ -258,9 +264,8 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Common\CppUT.h" />
-    <ClInclude Include="..\..\Common\MinUnit.h" />
     <ClInclude Include="..\..\Common\Random.h" />
+    <ClInclude Include="..\..\Common\test_runner.h" />
     <ClInclude Include="..\..\Common\Timer.h" />
     <ClInclude Include="..\..\Common\Utils.h" />
     <ClInclude Include="..\Challenges\Hackerrank\Algorithms.h" />
@@ -269,6 +274,11 @@
     <ClInclude Include="..\Coursera\Yandex_CppYellow\Week03_Task04_bus_manager.h" />
     <ClInclude Include="..\Coursera\Yandex_CppYellow\Week03_Task04_query.h" />
     <ClInclude Include="..\Coursera\Yandex_CppYellow\Week03_Task04_responses.h" />
+    <ClInclude Include="..\Coursera\Yandex_CppYellow\Week06_Task01_condition_parser.h" />
+    <ClInclude Include="..\Coursera\Yandex_CppYellow\Week06_Task01_database.h" />
+    <ClInclude Include="..\Coursera\Yandex_CppYellow\Week06_Task01_date.h" />
+    <ClInclude Include="..\Coursera\Yandex_CppYellow\Week06_Task01_node.h" />
+    <ClInclude Include="..\Coursera\Yandex_CppYellow\Week06_Task01_token.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

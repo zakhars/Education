@@ -7,11 +7,15 @@ using namespace std;
 // Base people properties
 class People {
 protected:
-    string name_;
+    const string name_;
     const string title_;
 
-    void walkCommon(const string& destination)  {
-        cout << Title() << ": " << Name() << " walks to: " << destination << endl;
+    const string fullName() const {
+        return Title() + ": " + Name();
+    }
+
+    void doWalk(const string& destination) const  {
+        cout << fullName() << " walks to: " << destination << endl;
     }
 
 public:
@@ -20,36 +24,33 @@ public:
         , title_(title) {
     }
 
-    string Name() const { return name_;  }
-
-    virtual void Walk(const string& destination) { walkCommon(destination); }
-
-    string Title() const { return title_; }
-
+    const string& Name() const { return name_;  }
+    const string& Title() const { return title_; }
+    virtual void Walk(const string& destination) const { doWalk(destination); }
 };
 
 class Student : public People {
 public:
 
-    Student(string name, string favoriteSong) 
+    Student(const string& name, const string& favoriteSong) 
         : People(name, "Student")
         , favoriteSong_(favoriteSong) {
     }
 
     void Learn() const {
-        cout << Title() << ": " << Name() << " learns" << endl;
+        cout << fullName() << " learns" << endl;
     }
 
-    void Walk(const string& destination) override {
+    void Walk(const string& destination) const override {
         People::Walk(destination);
         SingSong();
     }
 
     void SingSong() const {
-        cout << Title() << ": " << Name() << " sings a song: " << favoriteSong_ << endl;
+        cout << fullName() << " sings a song: " << favoriteSong_ << endl;
     }
 protected: // probably not a final class
-    string favoriteSong_;
+    const string favoriteSong_;
 };
 
 
@@ -62,33 +63,34 @@ public:
     }
 
     void Teach() const {
-        cout << Title() << ": " << Name() << " teaches: " << subject_ << endl;
+        cout << fullName() << " teaches: " << subject_ << endl;
     }
 
 protected:
-    string subject_;
+    const string subject_;
 };
 
 
 class Policeman : public People {
 public:
-    Policeman(string name) 
+    Policeman(const string& name) 
         : People(name, "Policeman") {
     }
 
-    void Check(const People& t) {
-        cout << Title() << ": " << Name() << " checks " << t.Title() << ". " << t.Title() << "'s name is: " << t.Name() << endl;
+    void Check(const People& t) const {
+        cout << fullName() << " checks " << t.Title()
+             << ". " << t.Title() << "'s name is: " << t.Name() << endl;
     }
 };
 
 
-void VisitPlaces(People& t, vector<string> places) {
-    for (auto p : places) {
+void VisitPlaces(People& t, const vector<string>& places) {
+    for (const auto& p : places) {
         t.Walk(p);
     }
 }
 
-int main() {
+int main_cppy_w05_t05() {
     Teacher t("Jim", "Math");
     Student s("Ann", "We will rock you");
     Policeman p("Bob");
