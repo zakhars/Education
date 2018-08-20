@@ -388,7 +388,22 @@
     <ClCompile Include="..\Coursera\Yandex_CppYellow\Week06_Task01_token.cpp">
       <Filter>Coursera\Yandex_CppYellow</Filter>
     </ClCompile>
-    <ClCompile Include="..\Coursera\Yandex_CppRed\CppYellow_Week01_Task01.cpp">
+    <ClCompile Include="..\Coursera\Yandex_CppRed\CppRed_Week01_Task02.cpp">
+      <Filter>Coursera\Yandex_CppRed</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppRed\CppRed_Week01_Task01.cpp">
+      <Filter>Coursera\Yandex_CppRed</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppRed\CppRed_Week01_Task03.cpp">
+      <Filter>Coursera\Yandex_CppRed</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppRed\CppRed_Week01_Task04.cpp">
+      <Filter>Coursera\Yandex_CppRed</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppRed\CppRed_Week01_Task05.cpp">
+      <Filter>Coursera\Yandex_CppRed</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppRed\CppRed_Week01_Task06.cpp">
       <Filter>Coursera\Yandex_CppRed</Filter>
     </ClCompile>
   </ItemGroup>
@@ -437,6 +452,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Common\test_runner.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Coursera\Yandex_CppRed\airline_ticket.h">
+      <Filter>Coursera\Yandex_CppRed</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

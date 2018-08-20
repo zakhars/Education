@@ -75,7 +75,7 @@ void TestNoMax()
     ASSERT(max_element_if(str.begin(), str.end(), AlwaysFalse) == str.end());
 }
 
-int main() 
+int main_cppr_w1_t1() 
 {
     TestRunner tr;
     RUN_TEST(tr, TestUniqueMax);
