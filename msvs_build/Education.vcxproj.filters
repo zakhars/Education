@@ -406,6 +406,15 @@
     <ClCompile Include="..\Coursera\Yandex_CppRed\CppRed_Week01_Task06.cpp">
       <Filter>Coursera\Yandex_CppRed</Filter>
     </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppRed\CppRed_Week01_Task07.cpp">
+      <Filter>Coursera\Yandex_CppRed</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppRed\CppRed_Week01_Task08.cpp">
+      <Filter>Coursera\Yandex_CppRed</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Coursera\Yandex_CppRed\CppRed_Week01_Task09.cpp">
+      <Filter>Coursera\Yandex_CppRed</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Challenges\Hackerrank\CTCI.h">
