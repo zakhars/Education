@@ -152,7 +152,7 @@ void TestPagePagination() {
     ASSERT_EQUAL(lines, expected);
 }
 
-int main() {
+int main_cppr_w1_t9() {
     TestRunner tr;
     RUN_TEST(tr, TestPageCounts);
     RUN_TEST(tr, TestLooping);
