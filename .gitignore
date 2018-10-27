@@ -42,3 +42,4 @@ packages/
 *.sdf
 *.opendb
 __pycache__/
+.vscode
