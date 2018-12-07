@@ -1,51 +1,42 @@
-# USEFUL INFO
+# * Documentation
 
-help(print)  # any object
+help(print)  # available for any object
 print(print.__doc__)
 
+# * Comments
+
 # single line comment
-
-"""
-    Multiline comment or doc
+""" Multiline comment or doc
 """
 
-# BASIC TYPES
+# * Basic types
 
+a = 23
 a = 23134327514327865381276483124832984102394321  # integer has unlimited size
 print(type(a))  # <class 'int'>
-
 b = 100_123_234
-c = 100_234.567_891
-
 d = 1.5e2
 type(d)  # <class 'float'>
-
-# Explicit cast
-e = int(d)
+c = 100_234.567_891
+e = int(d) # explicit cast
 f = float(a)
+a = 4.2 + 1  # =5.2 #float
+a = 2 / 4  # =0.5 (always float)
+a = 10 // 3  # =3 (int)
+a = 2 ** 4  # 2^4=16
+a = 9 ** 0.5  # =3
+a = 10 % 3  # =1
+z = a ^ b
+z = a & b
+z = a | b
+z = a << 2
+z = b >> 1
+z = ~a
+a, b = b, a # swap
 
+# Various useful operations here:
 import decimal
 import fractions
-
-a = 4.2 + 1  # =5.2 #float
-
-a = 2 / 4  # =0.5 (always float)
-a = 10 // 3  # = 3
-
-# Power
-a = 2 ** 4  # =16
-a = 9 ** 0.5  # =3
-
-a = 10 % 3  # =1
-
-x = 3
-y = 4
-z = x ^ y,  x & y, x | y, x << 2, y >> 1, ~x
-
-# Swap:
-a = 1
-b = 2
-a, b = b, a
 
 # Primitive types are immutable
 a = b = 1
@@ -53,26 +44,21 @@ a += 1
 print(a)  # 2
 print(b)  # 1
 
-# Mutable:
+# Example of mutable objects
 x = y = []
 x.append(1)
 print(x)  # [1]
 print(y)  # [1]
 
+# Boolean
 b = True
 type(b)  # <class 'bool'>
-
 2 == 2  # =True
-
 x = 2
 print(1 < x < 3)  # True
+bool(12) # True
 
-# True
-bool(12)
-
-# False
-bool(None)
-
+bool(None) # False
 b = None
 if b is None:  # or if b == None, but not idiomatic
     print('Not initialized yet')
@@ -87,13 +73,11 @@ print(not y)  # True
 x = 12
 y = False
 print(x or y)  # 12: result is a value of x, y was not calculated
-
-x = 12
 z = 'boom'
 v = x and z
 print(v)  # boom : last calculated value
 
-# STRINGS
+# * Strings
 
 # Strings are immutable
 
@@ -107,6 +91,7 @@ print("drive c:\\\\")
 print(r"drive c:\\")
 multiline = "abc" \
             "def"
+
 multiline_with_spaces = """
 There are two
 language types:
@@ -115,7 +100,7 @@ B. Stroustup
 """
 print(multiline_with_spaces)
 
-s = "one" + "two"  # ineffective as string is immutable: new allocation
+s = "one" + "two"  # ineffective as string is immutable: new allocation; use "join" or other formatting ways (below)
 
 s = "hello"
 print(id(s))  # address: 42321313432
@@ -152,7 +137,7 @@ type(num_str)  # <class 'str'>
 bool("nonempty")  # True
 bool('')  # False
 
-# Formatting:
+# Strings formatting:
 
 # Way 1
 s = "%s, Mr. %s"
@@ -173,9 +158,7 @@ num = 7 / 3
 s = f'Result = {num:.3f}'  # Result = 2.333
 
 # Way 4 - join
-# From SO:
-# Python 3.6 changed strings that have known components with Literal String Interpolation.
-
+# From SO: Python 3.6 changed strings that have known components with Literal String Interpolation.
 domain = 'some_really_long_example.com'
 lang = 'en'
 path = 'some/really/long/path/'
@@ -183,25 +166,19 @@ path = 'some/really/long/path/'
 s1 = f'http://{domain}/{lang}/{path}'  # 0.151 µs
 s2 = 'http://%s/%s/%s' % (domain, lang, path)  # 0.321 µs
 s3 = 'http://' + domain + '/' + lang + '/' + path  # 0.356 µs
-s4 = ''.join(('http://', domain, '/', lang, '/',
-              path))  # 0.249 µs (notice that building a constant tuple is slightly faster than building a constant list).
+s4 = ''.join(('http://', domain, '/', lang, '/', path))  # 0.249 µs (building a constant tuple is slightly faster than building a constant list).
 
 # F-strings allow to call ANY instructions inside:
 sf = f'Result ={s1 + s2}'
 
 # Filling strings with zeroes:
-
 n = 4
 print('%03d' % n)
 print(format(n, '03'))
-print('{0:03d}'.format(n))
 print('{foo:03d}'.format(foo=n))
 print('{:03d}'.format(n))
 print('{0:03d}'.format(n))
 print(f'{n:03}')
-
-# name = input('Enter your name: ')
-# print(name) #'Alex'
 
 # Byte strings (bytes):
 example_bytes = b'hello'
@@ -223,10 +200,14 @@ print(encoded_s)  # b'\xd0\xbf\xd1\x80\xd0\xb8\xd0\xb2\xd0\xb5\xd1\x82' # 'п' =
 # <class 'bytes'>
 
 decoded_s = encoded_s.decode(encoding="utf-8")
-print(decoded_s)
-'привет'
+print(decoded_s) #'привет'
 
-# FLOW CONTROL
+# Input
+# name = input('Enter your name: ')
+# print(name) #'Alex'
+
+
+# * Flow control
 
 s = "hello, world"
 if "world" in s and 2 + 2 == 4:
@@ -299,18 +280,16 @@ for a in range(12):
         continue
     sum1 += a
 
-# MODULES
+
+# * Modules
 
 import time
-
 time.sleep(1)
 
 from time import sleep
-
 sleep(1)
 
 from time import *
-
 sleep(1)
 
 # Python executes all top level instructions when module is imported:
@@ -352,7 +331,8 @@ print('hello')
 # >>> myfun1(1,2)
 # >>> myfun2(1)
 
-# VIRTUAL ENVIRONMENT
+
+# * Virtual environment
 
 # python -m venv myenv
 # source myenv/bin/activate
@@ -368,7 +348,7 @@ print('hello')
 # (myenv) >>> print(requests.get("http://freegeoip.net/json").json())
 
 
-# INTERNALS
+# * Python internals
 
 a.__add__(2)
 dir(a)  # ['__abs__', '__add__,...] #30+ methods
@@ -378,29 +358,28 @@ Every variable, class, function, module is:
 
 typedef struct _object {
     _PyObject_HEAD_EXTRA
-    Py_ssize_t ob_refcnt;         // Счетчик ссылок
-    struct _typeobject *ob_type;  // Указатель на тип объекта
+    Py_ssize_t ob_refcnt;         // Ref counter
+    struct _typeobject *ob_type;  // Pointer to the object type
 } PyObject;
+
 typedef struct {
     PyObject ob_base;
-    Py_ssize_t ob_size;  // Кол-во элементов в переменной части
+    Py_ssize_t ob_size;  // Number of elements in object's variable part
 } PyVarObject;
 """
 
-# BYTECODE
+# * Bytecode
 
 # pyc - bytecode
 # mutiply.__code__.co_code()
 # b'|\x00|\x01\x14\x00S\x00'
 import dis
 
-
 def multiply(a, b):
     return a * b
 
-
 dis.dis(multiply)
-# 2      0 LOAD_FAST         0 (a)
+# 2     0 LOAD_FAST         0 (a)
 #       2 LOAD_FAST         1 (b)
 #       4 BINARY_MULTIPLY
 #       6 RETURN_VALUE
@@ -409,7 +388,8 @@ import opcode
 
 print(opcode.opmap)
 
-# LISTS
+
+# * Lists
 
 # List is mutable
 
@@ -438,7 +418,11 @@ range_lst = list(range(10))
 range_lst is range_lst[:]  # False
 
 # reverse list
-chars[::-1]
+rev = chars[::-1]
+print(chars)
+print(rev)
+chars.reverse() # in-place reverse
+print(chars)
 
 # iterate through list with index
 collections = ['set', 'list', 'dict']
@@ -450,8 +434,8 @@ for idx, c in enumerate(collections):
 
 collections.append('tuple')
 collections.extend(['tuple', 'frozenset'])  # new list contents added to the end
-collections += ['tuple', 'frozenset']  # equal
-collections += 'tuple'  # NOT equal - adds 5 new items: 't', 'u' ...
+collections += ['tuple', 'frozenset']  # equal to 'extend'
+collections += 'tuple'  # NOT equal!!! - adds 5 new items: 't', 'u' ...
 
 del collections[3]
 
@@ -460,42 +444,42 @@ print(', '.join(collections))  # set, list, dict, tuple, tuple
 sorted(collections)  # return copy
 collections.sort()  # in-place sort
 sorted(collections, reverse=True)
-print(reversed(collections))
-# <list_reverseiterator object at 0x132431243>
-print(list(reversed(collections)))  # reversed is iterator
-# tuple, dict, list, set
+print(reversed(collections)) # <list_reverseiterator object at 0x132431243> - reversed is iterator
+print(list(reversed(collections)))  # tuple, dict, list, set
 
 # zip
 questions = ['name', 'quest', 'favorite color']
 answers = ['lancelot', 'the holy grail', 'blue']
-for q, a in zip(questions, answers):  # any number of containers, num of elements equal to shorter container size
+for q, a in zip(questions, answers):  # any number of containers, !num of elements equal to shorter container size!
     print('What is your {0}?  It is {1}.'.format(q, a))
 
-# TUPLES
+
+# * Tuples
+
+# Tuple is immutable
 
 empty_tuple = ()
 empty_tuple = tuple()
-
-# Immutable
 
 immutables = (int, float, str)
 # immutables[0] = (list,) #error - can't change tuple!
 blink = ([], [])
 blink[0].append(1)  # Ok - element is mutable
 
-int in immutables
+print(int in immutables) #True
 
-# Can be hashed
+# Tuple can be hashed
 hash(tuple())  # 131324
 
-# Add coma for one element
+# Add coma when init from one element, otherwise it will not be a tuple
 one_elem_tuple = (1,)
 guess_what = (1)
 type(guess_what)  # int
 
-# DICTIONARIES
 
-# Mutable, unsorted!(hash)
+# * Dictionaries
+
+# Dictionaries are mutable and unsorted! (hash)
 
 empty_dict = {}
 empty_dict = dict()
@@ -508,20 +492,24 @@ collections_map = {
 print(collections_map['immutable'])
 
 print('elem' in collections_map)  # searches in .keys
-print('elem' in collections_map.keys())
+print('elem' in collections_map.keys()) # same but explicit
 print('elem' in collections_map.values())
 print(('elem', 'val') in collections_map.items())
+for key, val in collections_map.items():
+    print(key, val)
+lst_items = collections_map.items()
+print(lst_items)  # now list of tuples
+# [('mutable', ['set', 'list']), ('immutable', ['tuple', 'frozenset')]
 
 # Absent key:
 # print(collections_map['irresistable']) # KeyError: not found
-print(collections_map.get('irresistable', 'not found'))  # return default
-# not found
+print(collections_map.get('irresistable', 'not found'))  # return default - 'not found'
 # Add absent:
 collections_map['irresistable'] = ['some']
+print(collections_map.get('irresistable', 'not found'))  # return ['some']
 
 # Operator "in"
-print('mutable' in collections_map)
-# True
+print('mutable' in collections_map) # True
 
 # Remove:
 del collections_map['irresistable']
@@ -532,32 +520,21 @@ print(collections_map.pop('mutable'))
 # Update existing
 collections_map.update({'irresistable': 'some2'})
 
-# Iteration
-for key in collections_map:  # or collections_map.keys
-    print(key)
-for val in collections_map.values():
-    print(val)
-for key, val in collections_map.items():
-    print(key, val)
 
-lst_items = collections_map.items()
-print(lst_items)  # now list of tuples
-# [('mutable', ['set', 'list']), ('immutable', ['tuple', 'frozenset')]
-
+# Ordered dictionary is a special type:
 from collections import OrderedDict
-
 ordered = OrderedDict()  # same as std::map in C++
 
-# SET
 
-# Mutable, unique, unordered(hash!)
+# * Set
+
+# Set is mutable, unique, unordered (hash)
 
 empty_set = set()
 nonempty_set = {1, 2, 3, 3}
-print(nonempty_set)
-# {1,2,3}
+print(nonempty_set) # {1,2,3}
 
-# Adding/removing/search
+# Adding/removing/searching
 nonempty_set.add(5)
 nonempty_set.remove(2)
 nonempty_set.pop()  # remove and return some value (undefined)
@@ -573,17 +550,16 @@ intersection_set = set1 & set2
 difference_set = set1 - set2
 symmetric_difference_set = set1 ^ set2
 
-# FROZENSET
+# * Frozenset
 
-# Immutable
+# Frozenset is immutable
 
 frozen = frozenset(['Anna', 'Elsa', 'Kristoff'])
-
-
 # frozen.add('Olaf') #-> error!
 
 
-# FUNCTIONS
+
+# * Functions
 
 def myfun(param):
     """Function documentation"""
