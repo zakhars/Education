@@ -160,6 +160,7 @@ int main_cppr_w1_t9() {
     RUN_TEST(tr, TestPageSizes);
     RUN_TEST(tr, TestConstContainer);
     RUN_TEST(tr, TestPagePagination);
+    return 0;
 }
 
 
