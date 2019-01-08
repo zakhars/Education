@@ -158,6 +158,7 @@
     <ClCompile Include="..\Challenges\Personal\ListRotate.cpp" />
     <ClCompile Include="..\Challenges\Personal\Palindrome.cpp" />
     <ClCompile Include="..\CodePatterns\Patterns.cpp" />
+    <ClCompile Include="..\Coursera\GeeksForGeeks_InterviewPreparation\MathAlgo_Task01.cpp" />
     <ClCompile Include="..\Coursera\Stanford_Algorithms\Coursera_AlgStanford_Week01_Task01.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppRed\CppRed_Week01_Task02.cpp" />
     <ClCompile Include="..\Coursera\Yandex_CppRed\CppRed_Week01_Task01.cpp" />

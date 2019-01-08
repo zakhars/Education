@@ -17,9 +17,9 @@ using namespace std;
 using namespace hrnk::ctci;
 
 
-int main()
-{
-}
+//int main()
+//{
+//}
 
 
 int main_main()
