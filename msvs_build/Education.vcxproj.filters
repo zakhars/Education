@@ -49,6 +49,9 @@
     <Filter Include="Courses\GeeksForGeeks_InterviewPreparation">
       <UniqueIdentifier>{9bbe9ea9-0296-437f-ac19-f90dc385e7cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Challenges\Leetcode">
+      <UniqueIdentifier>{f48347bd-39b8-4cdf-8e08-5943f6f77b92}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -423,6 +426,9 @@
     </ClCompile>
     <ClCompile Include="..\Challenges\Hackerrank\InterviewKit.cpp">
       <Filter>Challenges\Hackerrank</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Challenges\Leetcode\LeetCodeAll.cpp">
+      <Filter>Challenges\Leetcode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

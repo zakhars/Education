@@ -148,7 +148,7 @@ int main_repeatedString()
    return 0;
 }
 
-int main()
+int main_jumpingOnClouds()
 {
    int n;
    cin >> n;
