@@ -415,6 +415,9 @@
     <ClCompile Include="..\Coursera\Yandex_CppRed\CppRed_Week01_Task09.cpp">
       <Filter>Coursera\Yandex_CppRed</Filter>
     </ClCompile>
+    <ClCompile Include="..\Challenges\Hackerrank\InterviewKit.cpp">
+      <Filter>Challenges\Hackerrank</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Challenges\Hackerrank\CTCI.h">

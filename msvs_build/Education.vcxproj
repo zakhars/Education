@@ -149,6 +149,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Books\CLRS\Cormen_Chapter01.cpp" />
+    <ClCompile Include="..\Challenges\Hackerrank\InterviewKit.cpp" />
     <ClCompile Include="..\Challenges\Personal\BubbleSort.cpp" />
     <ClCompile Include="..\Challenges\Personal\DetectGraphCycle.cpp" />
     <ClCompile Include="..\Challenges\Personal\Fibonacci.cpp" />
