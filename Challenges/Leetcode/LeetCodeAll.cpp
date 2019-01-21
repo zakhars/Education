@@ -12,7 +12,7 @@ namespace leetcode
    // Number of submits: 1
    // Errors: 2
    // Debug: no
-   vector<int> twoSum(vector<int>& nums, int target) {
+   vector<int> twoSum(vector<int>&& nums, int target) {
       vector<int> indices;
       for (int i = 0; i < nums.size(); ++i)
       {
@@ -33,8 +33,9 @@ namespace leetcode
 } // namespace leetcode
 
 
-int main_twoSum()
+int main()
 {
-
+   auto indices = leetcode::twoSum({2, 4, 3}, 5);
+   for (auto i : indices) cout << i << ' ';
    return 0;
 }

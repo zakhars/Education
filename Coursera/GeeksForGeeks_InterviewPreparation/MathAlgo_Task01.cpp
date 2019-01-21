@@ -10,7 +10,7 @@ int GetNthAP(int first, int second, int n)
    return first + ((n - 1) * delta);
 }
 
-int main()
+int main_geeksforgeeks01()
 {
    int T;
    int first, second;
@@ -21,4 +21,5 @@ int main()
       cin >> first >> second >> n;
       cout << GetNthAP(first, second, n);
    }
+   return 0;
 }
