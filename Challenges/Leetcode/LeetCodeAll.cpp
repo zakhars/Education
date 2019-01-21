@@ -8,6 +8,7 @@ using namespace std;
 namespace leetcode
 {
    // Task: https://leetcode.com/problems/two-sum/
+   // Time to first submit: 20
    // Time to last submit: 120
    // Number of submits: 10 (did several optimizations)
    // Errors: 5
@@ -37,15 +38,15 @@ namespace leetcode
    };
 
    // Task: https://leetcode.com/problems/add-two-numbers/
-   // Time to first submit: 2:00
-   // Time to last submit: 
-   // Number of submits: 
-   // Errors: 5
-   // Debug: no
+   // Time to first submit: 120
+   // Time to last submit: 140 
+   // Number of submits: 5
+   // Errors: 9
+   // Debug: yes
    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) 
    {
-      ListNode* cur = new ListNode(0);
-      ListNode* head = cur;
+      ListNode* tail = nullptr;
+      ListNode* head = nullptr;
       int mem = 0;
       while (l1 != nullptr && l2 != nullptr)
       {
@@ -55,30 +56,62 @@ namespace leetcode
             mem = 1;
             val %= 10;
          }
-
-         if (cur == nullptr)
+         else
          {
-            cur = new ListNode(val);
+            mem = 0;
          }
 
-         cur->val = val;
-         cur = cur->next;
+         if (head == nullptr)
+         {
+            head = new ListNode(val);
+            tail = head;
+         }
+         else
+         {
+            tail->next = new ListNode(val);
+            tail = tail->next;
+         }
+
          l1 = l1->next;
          l2 = l2->next;
       }
       while (l1 != nullptr)
       {
-         cur = new ListNode(l1->val + mem);
-         cur = cur->next;
-         mem = 0;
+         int val = l1->val + mem;
+         if (val > 9)
+         {
+            mem = 1;
+            val %= 10;
+         }
+         else
+         {
+            mem = 0;
+         }
+         tail->next = new ListNode(val);
+         tail = tail->next;
          l1 = l1->next;
       }
       while (l2 != nullptr)
       {
-         cur = new ListNode(l2->val + mem);
-         cur = cur->next;
-         mem = 0;
+         int val = l2->val + mem;
+         if (val > 9)
+         {
+            mem = 1;
+            val %= 10;
+         }
+         else
+         {
+            mem = 0;
+         }
+         tail->next = new ListNode(val);
+         tail = tail->next;
          l2 = l2->next;
+      }
+
+      if (mem != 0)
+      {
+         tail->next = new ListNode(mem);
+         tail = tail->next;
       }
 
       return head;
@@ -91,8 +124,8 @@ namespace leetcode
 int main()
 {
    using namespace leetcode;
-   ListNode* l1 = new ListNode(2); l1->next = new ListNode(4);  l1->next->next = new ListNode(3);
-   ListNode* l2 = new ListNode(5); l2->next = new ListNode(6);  l2->next->next = new ListNode(4);
+   ListNode* l1 = new ListNode(5);// l1->next = new ListNode(4);  l1->next->next = new ListNode(3);
+   ListNode* l2 = new ListNode(5);// l2->next = new ListNode(6);  l2->next->next = new ListNode(4);
    auto sum = addTwoNumbers(l1, l2);
    while (sum != nullptr)
    {
