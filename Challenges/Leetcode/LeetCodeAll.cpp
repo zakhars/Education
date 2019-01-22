@@ -117,6 +117,51 @@ namespace leetcode
       return head;
    }
 
+   // Task: https://leetcode.com/problems/longest-substring-without-repeating-characters/
+   // Time to first submit: 10:30
+   // Time to last submit:  
+   // Number of submits: 0
+   // Errors: 1
+   // Not passed test cases:
+   // Debug: no
+   int lengthOfLongestSubstring(string s)
+   {
+      // abcabcbb -> abc (3)
+      // pwwkew -> wke (3)
+      // wpwkew -> pwke (4)
+      // bbbbb -> b (1)
+
+      unordered_set<char> seq;
+      int longest = 0;
+      int pos = 0;
+      int len = 0;
+
+      for (auto c : s)
+      {
+         if (seq.count(c) == 0)
+         {
+            seq.insert(c);
+            ++len;
+            if (len > longest)
+            {
+               longest = len;
+            }
+         }
+         else
+         {
+            while (s[pos] != c)
+            {
+               ++pos;
+               --len;
+               seq.erase(c);
+            }
+            --len;
+            ++pos;
+         }
+      }
+      return longest;
+   }
+
 
 } // namespace leetcode
 
@@ -124,13 +169,10 @@ namespace leetcode
 int main()
 {
    using namespace leetcode;
-   ListNode* l1 = new ListNode(5);// l1->next = new ListNode(4);  l1->next->next = new ListNode(3);
-   ListNode* l2 = new ListNode(5);// l2->next = new ListNode(6);  l2->next->next = new ListNode(4);
-   auto sum = addTwoNumbers(l1, l2);
-   while (sum != nullptr)
-   {
-      cout << sum->val << ' ';
-      sum = sum->next;
-   }
+
+   cout << lengthOfLongestSubstring("abcabcb") << endl;
+   cout << lengthOfLongestSubstring("pwwkew") << endl;
+   cout << lengthOfLongestSubstring("wpwkew") << endl;
+   cout << lengthOfLongestSubstring("bbbbb") << endl;
    return 0;
 }
