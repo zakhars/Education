@@ -118,45 +118,53 @@ namespace leetcode
    }
 
    // Task: https://leetcode.com/problems/longest-substring-without-repeating-characters/
-   // Time to first submit: 10:30
-   // Time to last submit:  
-   // Number of submits: 0
-   // Errors: 1
-   // Not passed test cases:
-   // Debug: no
+   // Time to first submit: 60
+   // Time to last submit: 150 
+   // Number of submits: 5
+   // Errors: 6
+   // Not passed test cases: aab pwwkew aabaab!bb
+   // Debug: yes
    int lengthOfLongestSubstring(string s)
    {
       // abcabcbb -> abc (3)
       // pwwkew -> wke (3)
       // wpwkew -> pwke (4)
       // bbbbb -> b (1)
+      // aab -> ab (2)
 
-      unordered_set<char> seq;
+      unordered_set<char> unique;
       int longest = 0;
-      int pos = 0;
+      int left = 0;
       int len = 0;
 
-      for (auto c : s)
+      for (int i = 0; i < s.size(); ++i)
       {
-         if (seq.count(c) == 0)
+         if (unique.count(s[i]) == 0)
          {
-            seq.insert(c);
-            ++len;
-            if (len > longest)
+            unique.insert(s[i]);
+            if (++len > longest)
             {
                longest = len;
             }
          }
          else
          {
-            while (s[pos] != c)
+            if (left == i - 1) // 2 equal characters near
             {
-               ++pos;
-               --len;
-               seq.erase(c);
+               left = i;
+               len = 1;
+               unique = { s[i] };
             }
-            --len;
-            ++pos;
+            else
+            {
+               while (s[left] != s[i])
+               {
+                  unique.erase(s[left]);
+                  ++left;
+               }
+               ++left;
+               len = i - left + 1;
+            }
          }
       }
       return longest;
@@ -170,9 +178,5 @@ int main()
 {
    using namespace leetcode;
 
-   cout << lengthOfLongestSubstring("abcabcb") << endl;
-   cout << lengthOfLongestSubstring("pwwkew") << endl;
-   cout << lengthOfLongestSubstring("wpwkew") << endl;
-   cout << lengthOfLongestSubstring("bbbbb") << endl;
    return 0;
 }
