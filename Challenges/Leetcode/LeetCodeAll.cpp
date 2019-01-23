@@ -170,6 +170,28 @@ namespace leetcode
       return longest;
    }
 
+   // Task: https://leetcode.com/problems/median-of-two-sorted-arrays/
+   // Time to first submit: 
+   // Time to last submit: 0 
+   // Number of submits: 0
+   // Errors: 0
+   // Not passed test cases: 
+   // Debug: 
+
+   // nums1 = [1, 2]
+   // nums2 = [3, 4]
+   // Median: (2 + 3) / 2 = 2.5
+
+   // nums1 = [1, 3]
+   // nums2 = [2]
+   // Median: 2.0
+
+   // Complexity should be O(log(m+n))
+
+   double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) 
+   {
+
+   }
 
 } // namespace leetcode
 
