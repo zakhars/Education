@@ -112,7 +112,7 @@ s = "one " * 3  # 'one one one '
 # Slices: [start:stop:step]
 s = "Python course on Coursera"
 print(s[7:])  # 'course on Coursera'
-print(s[7:12])  # 'course'
+print(s[7:13])  # 'course'
 print(s[-8:])  # 'Coursera'
 s = '023456789'
 print(s[::2])  # '02468'
@@ -346,7 +346,6 @@ print('hello')
 # (myenv) python
 # (myenv) >>> import requests
 # (myenv) >>> print(requests.get("http://freegeoip.net/json").json())
-
 
 # * Python internals
 

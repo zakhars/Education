@@ -190,15 +190,100 @@ namespace leetcode
 
    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) 
    {
+      return 0;
+   }
+
+   string strWithout3a3b(int A, int B) 
+   {
+      string s;
+      int numA = 0;
+      int numB = 0;
+      bool aMax = false;
+      bool bMax = false;
+      const char a = 'a';
+      const char b = 'b';
+      for (int i = 0; i < A + B; ++i)
+      {
+         if (numA < A && aMax == false)
+         {
+            s.push_back(a);
+            ++numA;
+            if (i > 0 && s[i - 1] == a)
+            {
+               aMax = true;
+            }
+            bMax = false;
+         }
+         else
+         {
+            s.push_back(b);
+            ++numB;
+            if (i > 0 && s[i - 1] == b)
+            {
+               bMax = true;
+            }
+            aMax = false;
+         }
+      }
+      return s;
+   }
+
+   class TimeMap {
+   public:
+      /** Initialize your data structure here. */
+      TimeMap() {
+
+      }
+
+      void set(string key, string value, int timestamp) {
+
+      }
+
+      string get(string key, int timestamp) {
+
+      }
+   };
+
+   /**
+    * Your TimeMap object will be instantiated and called as such:
+    * TimeMap* obj = new TimeMap();
+    * obj->set(key,value,timestamp);
+    * string param_2 = obj->get(key,timestamp);
+    */
+
+   int mincostTickets(vector<int>& days, vector<int>& costs) 
+   {
 
    }
 
+   int countTriplets(vector<int>& A) 
+   {
+      int N = A.size();
+      int cntTriplets = 0;
+      for (int i = 0; i < N; ++i)
+         for (int j = 0; j < N; ++j)
+            for (int k = 0; k < N; ++k)
+            {
+               if ((A[i] & A[j] & A[k]) == 0)
+               {
+                  ++cntTriplets;
+               }
+            }
+      return cntTriplets;
+   }
+
+
+
 } // namespace leetcode
+
+
 
 
 int main()
 {
    using namespace leetcode;
+   vector<int> v = {2,1,3};
+   cout << countTriplets(v);
 
    return 0;
 }
