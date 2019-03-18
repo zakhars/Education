@@ -33,6 +33,9 @@
 
 # MS Visual Studio common filters
 .vs/
+.idea/
+.vscode
+__pycache__/
 Debug/
 Release/
 */x64/
@@ -41,5 +44,3 @@ packages/
 *.VC.db
 *.sdf
 *.opendb
-__pycache__/
-.vscode
