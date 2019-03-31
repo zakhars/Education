@@ -193,6 +193,13 @@ namespace leetcode
       return 0;
    }
 
+   // Task: https://leetcode.com/problems/string-without-aaa-or-bbb/
+   // Time to first submit: 
+   // Time to last submit: 0 
+   // Number of submits: 0
+   // Errors: 0
+   // Not passed test cases: 
+   // Debug: 
    string strWithout3a3b(int A, int B) 
    {
       string s;
@@ -228,34 +235,13 @@ namespace leetcode
       return s;
    }
 
-   class TimeMap {
-   public:
-      /** Initialize your data structure here. */
-      TimeMap() {
-
-      }
-
-      void set(string key, string value, int timestamp) {
-
-      }
-
-      string get(string key, int timestamp) {
-
-      }
-   };
-
-   /**
-    * Your TimeMap object will be instantiated and called as such:
-    * TimeMap* obj = new TimeMap();
-    * obj->set(key,value,timestamp);
-    * string param_2 = obj->get(key,timestamp);
-    */
-
-   int mincostTickets(vector<int>& days, vector<int>& costs) 
-   {
-
-   }
-
+   // Task: https://leetcode.com/problems/triples-with-bitwise-and-equal-to-zero/
+   // Time to first submit: 
+   // Time to last submit: 0 
+   // Number of submits: 0
+   // Errors: 0
+   // Not passed test cases: 
+   // Debug: 
    int countTriplets(vector<int>& A) 
    {
       int N = A.size();
@@ -271,9 +257,6 @@ namespace leetcode
             }
       return cntTriplets;
    }
-
-
-
 } // namespace leetcode
 
 
@@ -282,8 +265,9 @@ namespace leetcode
 int main()
 {
    using namespace leetcode;
-   vector<int> v = {2,1,3};
-   cout << countTriplets(v);
+   vector<int> nums1 = { 1, 2 };
+   vector<int> nums2 = { 3, 4 };
+   cout << findMedianSortedArrays(nums1, nums2);
 
    return 0;
 }
