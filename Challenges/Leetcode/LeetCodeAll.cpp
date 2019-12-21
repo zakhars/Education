@@ -171,16 +171,24 @@ namespace leetcode
    }
 
    // Task: https://leetcode.com/problems/median-of-two-sorted-arrays/
-   // Time to first submit: 
-   // Time to last submit: 0 
-   // Number of submits: 0
-   // Errors: 0
-   // Not passed test cases: 
-   // Debug: 
+   // Time to first submit: 15
+   // Time to last submit: 20 
+   // Number of submits: 2
+   // Errors: 1
+   // Not passed test cases: 1
+   // Debug: yes
 
    // nums1 = [1, 2]
    // nums2 = [3, 4]
    // Median: (2 + 3) / 2 = 2.5
+
+	// nums1 = [1, 3]
+	// nums2 = [2, 4]
+	// Median: (2 + 3) / 2 = 2.5
+
+	// nums1 = [1, 3, 5, 7]
+	// nums2 = [2, 4, 8]
+	// Median: 4
 
    // nums1 = [1, 3]
    // nums2 = [2]
@@ -190,73 +198,93 @@ namespace leetcode
 
    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) 
    {
-      return 0;
+		vector<int> merged(nums1.size() + nums2.size());
+		merge(begin(nums1), end(nums1), begin(nums2), end(nums2), begin(merged));
+		const auto sz = merged.size();
+		if (sz % 2 == 0)
+		{
+			return (merged[sz / 2 - 1] + merged[sz / 2]) / 2.0;
+		}
+
+      return merged[sz / 2];
    }
 
-   // Task: https://leetcode.com/problems/string-without-aaa-or-bbb/
-   // Time to first submit: 
-   // Time to last submit: 0 
-   // Number of submits: 0
-   // Errors: 0
-   // Not passed test cases: 
-   // Debug: 
-   string strWithout3a3b(int A, int B) 
-   {
-      string s;
-      int numA = 0;
-      int numB = 0;
-      bool aMax = false;
-      bool bMax = false;
-      const char a = 'a';
-      const char b = 'b';
-      for (int i = 0; i < A + B; ++i)
-      {
-         if (numA < A && aMax == false)
-         {
-            s.push_back(a);
-            ++numA;
-            if (i > 0 && s[i - 1] == a)
-            {
-               aMax = true;
-            }
-            bMax = false;
-         }
-         else
-         {
-            s.push_back(b);
-            ++numB;
-            if (i > 0 && s[i - 1] == b)
-            {
-               bMax = true;
-            }
-            aMax = false;
-         }
-      }
-      return s;
-   }
+	// Task: https://leetcode.com/problems/string-without-aaa-or-bbb/
+	// Time to first submit: 
+	// Time to last submit: 0 
+	// Number of submits: 0
+	// Errors: 0
+	// Not passed test cases: 
+	// Debug: 
+	string strWithout3a3b(int A, int B)
+	{
+		string s;
+		int numA = 0;
+		int numB = 0;
+		bool aMax = false;
+		bool bMax = false;
+		const char a = 'a';
+		const char b = 'b';
+		for (int i = 0; i < A + B; ++i)
+		{
+			if (numA < A && aMax == false)
+			{
+				s.push_back(a);
+				++numA;
+				if (i > 0 && s[i - 1] == a)
+				{
+					aMax = true;
+				}
+				bMax = false;
+			}
+			else
+			{
+				s.push_back(b);
+				++numB;
+				if (i > 0 && s[i - 1] == b)
+				{
+					bMax = true;
+				}
+				aMax = false;
+			}
+		}
+		return s;
+	}
 
-   // Task: https://leetcode.com/problems/triples-with-bitwise-and-equal-to-zero/
-   // Time to first submit: 
-   // Time to last submit: 0 
-   // Number of submits: 0
-   // Errors: 0
-   // Not passed test cases: 
-   // Debug: 
-   int countTriplets(vector<int>& A) 
-   {
-      int N = A.size();
-      int cntTriplets = 0;
-      for (int i = 0; i < N; ++i)
-         for (int j = 0; j < N; ++j)
-            for (int k = 0; k < N; ++k)
-            {
-               if ((A[i] & A[j] & A[k]) == 0)
-               {
-                  ++cntTriplets;
-               }
-            }
-      return cntTriplets;
-   }
+	// Task: https://leetcode.com/problems/triples-with-bitwise-and-equal-to-zero/
+	// Time to first submit: 
+	// Time to last submit: 0 
+	// Number of submits: 0
+	// Errors: 0
+	// Not passed test cases: 
+	// Debug: 
+	int countTriplets(vector<int>& A)
+	{
+		size_t N = A.size();
+		int cntTriplets = 0;
+		for (size_t i = 0; i < N; ++i)
+			for (size_t j = 0; j < N; ++j)
+				for (size_t k = 0; k < N; ++k)
+				{
+					if ((A[i] & A[j] & A[k]) == 0)
+					{
+						++cntTriplets;
+					}
+				}
+		return cntTriplets;
+	}
+
+	// Task: https://leetcode.com/problems/longest-palindromic-substring/
+	// Time to first submit: 
+	// Time to last submit: 0 
+	// Number of submits: 0
+	// Errors: 0
+	// Not passed test cases: 
+	// Debug: 
+	string longestPalindrome(const string& s)
+	{
+
+	}
 } // namespace leetcode
 
 
@@ -265,9 +293,8 @@ namespace leetcode
 int main()
 {
    using namespace leetcode;
-   vector<int> nums1 = { 1, 2 };
-   vector<int> nums2 = { 3, 4 };
-   cout << findMedianSortedArrays(nums1, nums2);
+	string s = "ababc";
+   cout << longestPalindrome(s);
 
    return 0;
 }
