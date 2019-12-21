@@ -45,6 +45,10 @@ namespace leetcode
    // Debug: yes
    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) 
    {
+		if (l1 == nullptr || l2 == nullptr)
+		{
+			return nullptr;
+		}
       ListNode* tail = nullptr;
       ListNode* head = nullptr;
       int mem = 0;

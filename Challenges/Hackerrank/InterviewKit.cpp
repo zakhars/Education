@@ -41,7 +41,7 @@ namespace hrnk
    // Errors: 1
    // Debug: no
 
-   long repeatedString(string s, long n) 
+   auto repeatedString(string s, long n) 
    {
       auto numA = count(begin(s), end(s), 'a');
       numA *= (n / s.size());
@@ -63,7 +63,7 @@ namespace hrnk
    int jumpingOnClouds(vector<int> c) 
    {
       // 0010010
-      int pos = 0;
+      size_t pos = 0;
       int steps = 0;
       while (pos != c.size() - 1)
       {
@@ -141,7 +141,7 @@ int main_repeatedString()
    cin >> n;
    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-   long result = hrnk::repeatedString(s, n);
+   auto result = hrnk::repeatedString(s, n);
 
    cout << result << "\n";
 
