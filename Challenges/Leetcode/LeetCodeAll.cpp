@@ -45,6 +45,10 @@ namespace leetcode
    // Debug: yes
    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) 
    {
+		if (l1 == nullptr || l2 == nullptr)
+		{
+			return nullptr;
+		}
       ListNode* tail = nullptr;
       ListNode* head = nullptr;
       int mem = 0;
@@ -193,7 +197,7 @@ namespace leetcode
       return 0;
    }
 
-   string strWithout3a3b(int A, int B) 
+   string strWithout3a3b(int A, int B)
    {
       string s;
       int numA = 0;
@@ -202,7 +206,7 @@ namespace leetcode
       bool bMax = false;
       const char a = 'a';
       const char b = 'b';
-      for (int i = 0; i < A + B; ++i)
+      for (size_t i = 0; i < static_cast<size_t>(A) + static_cast<size_t>(B); ++i)
       {
          if (numA < A && aMax == false)
          {
@@ -228,41 +232,13 @@ namespace leetcode
       return s;
    }
 
-   class TimeMap {
-   public:
-      /** Initialize your data structure here. */
-      TimeMap() {
-
-      }
-
-      void set(string key, string value, int timestamp) {
-
-      }
-
-      string get(string key, int timestamp) {
-
-      }
-   };
-
-   /**
-    * Your TimeMap object will be instantiated and called as such:
-    * TimeMap* obj = new TimeMap();
-    * obj->set(key,value,timestamp);
-    * string param_2 = obj->get(key,timestamp);
-    */
-
-   int mincostTickets(vector<int>& days, vector<int>& costs) 
+   size_t countTriplets(vector<int>& A) 
    {
-
-   }
-
-   int countTriplets(vector<int>& A) 
-   {
-      int N = A.size();
-      int cntTriplets = 0;
-      for (int i = 0; i < N; ++i)
-         for (int j = 0; j < N; ++j)
-            for (int k = 0; k < N; ++k)
+      size_t N = A.size();
+      size_t cntTriplets = 0;
+      for (size_t i = 0; i < N; ++i)
+         for (size_t j = 0; j < N; ++j)
+            for (size_t k = 0; k < N; ++k)
             {
                if ((A[i] & A[j] & A[k]) == 0)
                {
