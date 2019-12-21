@@ -197,7 +197,14 @@ namespace leetcode
       return 0;
    }
 
-   string strWithout3a3b(int A, int B)
+   // Task: https://leetcode.com/problems/string-without-aaa-or-bbb/
+   // Time to first submit: 
+   // Time to last submit: 0 
+   // Number of submits: 0
+   // Errors: 0
+   // Not passed test cases: 
+   // Debug: 
+   string strWithout3a3b(int A, int B) 
    {
       string s;
       int numA = 0;
@@ -232,7 +239,14 @@ namespace leetcode
       return s;
    }
 
-   size_t countTriplets(vector<int>& A) 
+   // Task: https://leetcode.com/problems/triples-with-bitwise-and-equal-to-zero/
+   // Time to first submit: 
+   // Time to last submit: 0 
+   // Number of submits: 0
+   // Errors: 0
+   // Not passed test cases: 
+   // Debug: 
+   int countTriplets(vector<int>& A) 
    {
       size_t N = A.size();
       size_t cntTriplets = 0;
@@ -247,9 +261,6 @@ namespace leetcode
             }
       return cntTriplets;
    }
-
-
-
 } // namespace leetcode
 
 
@@ -258,8 +269,9 @@ namespace leetcode
 int main()
 {
    using namespace leetcode;
-   vector<int> v = {2,1,3};
-   cout << countTriplets(v);
+   vector<int> nums1 = { 1, 2 };
+   vector<int> nums2 = { 3, 4 };
+   cout << findMedianSortedArrays(nums1, nums2);
 
    return 0;
 }
