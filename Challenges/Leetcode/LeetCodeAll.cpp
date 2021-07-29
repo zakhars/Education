@@ -13,7 +13,8 @@ namespace leetcode
    // Number of submits: 10 (did several optimizations)
    // Errors: 5
    // Debug: yes
-   vector<int> twoSum(vector<int>& nums, int target) {
+   vector<int> twoSum(vector<int>& nums, int target) 
+   {
       unordered_set<int> hashed(begin(nums), end(nums));
       for (int i = 0; i < nums.size(); ++i)
       {
@@ -31,7 +32,8 @@ namespace leetcode
       return {};
    }
 
-   struct ListNode {
+   struct ListNode 
+   {
       int val;
       ListNode* next;
       ListNode(int x) : val(x), next(nullptr) {}
@@ -213,82 +215,28 @@ namespace leetcode
       return merged[sz / 2];
    }
 
-	// Task: https://leetcode.com/problems/string-without-aaa-or-bbb/
-	// Time to first submit: 
-	// Time to last submit: 0 
-	// Number of submits: 0
-	// Errors: 0
-	// Not passed test cases: 
-	// Debug: 
-	string strWithout3a3b(int A, int B)
-	{
-		string s;
-		int numA = 0;
-		int numB = 0;
-		bool aMax = false;
-		bool bMax = false;
-		const char a = 'a';
-		const char b = 'b';
-		for (int i = 0; i < A + B; ++i)
-		{
-			if (numA < A && aMax == false)
-			{
-				s.push_back(a);
-				++numA;
-				if (i > 0 && s[i - 1] == a)
-				{
-					aMax = true;
-				}
-				bMax = false;
-			}
-			else
-			{
-				s.push_back(b);
-				++numB;
-				if (i > 0 && s[i - 1] == b)
-				{
-					bMax = true;
-				}
-				aMax = false;
-			}
-		}
-		return s;
-	}
-
-	// Task: https://leetcode.com/problems/triples-with-bitwise-and-equal-to-zero/
-	// Time to first submit: 
-	// Time to last submit: 0 
-	// Number of submits: 0
-	// Errors: 0
-	// Not passed test cases: 
-	// Debug: 
-	int countTriplets(vector<int>& A)
-	{
-		size_t N = A.size();
-		int cntTriplets = 0;
-		for (size_t i = 0; i < N; ++i)
-			for (size_t j = 0; j < N; ++j)
-				for (size_t k = 0; k < N; ++k)
-				{
-					if ((A[i] & A[j] & A[k]) == 0)
-					{
-						++cntTriplets;
-					}
-				}
-		return cntTriplets;
-	}
-
 	// Task: https://leetcode.com/problems/longest-palindromic-substring/
-	// Time to first submit: 
-	// Time to last submit: 0 
-	// Number of submits: 0
-	// Errors: 0
-	// Not passed test cases: 
-	// Debug: 
+
+   bool IsPalindrome(const string& s, size_t b, size_t e)
+   {
+      for (size_t i = 0; i <= (e - b) / 2; ++i)
+      {
+         if (s[i] != s[e - i])
+         {
+            return false;
+         }
+      }
+      return true;
+   }
+
 	string longestPalindrome(const string& s)
 	{
+      size_t b = 0;
+      size_t e = s.size() - 1;
 
+      return string();
 	}
+
 } // namespace leetcode
 
 

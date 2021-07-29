@@ -1981,7 +1981,7 @@ class PythonWay:
 def f():
     # import pdb
     # pdb.set_trace()
-    # type: step, next, ll, b [line], continue, p, ..., q, help, help [command]
+    # type : step, next, ll, b [line], continue, p, ..., q, help, help [command]
     a = 1
 
 
