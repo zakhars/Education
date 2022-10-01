@@ -34,7 +34,7 @@
 # MS Visual Studio common filters
 .vs/
 .vscode
-*/.idea/
+.idea/
 */__pycache__/
 Debug/
 Release/
