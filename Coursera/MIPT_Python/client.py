@@ -1,6 +1,6 @@
 import socket
 import time
-import json
+
 
 class Client:
     def __init__(self, host, port, timeout=None):
@@ -22,6 +22,7 @@ class Client:
             return data_str
         except Exception as ex:
             print(ex.args[0])
+
 
 client = Client('127.0.0.1', 10001)
 client.put('RTT', 123)

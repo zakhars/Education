@@ -1,10 +1,11 @@
 import sys
 
-snum = sys.argv[1]
-sum = 0
-for c in snum:
-    sum += int(c)
-print(sum)
 
-#Teacher's solution:
+s_num = sys.argv[1]
+summa = 0
+for c in s_num:
+    summa += int(c)
+print(summa)
+
+# Teacher's solution:
 print(sum([int(x) for x in sys.argv[1]]))

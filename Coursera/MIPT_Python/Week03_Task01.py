@@ -8,4 +8,3 @@ class FileReader:
                 return f.read()
         except IOError:
             return ""
-

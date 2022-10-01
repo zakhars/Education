@@ -78,7 +78,7 @@ class ServerSocket:
         pass
 
     def __getattr__(self, feature):
-        """ignore socket.connect, soket.bind, etc..."""
+        """ignore socket.connect, socket.bind, etc..."""
         pass
 
 

@@ -11,4 +11,3 @@ x2 = (-b - math.sqrt(D)) / (2*a)
 
 print(int(x1))
 print(int(x2))
-

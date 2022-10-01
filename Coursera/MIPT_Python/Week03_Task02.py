@@ -1,6 +1,8 @@
-"""
 import csv
+import sys
 import os
+import os.path
+
 
 class GenericCar:
     def __init__(self, car_type, brand, photo_file_name, carrying):
@@ -13,12 +15,14 @@ class GenericCar:
         _, file_extension = os.path.splitext(self.photo_file_name)
         return file_extension
 
-class Car(GenericCar):
+
+class Car1(GenericCar):
     def __init__(self, car_type, brand, photo_file_name, carrying, passenger_seats_count):
         super().__init__(car_type, brand, photo_file_name, carrying)
         self.passenger_seats_count = int(passenger_seats_count)
 
-class Truck(GenericCar):
+
+class Truck1(GenericCar):
     def __init__(self, car_type, brand, photo_file_name, carrying, body_whl):
         super().__init__(car_type, brand, photo_file_name, carrying)
         self.body_length, self.body_width, self.body_height = 0.0, 0.0, 0.0
@@ -29,10 +33,12 @@ class Truck(GenericCar):
     def get_body_volume(self):
         return self.body_length * self.body_width * self.body_height
 
-class SpecialCar(GenericCar):
+
+class SpecialCar1(GenericCar):
     def __init__(self, car_type, brand, photo_file_name, carrying, extra):
         super().__init__(car_type, brand, photo_file_name, carrying)
         self.extra = extra
+
 
 def get_car_list(csv_file_name):
     car_list = []
@@ -43,26 +49,23 @@ def get_car_list(csv_file_name):
             try:
                 car_type = row[0]
                 if car_type == 'car':
-                    car_list.append(Car(car_type, brand=row[1], photo_file_name=row[3], carrying=row[5], passenger_seats_count=row[2]))
+                    car_list.append(Car1(car_type, brand=row[1], photo_file_name=row[3], carrying=row[5], passenger_seats_count=row[2]))
                 elif car_type == 'truck':
-                    car_list.append(Truck(car_type, brand=row[1], photo_file_name=row[3], carrying=row[5], body_whl=row[4]))
+                    car_list.append(Truck1(car_type, brand=row[1], photo_file_name=row[3], carrying=row[5], body_whl=row[4]))
                 elif car_type == 'spec_machine':
-                    car_list.append(SpecialCar(car_type, brand=row[1], photo_file_name=row[3], carrying=row[5], extra=row[6]))
+                    car_list.append(SpecialCar1(car_type, brand=row[1], photo_file_name=row[3], carrying=row[5], extra=row[6]))
                 else:
                     pass
             except Exception:
                 pass
     return car_list
 
+
 if __name__ == '__main__':
     print(get_car_list('coursera_week3_cars.csv'))
-"""
+
+
 # Teachers way
-
-import csv
-import sys
-import os.path
-
 
 class CarBase:
     """Базовый класс с общими методами и атрибутами"""

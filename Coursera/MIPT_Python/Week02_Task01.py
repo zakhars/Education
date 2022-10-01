@@ -1,7 +1,9 @@
-import os
 import sys
-import tempfile
+import argparse
 import json
+import os
+import tempfile
+
 
 if '--key' not in sys.argv or len(sys.argv) < 3:
     print('No key specified')
@@ -33,15 +35,10 @@ else:
         print(', '.join(kv_dict[key_name]))
 
 
-
-#Teacher's solution:
-
-import argparse
-import json
-import os
-import tempfile
+# Teacher's solution:
 
 storage_path = os.path.join(tempfile.gettempdir(), 'storage.data')
+
 
 def clear():
     os.remove(storage_path)
@@ -51,8 +48,8 @@ def get_data():
     if not os.path.exists(storage_path):
         return {}
 
-    with open(storage_path, 'r') as f:
-        raw_data = f.read()
+    with open(storage_path, 'r') as storage:
+        raw_data = storage.read()
         if raw_data:
             return json.loads(raw_data)
 
@@ -66,8 +63,8 @@ def put(key, value):
     else:
         data[key] = [value]
 
-    with open(storage_path, 'w') as f:
-        f.write(json.dumps(data))
+    with open(storage_path, 'w') as storage:
+        storage.write(json.dumps(data))
 
 
 def get(key):
@@ -91,4 +88,3 @@ if __name__ == '__main__':
         print(get(args.key))
     else:
         print('Wrong command')
-

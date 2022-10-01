@@ -1,6 +1,8 @@
 import socket
 import threading
 from collections import OrderedDict
+import asyncio
+
 
 class MetricsServer:
     def __init__(self, host, port):
@@ -58,10 +60,10 @@ class MetricsServer:
                     self._send_failure(conn)
                 else:
                     conn.sendall(self.resp_success + (self.resp_newline * 2))
-            else: # 'get'
+            else:  # 'get'
                 try:
                     response = self.process_get(items)
-                except Exception as e:
+                except Exception:
                     self._send_failure(conn)
                 else:
                     conn.sendall(response)
@@ -90,17 +92,14 @@ class MetricsServer:
         decoded_data = decoded_data.strip()
         return decoded_data.split()
 
+
 def run_server(host, port):
-    server = MetricsServer(host, port)
-    server.start()
-    server.close()
+    srv = MetricsServer(host, port)
+    srv.start()
+    srv.close()
 
 
 # Teacher's solution
-
-'''
-import asyncio
-
 
 class Storage:
     """Класс для хранения метрик в памяти процесса"""
@@ -140,8 +139,9 @@ class ParseError(ValueError):
 
 class Parser:
     """Класс для реализации протокола"""
-    
-    def encode(self, responses):
+
+    @staticmethod
+    def encode(responses):
         """Преобразование ответа сервера в строку для передачи в сокет"""
         rows = []
         for response in responses:
@@ -158,7 +158,8 @@ class Parser:
 
         return result + "\n"
 
-    def decode(self, data):
+    @staticmethod
+    def decode(data):
         """Разбор команды для дальнейшего выполнения. Возвращает список команд для выполнения"""
         parts = data.split("\n")
         commands = []
@@ -219,6 +220,7 @@ class EchoServerClientProtocol(asyncio.Protocol):
         self.parser = Parser()
         self.executor = Executor(self.storage)
         self._buffer = b''
+        self.transport = None
 
     def process_data(self, data):
         """Обработка входной команды сервера"""
@@ -280,4 +282,3 @@ if __name__ == "__main__":
     server.close()
     loop.run_until_complete(server.wait_closed())
     loop.close()
-'''

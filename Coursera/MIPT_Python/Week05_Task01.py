@@ -1,9 +1,10 @@
 import socket
 import time
-import json
+
 
 class ClientError(Exception):
     pass
+
 
 class Client:
     def __init__(self, host, port, timeout=None):
@@ -20,7 +21,7 @@ class Client:
             if response != 'ok\n\n':
                 raise ClientError
             print(response)
-        except Exception as ex:
+        except Exception:
             raise ClientError
 
     def get(self, mask):
@@ -39,63 +40,68 @@ class Client:
         except Exception:
             raise ClientError
 
+    def close(self):
+        try:
+            self.sock.close()
+        except Exception:
+            raise ClientError
+
     @staticmethod
-    def _dict_from_response(response : str):
+    def _dict_from_response(response: str):
         metrics = {}
         lines = response.split('\n')
         for line in lines[1:-2]:
             symbol, value, timestamp = line.split(' ')
             metrics.setdefault(symbol, []).append((int(timestamp), float(value)))
         for val in metrics.values():
-            val.sort(key = lambda x: x[0])
+            val.sort(key=lambda x: x[0])
         return metrics
 
 
-client = Client("127.0.0.1", 10001, timeout=None)
+def _main1():
+    client = Client("127.0.0.1", 10001, timeout=None)
 
-client.put('test', 0.5, 1)
-client.put('test', 2.0, 2)
-client.put('test', 0.4, 2)
-client.put('load', 301, 3)
-client.get('key_not_exists')
-client.get('test')
-client.get('get_client_error')
-client.get('*')
-
-
-
-'''
-#Teacher"s solution
-
-import socket
-import time
+    client.put('test', 0.5, 1)
+    client.put('test', 2.0, 2)
+    client.put('test', 0.4, 2)
+    client.put('load', 301, 3)
+    client.get('key_not_exists')
+    client.get('test')
+    client.get('get_client_error')
+    client.get('*')
 
 
-class ClientError(Exception):
+if __name__ == "__main__":
+    _main1()
+
+
+# Teacher"s solution
+
+class ClientError1(Exception):
     """Общий класс исключений клиента"""
     pass
 
 
-class ClientSocketError(ClientError):
+class ClientSocketError1(ClientError1):
     """Исключение, выбрасываемое клиентом при сетевой ошибке"""
     pass
 
 
-class ClientProtocolError(ClientError):
+class ClientProtocolError1(ClientError1):
     """Исключение, выбрасываемое клиентом при ошибке протокола"""
     pass
 
 
-class Client:
+class Client1:
     def __init__(self, host, port, timeout=None):
         # класс инкапсулирует создание сокета
-        # создаем клиентский сокет, запоминаем объект socke.socket в self
+        # создаем клиентский сокет, запоминаем объект socket.socket в self
         self.host = host
         self.port = port
         try:
             self.connection = socket.create_connection((host, port), timeout)
         except socket.error as err:
-            raise ClientSocketError("error create connection", err)
+            raise ClientSocketError1("error create connection", err)
 
     def _read(self):
         """Метод для чтения ответа сервера"""
@@ -105,7 +111,7 @@ class Client:
             try:
                 data += self.connection.recv(1024)
             except socket.error as err:
-                raise ClientSocketError("error recv data", err)
+                raise ClientSocketError1("error recv data", err)
 
         # не забываем преобразовывать байты в объекты str для дальнейшей работы
         decoded_data = data.decode()
@@ -115,7 +121,7 @@ class Client:
 
         # если получили ошибку - бросаем исключение ClientError
         if status == "error":
-            raise ClientProtocolError(payload)
+            raise ClientProtocolError1(payload)
 
         return payload
 
@@ -128,7 +134,7 @@ class Client:
                 f"put {key} {value} {timestamp}\n".encode()
             )
         except socket.error as err:
-            raise ClientSocketError("error send data", err)
+            raise ClientSocketError1("error send data", err)
 
         # разбираем ответ
         self._read()
@@ -140,7 +146,7 @@ class Client:
                 f"get {key}\n".encode()
             )
         except socket.error as err:
-            raise ClientSocketError("error send data", err)
+            raise ClientSocketError1("error send data", err)
 
         # читаем ответ
         payload = self._read()
@@ -162,10 +168,10 @@ class Client:
         try:
             self.connection.close()
         except socket.error as err:
-            raise ClientSocketError("error close connection", err)
+            raise ClientSocketError1("error close connection", err)
 
 
-def _main():
+def _main2():
     # проверка работы клиента
     client = Client("127.0.0.1", 8888, timeout=5)
     client.put("test", 0.5, timestamp=1)
@@ -179,5 +185,4 @@ def _main():
 
 
 if __name__ == "__main__":
-    _main()
-'''
+    _main2()

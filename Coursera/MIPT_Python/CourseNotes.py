@@ -11,71 +11,71 @@ print(print.__doc__)
 
 # * Basic types
 
-a = 23
-a = 23134327514327865381276483124832984102394321  # integer has unlimited size
-print(type(a))  # <class 'int'>
-b = 100_123_234
-d = 1.5e2
-type(d)  # <class 'float'>
-c = 100_234.567_891
-e = int(d) # explicit cast
-f = float(a)
-a = 4.2 + 1  # =5.2 #float
-a = 2 / 4  # =0.5 (always float)
-a = 10 // 3  # =3 (int)
-a = 2 ** 4  # 2^4=16
-a = 9 ** 0.5  # =3
-a = 10 % 3  # =1
-z = a ^ b
-z = a & b
-z = a | b
-z = a << 2
-z = b >> 1
-z = ~a
-a, b = b, a # swap
+a1 = 23
+a2 = 23134327514327865381276483124832984102394321  # integer has unlimited size
+print(type(a2))  # <class 'int'>
+b1 = 100_123_234
+d1 = 1.5e2
+type(d1)  # <class 'float'>
+c1 = 100_234.567_891
+e1 = int(d1)  # explicit cast
+f1 = float(a2)
+a3 = 4.2 + 1  # =5.2 #float
+a4 = 2 / 4  # =0.5 (always float)
+a5 = 10 // 3  # =3 (int)
+a6 = 2 ** 4  # 2^4=16
+a7 = 9 ** 0.5  # =3
+a8 = 10 % 3  # =1
+z1 = a1 ^ b1
+z2 = a1 & b1
+z3 = a1 | b1
+z4 = a1 << 2
+z5 = b1 >> 1
+z6 = ~a1
+a1, b1 = b1, a1  # swap
 
-# Various useful operations here:
-import decimal
-import fractions
+# Various useful operations are here:
+# import decimal
+# import fractions
 
 # Primitive types are immutable
-a = b = 1
-a += 1
-print(a)  # 2
-print(b)  # 1
+a9 = b9 = 1
+a9 += 1
+print(a9)  # 2
+print(b9)  # 1
 
 # Example of mutable objects
-x = y = []
-x.append(1)
-print(x)  # [1]
-print(y)  # [1]
+x1 = y1 = []
+x1.append(1)
+print(x1)  # [1]
+print(y1)  # [1]
 
 # Boolean
-b = True
-type(b)  # <class 'bool'>
-2 == 2  # =True
-x = 2
-print(1 < x < 3)  # True
-bool(12) # True
+b5 = True
+type(b5)  # <class 'bool'>
+b6 = 2 == 2  # =True
+x2 = 2
+print(1 < x2 < 3)  # True
+bool(12)  # True
 
-bool(None) # False
-b = None
-if b is None:  # or if b == None, but not idiomatic
+bool(None)  # False
+b10 = None
+if b10 is None:  # or if b == None, but not idiomatic
     print('Not initialized yet')
-elif not b:
+elif not b10:
     print('b = 0')
 
-x, y = True, False
-print(x and y)  # False
-print(not y)  # True
+x3, y3 = True, False
+print(x3 and y3)  # False
+print(not y3)  # True
 
 # Lazy logical expressions
-x = 12
-y = False
-print(x or y)  # 12: result is a value of x, y was not calculated
-z = 'boom'
-v = x and z
-print(v)  # boom : last calculated value
+x4 = 12
+y4 = False
+print(x4 or y4)  # 12: result is a value of x, y was not calculated
+z1 = 'boom'
+v1 = x4 and z1
+print(v1)  # boom : last calculated value
 
 # * Strings
 
@@ -96,37 +96,37 @@ multiline_with_spaces = """
 There are two
 language types:
 
-B. Stroustup
+B. Stroustrup
 """
 print(multiline_with_spaces)
 
-s = "one" + "two"  # ineffective as string is immutable: new allocation; use "join" or other formatting ways (below)
+s1 = "one" + "two"  # ineffective as string is immutable: new allocation; use "join" or other formatting ways (below)
 
-s = "hello"
-print(id(s))  # address: 42321313432
-s += "world"
-print(id(s))  # address: 42321313485 (new allocation - immutable!)
+s2 = "hello"
+print(id(s2))  # address: 42321313432
+s2 += "world"
+print(id(s2))  # address: 42321313485 (new allocation - immutable!)
 
-s = "one " * 3  # 'one one one '
+s3 = "one " * 3  # 'one one one '
 
 # Slices: [start:stop:step]
-s = "Python course on Coursera"
-print(s[7:])  # 'course on Coursera'
-print(s[7:13])  # 'course'
-print(s[-8:])  # 'Coursera'
-s = '023456789'
-print(s[::2])  # '02468'
-s = 'Moscow'
-print(s[::-1])  # 'wocsoM'
+phrase = "Python course on Coursera"
+print(phrase[7:])  # 'course on Coursera'
+print(phrase[7:13])  # 'course'
+print(phrase[-8:])  # 'Coursera'
+number = '023456789'
+print(number[::2])  # '02468'
+city = 'Moscow'
+print(city[::-1])  # 'wocsoM'
 "Moscow".capitalize()  # "MOSCOW"
 "2017".isdigit()  # True
 
 # Operator "in"
-"3.14" in "Pi = 3.1415"  # True
+b8 = "3.14" in "Pi = 3.1415"  # True
 
-s = 'one'
-for c in s:
-    print(c)
+s4 = 'one'
+for c2 in s1:
+    print(c2)
 # 'o'
 # 'n'
 # 'e'
@@ -140,22 +140,22 @@ bool('')  # False
 # Strings formatting:
 
 # Way 1
-s = "%s, Mr. %s"
-print(s % ("Hello", "Bob"))  # "Hello, Mr. Bob"
+s5 = "%s, Mr. %s"
+print(s2 % ("Hello", "Bob"))  # "Hello, Mr. Bob"
 
 # Way 2
-s = '{} is {} years old'.format('John', 25)
-s = '{name} is {age} years old'.format(name='John', age=25)
+s6 = '{} is {} years old'.format('John', 25)
+s7 = '{name} is {age} years old'.format(name='John', age=25)
 
 # Way 3
 # f-strings (Python 3.6+)
-name = 'John'
+first_name = 'John'
 age = 25
-s = f'{name} is {age} years old'
-num = 10
-s = f'Binary {num} = {num:#b}'
-num = 7 / 3
-s = f'Result = {num:.3f}'  # Result = 2.333
+s8 = f'{first_name} is {age} years old'
+num1 = 10
+s9 = f'Binary {num1} = {num1:#b}'
+num1 = 7 / 3
+s10 = f'Result = {num1:.3f}'  # Result = 2.333
 
 # Way 4 - join
 # From SO: Python 3.6 changed strings that have known components with Literal String Interpolation.
@@ -163,28 +163,29 @@ domain = 'some_really_long_example.com'
 lang = 'en'
 path = 'some/really/long/path/'
 
-s1 = f'http://{domain}/{lang}/{path}'  # 0.151 µs
-s2 = 'http://%s/%s/%s' % (domain, lang, path)  # 0.321 µs
-s3 = 'http://' + domain + '/' + lang + '/' + path  # 0.356 µs
-s4 = ''.join(('http://', domain, '/', lang, '/', path))  # 0.249 µs (building a constant tuple is slightly faster than building a constant list).
+s11 = f'http://{domain}/{lang}/{path}'  # 0.151 µs
+s12 = 'http://%s/%s/%s' % (domain, lang, path)  # 0.321 µs
+s13 = 'http://' + domain + '/' + lang + '/' + path  # 0.356 µs
+s14 = ''.join(('http://', domain, '/', lang, '/',
+              path))  # 0.249 µs (building a constant tuple is slightly faster than building a constant list).
 
 # F-strings allow to call ANY instructions inside:
 sf = f'Result ={s1 + s2}'
 
 # Filling strings with zeroes:
-n = 4
-print('%03d' % n)
-print(format(n, '03'))
-print('{foo:03d}'.format(foo=n))
-print('{:03d}'.format(n))
-print('{0:03d}'.format(n))
-print(f'{n:03}')
+width = 4
+print('%03d' % width)
+print(format(width, '03'))
+print('{foo:03d}'.format(foo=width))
+print('{:03d}'.format(width))
+print('{0:03d}'.format(width))
+print(f'{width:03}')
 
 # Byte strings (bytes):
 example_bytes = b'hello'
 type(example_bytes)  # <class 'bytes'>
-for b in example_bytes:
-    print(b)
+for bt in example_bytes:
+    print(bt)
 # 104
 # 101
 # 108
@@ -194,13 +195,13 @@ for b in example_bytes:
 # s = b'привет'
 # Error! (Unicode values > 255)
 
-s = 'привет'
-encoded_s = s.encode(encoding="utf-8")
+s15 = 'привет'
+encoded_s = s15.encode(encoding="utf-8")
 print(encoded_s)  # b'\xd0\xbf\xd1\x80\xd0\xb8\xd0\xb2\xd0\xb5\xd1\x82' # 'п' = 0xd0bf
 # <class 'bytes'>
 
 decoded_s = encoded_s.decode(encoding="utf-8")
-print(decoded_s) #'привет'
+print(decoded_s)  # 'привет'
 
 # Input
 # name = input('Enter your name: ')
@@ -209,18 +210,18 @@ print(decoded_s) #'привет'
 
 # * Flow control
 
-s = "hello, world"
-if "world" in s and 2 + 2 == 4:
+hw = "hello, world"
+if "world" in hw and 2 + 2 == 4:
     print("Yes!")
 else:
     print("No!")
 
-if "world" in s:
+if "world" in hw:
     print("Yes!")
 elif 2 + 2 == 4:
     print("wow!")
-else:
-    print("No!")
+# else: # unreachable
+#     print("No!")
 
 score = '5:0'
 winner = "Argentina" if score == '5:0' else "Jamaica"
@@ -228,36 +229,36 @@ winner = "Argentina" if score == '5:0' else "Jamaica"
 somelist = None
 mylist = somelist or []
 
-i = 0
-while i < 100:
-    i += 1
+i1 = 0
+while i1 < 100:
+    i1 += 1
 
-s = 'hello'
-for c in s:
-    print(c)
+s15 = 'hello'
+for cr in s15:
+    print(cr)
 
-for i in range(3):
-    print(i)
+for i2 in range(3):
+    print(i2)
 # 0
 # 1
 # 2
 
-for i in range(5, 8):
-    print(i)
+for i3 in range(5, 8):
+    print(i3)
 # 5
 # 6
 # 7
 
-for i in range(1, 10, 2):
-    print(i)
+for i4 in range(1, 10, 2):
+    print(i4)
 # 1
 # 3
 # 5
 # 7
 # 9
 
-for i in range(4, 1, -1):
-    print(i)
+for i5 in range(4, 1, -1):
+    print(i5)
 # 4
 # 3
 # 2
@@ -265,31 +266,34 @@ for i in range(4, 1, -1):
 for _ in range(10):
     print('Ops!')
 
-while False:
-    pass
+# Unreachable
+# while False:
+#    pass
 
-val = 1
+val1 = 1
 while True:
-    val += 1
-    if (val > 100):
+    val1 += 1
+    if val1 > 100:
         break
 
 sum1 = 0
-for a in range(12):
-    if a % 2 != 0:
+for nm in range(12):
+    if nm % 2 != 0:
         continue
-    sum1 += a
-
+    sum1 += nm
 
 # * Modules
 
 import time
+
 time.sleep(1)
 
 from time import sleep
+
 sleep(1)
 
 from time import *
+
 sleep(1)
 
 # Python executes all top level instructions when module is imported:
@@ -349,8 +353,9 @@ print('hello')
 
 # * Python internals
 
-a.__add__(2)
-dir(a)  # ['__abs__', '__add__,...] #30+ methods
+am = 1
+am.__add__(2)
+dir(am)  # ['__abs__', '__add__,...] #30+ methods
 
 """
 Every variable, class, function, module is:
@@ -374,8 +379,10 @@ typedef struct {
 # b'|\x00|\x01\x14\x00S\x00'
 import dis
 
-def multiply(a, b):
-    return a * b
+
+def multiply(p, r):
+    return p * r
+
 
 dis.dis(multiply)
 # 2     0 LOAD_FAST         0 (a)
@@ -387,7 +394,6 @@ import opcode
 
 print(opcode.opmap)
 
-
 # * Lists
 
 # List is mutable
@@ -396,37 +402,37 @@ empty_list1 = []
 empty_list2 = list()
 
 # can have various objects but usually one type
-lst = [10, 'str', [1, 2]]
+lst1 = [10, 'str', [1, 2]]
 
 # 10 equal items
-lst = ['equals'] * 10
+lst2 = ['equals'] * 10
 
-len(lst)  # -> constant time call
+len(lst2)  # -> constant time call
 
 # index
 chars = ['a', 'b', 'c', 'd']
-chars[1] == 'b'
-chars[-1] == 'd'
+print(chars[1] == 'b')
+print(chars[-1] == 'd')
 
-'b' in chars  # True
+print('b' in chars)  # True
 
 # init from range (iterator)
 range_lst = list(range(10))
 
 # when use slicing - new copy is created:
-range_lst is range_lst[:]  # False
+print(range_lst is range_lst[:])  # False
 
 # reverse list
 rev = chars[::-1]
 print(chars)
 print(rev)
-chars.reverse() # in-place reverse
+chars.reverse()  # in-place reverse
 print(chars)
 
 # iterate through list with index
 collections = ['set', 'list', 'dict']
-for idx, c in enumerate(collections):
-    print(idx, c)
+for idx, col in enumerate(collections):
+    print(idx, col)
 # 0 set
 # 1 list
 # 2 dict
@@ -443,45 +449,43 @@ print(', '.join(collections))  # set, list, dict, tuple, tuple
 sorted(collections)  # return copy
 collections.sort()  # in-place sort
 sorted(collections, reverse=True)
-print(reversed(collections)) # <list_reverseiterator object at 0x132431243> - reversed is iterator
+print(reversed(collections))  # <list_reverseiterator object at 0x132431243> - reversed is iterator
 print(list(reversed(collections)))  # tuple, dict, list, set
 
 # zip
 questions = ['name', 'quest', 'favorite color']
 answers = ['lancelot', 'the holy grail', 'blue']
-for q, a in zip(questions, answers):  # any number of containers, !num of elements equal to shorter container size!
-    print('What is your {0}?  It is {1}.'.format(q, a))
-
+for qst, answ in zip(questions, answers):  # any number of containers, !num of elements equal to shorter container size!
+    print('What is your {0}?  It is {1}.'.format(qst, answ))
 
 # * Tuples
 
 # Tuple is immutable
 
-empty_tuple = ()
-empty_tuple = tuple()
+empty_tuple1 = ()
+empty_tuple2 = tuple()
 
 immutables = (int, float, str)
 # immutables[0] = (list,) #error - can't change tuple!
 blink = ([], [])
 blink[0].append(1)  # Ok - element is mutable
 
-print(int in immutables) #True
+print(int in immutables)  # True
 
 # Tuple can be hashed
 hash(tuple())  # 131324
 
 # Add coma when init from one element, otherwise it will not be a tuple
 one_elem_tuple = (1,)
-guess_what = (1)
-type(guess_what)  # int
-
+# guess_what = (1)
+# type(guess_what)  # int
 
 # * Dictionaries
 
 # Dictionaries are mutable and unsorted! (hash)
 
-empty_dict = {}
-empty_dict = dict()
+empty_dict1 = {}
+empty_dict2 = dict()
 
 # Const time search (hash)
 collections_map = {
@@ -491,39 +495,38 @@ collections_map = {
 print(collections_map['immutable'])
 
 print('elem' in collections_map)  # searches in .keys
-print('elem' in collections_map.keys()) # same but explicit
+print('elem' in collections_map.keys())  # same but explicit
 print('elem' in collections_map.values())
 print(('elem', 'val') in collections_map.items())
-for key, val in collections_map.items():
-    print(key, val)
+for mkey, mval in collections_map.items():
+    print(mkey, mval)
 lst_items = collections_map.items()
 print(lst_items)  # now list of tuples
 # [('mutable', ['set', 'list']), ('immutable', ['tuple', 'frozenset')]
 
 # Absent key:
-# print(collections_map['irresistable']) # KeyError: not found
-print(collections_map.get('irresistable', 'not found'))  # return default - 'not found'
+# print(collections_map['irresistible']) # KeyError: not found
+print(collections_map.get('irresistible', 'not found'))  # return default - 'not found'
 # Add absent:
-collections_map['irresistable'] = ['some']
-print(collections_map.get('irresistable', 'not found'))  # return ['some']
+collections_map['irresistible'] = ['some']
+print(collections_map.get('irresistible', 'not found'))  # return ['some']
 
 # Operator "in"
-print('mutable' in collections_map) # True
+print('mutable' in collections_map)  # True
 
 # Remove:
-del collections_map['irresistable']
+del collections_map['irresistible']
 
 # Return and remove:
 print(collections_map.pop('mutable'))
 
 # Update existing
-collections_map.update({'irresistable': 'some2'})
-
+collections_map.update({'irresistible': 'some2'})
 
 # Ordered dictionary is a special type:
 from collections import OrderedDict
-ordered = OrderedDict()  # same as std::map in C++
 
+ordered = OrderedDict()  # same as std::map in C++
 
 # * Set
 
@@ -531,7 +534,7 @@ ordered = OrderedDict()  # same as std::map in C++
 
 empty_set = set()
 nonempty_set = {1, 2, 3, 3}
-print(nonempty_set) # {1,2,3}
+print(nonempty_set)  # {1,2,3}
 
 # Adding/removing/searching
 nonempty_set.add(5)
@@ -554,16 +557,17 @@ symmetric_difference_set = set1 ^ set2
 # Frozenset is immutable
 
 frozen = frozenset(['Anna', 'Elsa', 'Kristoff'])
-# frozen.add('Olaf') #-> error!
 
+
+# frozen.add('Olaf') #-> error!
 
 
 # * Functions
 
 def myfun(param):
     """Function documentation"""
-    c = 2 + param
-    return c
+    res = 2 + param
+    return res
 
 
 print(myfun.__doc__)
@@ -574,16 +578,16 @@ def fun_without_return():
     pass
 
 
-a = fun_without_return()  # None
+# a = fun_without_return()  # None
 
 
 # Types annotation
-def add(a: int, b: int) -> int:
-    return a + b
+def add(u: int, w: int) -> int:
+    return u + w
 
 
 add(1, 2)  # 3
-add('still ', 'works')  # 'still works'
+# add('still ', 'works')  # 'still works'
 
 
 # Params passed by reference
@@ -591,16 +595,16 @@ def extender(src_list, ext):
     src_list.extend(ext)
 
 
-a = [1, 2, 3]
-b = [4, 5]
+lst1 = [1, 2, 3]
+lst2 = [4, 5]
 
-extender(a, b)
-print(a)  # 1,2,3,4,5
+extender(lst1, lst2)
+print(lst1)  # 1,2,3,4,5
 
 
 # But immutable types will not change inside functions:
-def replacer(tuple1, new_tuple):
-    tuple1 = new_tuple
+def replacer(old_tuple, new_tuple):
+    old_tuple = new_tuple
 
 
 tuple1 = (1, 2)
@@ -625,15 +629,15 @@ hello('John', 'hi!')  # John, hi!
 counter = 1
 
 
-def inc(val):
-    val += 1
+def inc(value):
+    value += 1
 
 
 # inc(counter) -> Error
 
 # Default args
-def helloer(name, msg='hello, '):
-    return msg + name
+def helloer(dude, hello_msg='hello, '):
+    return hello_msg + dude
 
 
 helloer('Vasya')
@@ -679,7 +683,7 @@ printer2(a=10, b=5)
 # a: 10
 # b: 5
 
-# unfold dict to kvargs
+# unfold dict to kwargs
 
 mydict = {'k1': 25, 'k2': 50}
 printer2(**mydict)
@@ -688,30 +692,31 @@ printer2(**mydict)
 
 text_modes = ['r', 'w', 'a', 'r+']
 binary_modes = ['br', 'bw', 'ba', 'br+']
-f = open('filename', text_modes[1])
+f1 = open('filename', text_modes[1])
 
-num_symbols_written = f.write('Some multiline\nstring')
+num_symbols_written = f1.write('Some multiline\nstring')
 print(num_symbols_written)  # 21
 
-f.close()
+f1.close()
 # better way (will be closed):
-with open('filename', 'r+') as f:
-    s = f.write('tst')
+with open('filename', 'r+') as f2:
+    s = f2.write('tst')
 # file will be closed anyway when program exits or by GC,
 # but better to close as soon as we don't need it since descriptors can end
 
-f = open('filename', 'r')
-s2 = f.read(2)  # 2 symbols
-s1 = f.read()  # entre file
-f.tell()  # 123
-f.read()  # ''
-f.seek(0)
-f.tell()  # 0
+f3 = open('filename', 'r')
+s2 = f3.read(2)  # 2 symbols
+s1 = f3.read()  # entre file
+f3.tell()  # 123
+f3.read()  # ''
+f3.seek(0)
+f3.tell()  # 0
 
-s = f.readline()
-lst = f.readlines()  # ['line1\n', 'line2\n',...]
+ln = f3.readline()
+lst = f3.readlines()  # ['line1\n', 'line2\n',...]
 
-f.close()
+f3.close()
+
 import os
 
 os.remove('filename')
@@ -736,8 +741,8 @@ caller(printer, ['Vasya', 'Moscow'])
 
 
 def get_multiplier():
-    def multiplier_inner(a, b):
-        return a * b
+    def multiplier_inner(m1, m2):
+        return m1 * m2
 
     return multiplier_inner
 
@@ -767,8 +772,8 @@ def squarify(a):
 
 
 results = map(squarify, range(5))
-for item in results:
-    print(item)  # 0,1,4,9,16
+for item2 in results:
+    print(item2)  # 0,1,4,9,16
 # Second way
 print(list(map(squarify, range(5))))  # [0, 1, 4, 9, 16]
 
@@ -860,18 +865,18 @@ print(list(zip(
 # Used to modify function(s) behavior
 
 # Simplest decorator - return same function
-def decorator(func):
+def decorator1(func):
     return func
 
 
-# Synthatic sugar:
-@decorator
+# Syntactic sugar:
+@decorator1
 def decorated():
     print('hello')
 
 
 # It is equal to:
-decorated = decorator(decorated)
+decorated = decorator1(decorated)
 
 
 # Decorator which redefines function
@@ -1031,9 +1036,9 @@ print(next(ranger))
 # print(next(ranger)) #-> error, out-of-range
 
 # Useful example
-def fibonacci(number):
+def fibonacci(fnumber):
     a = b = 1
-    for _ in range(number):
+    for _ in range(fnumber):
         yield a
         a, b = b, a + b
 
@@ -1071,9 +1076,9 @@ for _ in range(8):
 
 # Object is HASHABLE!
 solar_system = {}
-for i in range(8):
+for i6 in range(8):
     planet = MyPlanet()
-    solar_system[planet] = i
+    solar_system[planet] = i6
 
 
 # Constructors
@@ -1196,7 +1201,7 @@ class Human1:
 
 # But it is possible to access any class member:
 hm = Human1()
-hm._say('hi!')
+# hm._say('hi!')  # Ok
 
 
 # @classmethod - returns class instance
@@ -1367,9 +1372,9 @@ BaseException
            +-- SyntaxWarning
            +-- UserWarning
            +-- FutureWarning
-	   +-- ImportWarning
-	   +-- UnicodeWarning
-	   +-- BytesWarning
+      +-- ImportWarning
+      +-- UnicodeWarning
+      +-- BytesWarning
 """
 
 try:
@@ -1390,44 +1395,43 @@ except LookupError:  # catch Exception successors (KeyError, IndexError)
     print('LookupError')
 
 try:
-    n = 1 / 2
+    n1 = 1 / 2
 except:
     print("Some error")
 else:
-    print(n)
+    print(n1)
 
 # Several exception types:
 try:
-    n = 1 / 0
+    n2 = 1 / 0
 except ValueError:
     print('ValueError')
 except ZeroDivisionError:
     print('ZeroDivisionError')
 
 try:
-    f = open('etc/hosts')
+    f5 = open('/etc/hosts')
     print(1 / 0)
 except Exception:
     print('Some error')
 finally:
     print("We're in 'finally' block")
-    f.close()
 
 # Access exception info
 try:
-    f = open('etc/hosts1')
-except OSError as ex:
-    print(ex.errno, ':', ex.strerror)
+    f5 = open('etc/hosts1')
+except OSError as os_ex:
+    print(os_ex.errno, ':', os_ex.strerror)
 
 # Raising exception and reading args
 try:
-    filename = '/etc/kadabra'
-    if not os.path.exists(filename):
-        raise ValueError("File doesn't exist", filename, 'SomeArg')
-    f = open(filename)
+    fname = '/etc/kadabra'
+    if not os.path.exists(fname):
+        raise ValueError("File doesn't exist", fname, 'SomeArg')
+    f6 = open(fname)
 except ValueError as ve:
-    msg, filename = ve.args[0], ve.args[1]
-    print(msg, filename, ve.args)
+    msg, fname = ve.args[0], ve.args[1]
+    print(msg, fname, ve.args)
 
 # Get trace after exception:
 import traceback
@@ -1442,8 +1446,8 @@ except OSError as err:
 # Passing exception to the next level:
 try:
     1 / 0
-except ZeroDivisionError as ex:
-    print(ex.args)
+except ZeroDivisionError as zd_ex:
+    print(zd_ex.args)
     # raise
     # or:
     # raise Exception from ex #The above exception was the direct cause of the following exception:
@@ -1454,7 +1458,7 @@ try:
     assert 1 == 0, "1 != 0"
 except AssertionError as ae:
     print(ae.args[0])
-# In real life we don't need to handle AsserionError
+# In real life we don't need to handle AssertionError
 # Instead we can disable them by specifying flag -O to Python
 
 # Exception adds valuable performance cost
@@ -1523,16 +1527,16 @@ class Researcher:
         return object.__getattribute__(self, name)  # call original __getattribute__
 
 
-obj = Researcher()
+researcher = Researcher()
 
-print(obj.attr)
-# Loking for attr
+print(researcher.attr)
+# Looking for attr
 # Nothing found
-obj.myattr = 1
-print(obj.myattr)
+researcher.myattr = 1
+print(researcher.myattr)
 
 
-# Loking for method
+# Looking for method
 # 1
 
 # __setattr__
@@ -1541,9 +1545,9 @@ class Ignorant:
         print('Not gonna set {}'.format(name))
 
 
-obj = Ignorant()
+ignorant = Ignorant()
 
-obj.myattr = '3.14'
+ignorant.myattr = '3.14'
 
 
 # Not gonna set myattr
@@ -1561,9 +1565,9 @@ class Deleter:
         object.__delattr__(self, item)
 
 
-obj = Deleter()
-obj.myattr = 10
-del obj.myattr
+deleter = Deleter()
+deleter.myattr = 10
+del deleter.myattr
 
 
 # Goodbye myattr, you were 10
@@ -1605,10 +1609,10 @@ class NoisyInt:
         return self.val + other.val + noise
 
 
-a = NoisyInt(10)
-b = NoisyInt(20)
+an = NoisyInt(10)
+bn = NoisyInt(20)
 for _ in range(3):
-    print(a + b)
+    print(an + bn)
 
 
 # 40
@@ -1642,8 +1646,8 @@ for number in range(5):
 for letter in 'python':
     print(letter)
 
-for item in [1, 2, 3]:
-    print(item)
+for item1 in [1, 2, 3]:
+    print(item1)
 
 iterator = iter([1, 2, 3])
 print(next(iterator))
@@ -1654,7 +1658,7 @@ print(next(iterator))
 # print(next(iterator)) raises StopIteration that means we should e.g. break for loop
 
 
-# Writting own iterator: implement __iter__ and __next__
+# Writing own iterator: implement __iter__ and __next__
 class SquareIter:
     def __init__(self, start, end):
         self.current = start
@@ -1715,7 +1719,7 @@ class suppress_exception:
 
 
 with suppress_exception(ZeroDivisionError):
-    a = 1 / 0
+    a17 = 1 / 0
     # Nothing happened
 
 # Exception suppressing already exists in library
@@ -1732,19 +1736,19 @@ class timer:
     def __init__(self):
         self.start = time.time()
 
-    def get_ellapsed(self):
+    def get_elapsed(self):
         return time.time() - self.start
 
     def __enter__(self):
         return self
 
     def __exit__(self, *args):
-        print('Ellapsed: {}'.format(t.get_ellapsed()))
+        print('Elapsed: {}'.format(t.get_elapsed()))
 
 
 with timer() as t:
     time.sleep(0.1)
-    print('Current: {}'.format(t.get_ellapsed()))
+    print('Current: {}'.format(t.get_elapsed()))
     time.sleep(0.1)
 
 
@@ -1768,7 +1772,7 @@ class MyClass:
 
 
 instance = MyClass()
-instance.attr  # get
+print(instance.attr)  # get
 instance.attr = 5  # set
 
 
@@ -1877,7 +1881,7 @@ obj1 = Class1()
 # Slots implemented as descriptors for each attribute
 
 
-# METACLASSES
+# META CLASSES
 
 # Class which creates other classes
 
@@ -1885,9 +1889,9 @@ class Class2:
     pass
 
 
-obj = Class2()
+cls2 = Class2()
 
-print(type(obj))  # <class '__main__.Class2'>
+print(type(cls2))  # <class '__main__.Class2'>
 print(type(Class2))  # 'type' - it creates our class. 'type' is metaclass - it creates other classes
 print(type(type))  # 'type' - recursive closure
 
@@ -1903,13 +1907,13 @@ print(NewClass())  # <__main__.NewClass object at 0x0000000003931A90>
 
 # Create our own meta-class
 class Meta(type):
-    def __new__(cls, name, parents, attrs):
+    def __new__(mcs, name, parents, attrs):
         print('Creating {}'.format(name))
 
         if 'class_id' not in attrs:
             attrs['class_id'] = name.lower()
 
-        return super().__new__(cls, name, parents, attrs)
+        return super().__new__(mcs, name, parents, attrs)
 
 
 class A(metaclass=Meta):
@@ -1931,13 +1935,16 @@ class Meta2(type):
         super().__init__(name, bases, attrs)
 
 
-class Base(metaclass=Meta2): pass
+class Base(metaclass=Meta2):
+    pass
 
 
-class A2(Base): pass
+class A2(Base):
+    pass
 
 
-class B(Base): pass
+class B(Base):
+    pass
 
 
 # Initializing — Base
@@ -1957,7 +1964,8 @@ class Sender(metaclass=ABCMeta):
         """Do something"""
 
 
-class Child(Sender): pass
+class Child(Sender):
+    pass
 
 
 # Child()
@@ -1982,7 +1990,7 @@ def f():
     # import pdb
     # pdb.set_trace()
     # type : step, next, ll, b [line], continue, p, ..., q, help, help [command]
-    a = 1
+    pass
 
 
 f()
@@ -2019,7 +2027,6 @@ class TestPython(unittest.TestCase):
 # Another example with setUp and mock
 
 import urllib.request
-import json
 
 
 class Asteroid:
@@ -2220,8 +2227,8 @@ def ftp(a):
 with ThreadPoolExecutor(max_workers=3) as pool:
     results = [pool.submit(ftp, i) for i in range(10)]
 
-    for future in as_completed(results):
-        print(future.result())
+    for fut1 in as_completed(results):
+        print(fut1.result())
 # results will be mixed in order (4, 1, 0, 9, 25...)
 
 
@@ -2232,23 +2239,23 @@ from threading import Thread
 
 def tfq(q, n):
     while True:
-        item = q.get()
-        if item is None:  # There is no way to close process in Python (to avoid inconsistent state) so we're putting special value to queue
+        q_item = q.get()
+        if q_item is None:  # There is no way to close process in Python (to avoid inconsistent state) so we're putting special value to queue
             break
-        print("Process data in thread {}: get item {}".format(n, item))
+        print("Process data in thread {}: get item {}".format(n, q_item))
 
 
-q = Queue(5)  # max number of elements
-th1 = Thread(target=tfq, args=(q, 1))
-th2 = Thread(target=tfq, args=(q, 2))
+qu = Queue(5)  # max number of elements
+th1 = Thread(target=tfq, args=(qu, 1))
+th2 = Thread(target=tfq, args=(qu, 2))
 th1.start()
 th2.start()
 
-for i in range(50):
-    q.put(i)  # if size is already 5 the "put" blocks until item is popped from queue
+for i7 in range(50):
+    qu.put(i7)  # if size is already 5 the "put" blocks until item is popped from queue
 
-q.put(None)
-q.put(None)
+qu.put(None)
+qu.put(None)
 
 th1.join()
 th2.join()
@@ -2262,12 +2269,12 @@ import threading
 class Point:
     def __init__(self):
         self.mutex = threading.RLock()
-        self.x = 0;
+        self.x = 0
         self.y = 0
 
     def get(self):
         with self.mutex:
-            return (self.x, self.y)
+            return self.x, self.y
 
     def set(self, x, y):
         with self.mutex:
@@ -2389,9 +2396,9 @@ print('Sequential time: ', time.time() - t0)
 t0 = time.time()
 tcpu1 = Thread(target=cpu_bound())
 tcpu2 = Thread(target=cpu_bound())
-tcpu1.start();
+tcpu1.start()
 tcpu2.start()
-tcpu1.join();
+tcpu1.join()
 tcpu2.join()
 print('Parallel time: ', time.time() - t0)
 
@@ -2419,10 +2426,8 @@ r - release GIL
 
 # Server
 
-import socket
 
-
-def RunEchoServer():
+def run_echo_server():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.bind(('127.0.0.1',
                10001))  # Max port is 65535. Address 127.0.0.1 means server listens only local connections. Empty '' or '0.0.0.0' means any interface
@@ -2441,10 +2446,7 @@ def RunEchoServer():
 
 # Client
 
-import socket
-
-
-def RunClient():
+def run_client():
     sock = socket.socket()  # socket.AF_INET, socket.SOCK_STREAM are defaults
     sock.bind(('127.0.0.1', 10001))
     # Shorter form of 2 LOCs above:
@@ -2456,7 +2458,7 @@ def RunClient():
 
 # Using context managers to not forget to close connection and socket
 
-def RunEchoServerWithCM():
+def run_echo_server_with_cm():
     with socket.socket() as sock:
         sock.bind(('', 10001))  # '0.0.0.0' or '' means any interface
         sock.listen()
@@ -2470,14 +2472,14 @@ def RunEchoServerWithCM():
                     print(data.decode('utf-8'))
 
 
-def RunClientWithCM():
+def run_client_with_cm():
     with socket.create_connection(('127.0.0.1', 10001)) as sock:
         sock.sendall(b'ping')
 
 
 # Errors processing with sockets
 
-def RunServerWithCMAndErrorHandling():
+def run_server_with_cm_and_error_handling():
     with socket.socket() as sock:
         sock.bind(('', 10001))
         sock.listen()
@@ -2497,7 +2499,7 @@ def RunServerWithCMAndErrorHandling():
                     print(data.decode('utf-8'))
 
 
-def RunClientWithCMAndErrorHandling():
+def run_client_with_cm_and_error_handling():
     with socket.create_connection(('127.0.0.1', 10001),
                                   5) as sock:  # 5 is connect timeout, in case of exceeded just try to reconnect
         sock.settimeout(2)  # 2 is socket read timeout - timeout for all operations with opened socket
@@ -2518,7 +2520,7 @@ def RunClientWithCMAndErrorHandling():
 # If there are few connections - it is normal solution which helps to utilize all CPUs.
 # Another way is to create threads for new connections, but there are GIL limitations.
 
-def ProcessRequest(conn, addr):
+def process_request(conn, addr):
     print('Connected client', addr)
     with conn:
         while True:
@@ -2528,13 +2530,13 @@ def ProcessRequest(conn, addr):
             print(data.decode('utf-8'))
 
 
-def RunServerMultiConnectionsThreads():
+def run_server_multi_connections_threads():
     with socket.socket() as sock:
         sock.bind(('', 10001))
         sock.listen()
         while True:
             conn, addr = sock.accept()  # blocks all other clients except one
-            th = threading.Thread(target=ProcessRequest, args=(conn, addr))
+            th = threading.Thread(target=process_request, args=(conn, addr))
             th.start()  # main thread will continue to accept new connections after starting this thread
             # somewhere later we must call th.join()
 
@@ -2542,7 +2544,6 @@ def RunServerMultiConnectionsThreads():
 # Better way is to use processes and threads together. But in this case call to socket.accept()
 # will awake all our processes and it adds some overhead
 
-import socket
 import threading
 import multiprocessing
 
@@ -2551,11 +2552,11 @@ def worker(sock):
     while True:
         conn, addr = sock.accept()
         print('pid: ', os.getpid())
-        th = threading.Thread(target=ProcessRequest, args=(conn, addr))
+        th = threading.Thread(target=process_request, args=(conn, addr))
         th.start()
 
 
-def RunServerMultiConnectionsProcessesAndThreads():
+def run_server_multi_connections_processes_and_threads():
     with socket.socket() as sock:
         sock.bind(('', 10001))
         sock.listen()
@@ -2572,10 +2573,9 @@ def RunServerMultiConnectionsProcessesAndThreads():
 # SELECT
 
 import socket
-import select
 
 
-def NonBlockingServer():
+def non_blocking_server():
     sock = socket.socket()
     sock.bind(('', 10001))
     sock.listen()
@@ -2587,8 +2587,8 @@ def NonBlockingServer():
 
     # Switch to non-blocking mode
     # If we then try to call conn.recv but there is not data - the call will not block but will return system error about data absence
-    conn1.setblocking(0)  # equal to settimeout(0.0)
-    conn2.setblocking(0)
+    conn1.setblocking(False)  # equal to settimeout(0.0)
+    conn2.setblocking(False)
 
     # How to know which sockets are ready for reading and which are ready for writing?
     # In Linux:
@@ -2668,18 +2668,18 @@ for it in mycounter:  # __iter__ called, then __next__ called each round
 
 # Generator
 
-def MyRangeGenrator(top):
+def my_range_generator(top):
     current = 0  # just local variable, no state (it is saved on stack during yield)
     while current < top:
         yield current  # yield makes function generator, it stops flow, saves stack frame and returns value. Next time when called it restores stack and continues
         current += 1
 
 
-mygenerator = MyRangeGenrator(3)  # this doesn't call function, but creates object
+mygenerator = my_range_generator(3)  # this doesn't call function, but creates object
 print(mygenerator)
-# <generator object MyRangeGenrator at 0x03C82C30>
-for g in mygenerator:
-    print(g)
+# <generator object my_range_generator at 0x03C82C30>
+for gen in mygenerator:
+    print(gen)
 
 
 # 0 1 2
@@ -2695,16 +2695,15 @@ def grep(pattern):
     print('Start grep')
     while True:
         line = yield  # difference from generator: here function suspends and waits for data through method 'send'
-        if (pattern in line):
+        if pattern in line:
             print(line)
 
 
-g = grep('python')  # coroutine created (this is also generator)
-next(
-    g)  # g.send(None) - starts coroutine, it runs until yield and then flow returns to main (function stack with all local variables is saved) until we send something to coroutine
+gr = grep('python')  # coroutine created (this is also generator)
+next(gr)  # g.send(None) - starts coroutine, it runs until yield and then flow returns to main (function stack with all local variables is saved) until we send something to coroutine
 # Start grep
-g.send('golang is better')
-g.send('python is simpler')
+gr.send('golang is better')
+gr.send('python is simpler')
 
 
 # python is simpler
@@ -2716,24 +2715,24 @@ def grep_stopable(pattern):
     try:
         while True:
             line = yield
-            if (pattern in line):
+            if pattern in line:
                 print(line)
     except GeneratorExit:
         print('Coroutine stopped')
 
 
-g = grep_stopable('python')
-g.send(None)
-g.send('python is great!')
-g.close()  # throws GeneratorExit exception at the place here coroutine suspended at this moment
+grs = grep_stopable('python')
+grs.send(None)
+grs.send('python is great!')
+grs.close()  # throws GeneratorExit exception at the place here coroutine suspended at this moment
 
 # Passing exception to coroutine (it also stops execution)
 
-g = grep_stopable('python')
-next(g)  # or g.send(None)
-g.send('python is excellent')
+grs = grep_stopable('python')
+next(grs)  # or g.send(None)
+grs.send('python is excellent')
 try:
-    g.throw(RuntimeError, 'Something wrong')
+    grs.throw(RuntimeError, 'Something wrong')
 except RuntimeError:
     print('Coroutine stopped by exception')
 
@@ -2747,8 +2746,8 @@ def grep_python_coroutine():
     g.close()
 
 
-g = grep_python_coroutine()
-print(g)
+gpc = grep_python_coroutine()
+print(gpc)
 
 
 # None (g is not coroutine, but regular function)
@@ -2758,12 +2757,12 @@ def grep_python_coroutine2():
     yield from g  # delegating the call
 
 
-g = grep_python_coroutine2()
-print(g)
+gpc = grep_python_coroutine2()
+print(gpc)
 # <generator object grep_python_coroutine2 at 0x03E4D150>
-g.send(None)
-g.send('python wow!')
-g.close()
+gpc.send(None)
+gpc.send('python wow!')
+gpc.close()
 
 
 # Using 'yield from' in regular generators:
@@ -2807,16 +2806,16 @@ def hello_world():
             0.5)  # this is special sleep which suspends coroutine and allows other coroutines to work
 
 
-loop = asyncio.get_event_loop()
-print(loop)
+event_loop = asyncio.get_event_loop()
+print(event_loop)
 # <_WindowsSelectorEventLoop running=False closed=False debug=False>
-loop.run_until_complete(hello_world())
+event_loop.run_until_complete(hello_world())
 
 
 # loop.close() we don't close it now as it is reused below (see https://stackoverflow.com/questions/43646768/cant-create-new-event-loop-after-calling-loop-close-asyncio-get-event-loop-in-p)
 
 # Event loop is the main concept in asyncio.
-# Event loop is a kind of scheduler of tasks (corouties) which are running in it. It is responsible for i/o,
+# Event loop is a kind of scheduler of tasks (coroutines) which are running in it. It is responsible for i/o,
 # manages signals, network operations, it switches context between coroutines.
 # It is especially effective if some coroutine waits long on i/o - event loop can easily switch to another coroutine.
 # We can run only coroutines in event loop. Synchronous functions can be executed with some tricks (see below) as they block the flow and event loop can't switch context.
@@ -2833,8 +2832,8 @@ async def hello_world2():
 # 'async' guarantees that function is a coroutine (comparing to @asyncio.coroutine which doesn't guarantee this
 # we can't use yield from inside, but we must use await
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(hello_world2())
+event_loop2 = asyncio.get_event_loop()
+event_loop2.run_until_complete(hello_world2())
 
 
 # loop.close()
@@ -2850,7 +2849,7 @@ async def handle_echo(reader, writer):
     writer.close()
 
 
-def StartServer():
+def start_server():
     loop = asyncio.get_event_loop()
     coro = asyncio.start_server(handle_echo, '127.0.0.1', 10001, loop=loop)
     server = loop.run_until_complete(coro)
@@ -2872,7 +2871,7 @@ async def tcp_echo_client(message, loop):
     writer.close()
 
 
-def StartCleint():
+def start_client():
     loop = asyncio.get_event_loop()
     message = 'Hello, world!'
     loop.run_until_complete(tcp_echo_client(message, loop))
@@ -2885,16 +2884,16 @@ def StartCleint():
 # asyncio.Future (analogue of concurrent.futures.Future)
 # Future is the object which is still running
 
-async def slow_operation(future):
+async def slow_operation(fut):
     await asyncio.sleep(1)
-    future.set_result('Future is done!')
+    fut.set_result('Future is done!')
 
 
-loop = asyncio.get_event_loop()
-future = asyncio.Future()
-asyncio.ensure_future(slow_operation(future))
-loop.run_until_complete(future)
-print(future.result())
+event_loop3 = asyncio.get_event_loop()
+future1 = asyncio.Future()
+asyncio.ensure_future(slow_operation(future1))
+event_loop3.run_until_complete(future1)
+print(future1.result())
 
 
 # Future is done!
@@ -2910,13 +2909,13 @@ async def sleep_task(num):
 
 
 # ensure_future or create_task
-loop = asyncio.get_event_loop()
-task_list = [loop.create_task(sleep_task(i)) for i in range(2)]
+event_loop4 = asyncio.get_event_loop()
+task_list = [event_loop4.create_task(sleep_task(i)) for i in range(2)]
 
 # 3 ways to run:
-loop.run_until_complete(asyncio.wait(task_list))
-loop.run_until_complete(loop.create_task(sleep_task((3))))
-loop.run_until_complete(asyncio.gather(
+event_loop4.run_until_complete(asyncio.wait(task_list))
+event_loop4.run_until_complete(event_loop4.create_task(sleep_task(3)))
+event_loop4.run_until_complete(asyncio.gather(
     sleep_task(10),
     sleep_task(20),
 ))
@@ -2937,7 +2936,7 @@ async def load_url(url, loop=None):
     print(len(response))
 
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(load_url('https://google.com', loop=loop))
+event_loop5 = asyncio.get_event_loop()
+event_loop5.run_until_complete(load_url('https://google.com', loop=event_loop5))
 
 # There are several libs in asyncio: aiohttp, aiomysql, aiomcache (see https://github.com/aio-libs)
