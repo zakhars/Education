@@ -23,5 +23,4 @@ def get_longest_palindrome_substr(s: str) -> str:
 def test_get_longest_palindrome_substr(s: str) -> None:
     print(get_longest_palindrome_substr(s))
 
-test_get_longest_palindrome_substr('aaaaaaaa')
-
+test_get_longest_palindrome_substr('abacddc')

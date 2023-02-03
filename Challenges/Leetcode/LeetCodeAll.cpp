@@ -217,25 +217,40 @@ namespace leetcode
 
 	// Task: https://leetcode.com/problems/longest-palindromic-substring/
 
-   bool IsPalindrome(const string& s, size_t b, size_t e)
-   {
-      for (size_t i = 0; i <= (e - b) / 2; ++i)
+   class Solution5 {
+      bool is_palindrome(const string& s, int b, int e)
       {
-         if (s[i] != s[e - i])
+         while (b < e)
          {
-            return false;
+            if (s[b] != s[e]) return false;
+            b++;
+            e--;
          }
+         return true;
+
       }
-      return true;
-   }
-
-	string longestPalindrome(const string& s)
-	{
-      size_t b = 0;
-      size_t e = s.size() - 1;
-
-      return string();
-	}
+   public:
+      string longestPalindrome(string s)
+      {
+         int pal_len = 0;
+         int pal_b = 0;
+         int pal_e = 0;
+         while (pal_len <= s.length())
+         {
+            for (int i = 0; i < s.length() - pal_len; ++i)
+            {
+               if (is_palindrome(s, i, i + pal_len))
+               {
+                  pal_b = i;
+                  pal_e = i + pal_len;
+                  break;
+               }
+            }
+            pal_len++;
+         }
+         return s.substr(pal_b, pal_e - pal_b + 1);
+      }
+   };
 
 } // namespace leetcode
 
@@ -246,7 +261,7 @@ int main()
 {
    using namespace leetcode;
 	string s = "ababc";
-   cout << longestPalindrome(s);
+   cout << Solution5().longestPalindrome(s);
 
    return 0;
 }
