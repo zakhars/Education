@@ -24,7 +24,7 @@ a3 = 4.2 + 1  # =5.2 #float
 a4 = 2 / 4  # =0.5 (always float)
 a5 = 10 // 3  # =3 (int)
 a6 = 2 ** 4  # 2^4=16
-a7 = 9 ** 0.5  # =3
+a7 = 9 ** 0.5  # =3.0
 a8 = 10 % 3  # =1
 z1 = a1 ^ b1
 z2 = a1 & b1
@@ -32,6 +32,7 @@ z3 = a1 | b1
 z4 = a1 << 2
 z5 = b1 >> 1
 z6 = ~a1
+
 a1, b1 = b1, a1  # swap
 
 # Various useful operations are here:
@@ -43,6 +44,16 @@ a9 = b9 = 1
 a9 += 1
 print(a9)  # 2
 print(b9)  # 1
+
+num = 42
+print(id(num))  # Some memory address, e.g., 140735182593520
+num = 100       # New integer object created
+print(id(num))  # Different memory address!
+
+num2 = 42
+print(id(num2))  # Some memory address, e.g., 140735182593520
+num2 += 1        # New integer object created
+print(id(num2))  # Different memory address!
 
 # Example of mutable objects
 x1 = y1 = []
@@ -57,6 +68,13 @@ b6 = 2 == 2  # =True
 x2 = 2
 print(1 < x2 < 3)  # True
 bool(12)  # True
+
+hash(1)
+hash(True)
+hash(False)
+hash(0)
+hash(None)
+hash('')
 
 bool(None)  # False
 b10 = None
@@ -87,6 +105,7 @@ print("def")
 print("abc 'def' qwe")
 print('abc "def" qwe')
 print("qwe \"abc\" asd")
+print('abc \'def\' qwe')
 print("drive c:\\\\")
 print(r"drive c:\\")
 multiline = "abc" \
@@ -114,22 +133,21 @@ phrase = "Python course on Coursera"
 print(phrase[7:])  # 'course on Coursera'
 print(phrase[7:13])  # 'course'
 print(phrase[-8:])  # 'Coursera'
+print(phrase[-1])  # 'a'
 number = '023456789'
 print(number[::2])  # '02468'
 city = 'Moscow'
 print(city[::-1])  # 'wocsoM'
-"Moscow".capitalize()  # "MOSCOW"
+"moscow".capitalize()  # "Moscow"
 "2017".isdigit()  # True
 
 # Operator "in"
 b8 = "3.14" in "Pi = 3.1415"  # True
 
-s4 = 'one'
-for c2 in s1:
-    print(c2)
-# 'o'
-# 'n'
-# 'e'
+s = 'one'
+for c in s:
+    print(c, end=' ')
+# o n e
 
 num_str = str(99.01)  # '99.01'
 type(num_str)  # <class 'str'>
@@ -140,22 +158,23 @@ bool('')  # False
 # Strings formatting:
 
 # Way 1
-s5 = "%s, Mr. %s"
-print(s2 % ("Hello", "Bob"))  # "Hello, Mr. Bob"
+s = "%s, Mr. %s"
+print(s % ("Hello", "Bob"))  # "Hello, Mr. Bob"
 
 # Way 2
-s6 = '{} is {} years old'.format('John', 25)
-s7 = '{name} is {age} years old'.format(name='John', age=25)
+s = '{} is {} years old'.format('John', 25)
+s = '{name} is {age} years old'.format(name='John', age=25)
 
 # Way 3
 # f-strings (Python 3.6+)
 first_name = 'John'
 age = 25
-s8 = f'{first_name} is {age} years old'
-num1 = 10
-s9 = f'Binary {num1} = {num1:#b}'
-num1 = 7 / 3
-s10 = f'Result = {num1:.3f}'  # Result = 2.333
+s = f'{first_name} is {age} years old'
+num = 10
+print(f'Binary {num} = {num:#b}')
+num = 7 / 3
+s = f'Result = {num:.3f}'  # Result = 2.333
+
 
 # Way 4 - join
 # From SO: Python 3.6 changed strings that have known components with Literal String Interpolation.
@@ -355,7 +374,7 @@ print('hello')
 
 am = 1
 am.__add__(2)
-dir(am)  # ['__abs__', '__add__,...] #30+ methods
+print(dir(am))  # ['__abs__', '__add__,...] #30+ methods
 
 """
 Every variable, class, function, module is:
@@ -421,6 +440,8 @@ range_lst = list(range(10))
 
 # when use slicing - new copy is created:
 print(range_lst is range_lst[:])  # False
+lst2 = range_lst
+print(lst2 is range_lst) #True
 
 # reverse list
 rev = chars[::-1]
@@ -431,11 +452,11 @@ print(chars)
 
 # iterate through list with index
 collections = ['set', 'list', 'dict']
-for idx, col in enumerate(collections):
+for idx, col in enumerate(collections,1):
     print(idx, col)
-# 0 set
-# 1 list
-# 2 dict
+# 1 set
+# 2 list
+# 3 dict
 
 collections.append('tuple')
 collections.extend(['tuple', 'frozenset'])  # new list contents added to the end
@@ -466,9 +487,12 @@ empty_tuple1 = ()
 empty_tuple2 = tuple()
 
 immutables = (int, float, str)
+print(immutables)
 # immutables[0] = (list,) #error - can't change tuple!
 blink = ([], [])
+print(blink)
 blink[0].append(1)  # Ok - element is mutable
+print(blink)
 
 print(int in immutables)  # True
 
@@ -477,8 +501,12 @@ hash(tuple())  # 131324
 
 # Add coma when init from one element, otherwise it will not be a tuple
 one_elem_tuple = (1,)
-# guess_what = (1)
-# type(guess_what)  # int
+print(type(one_elem_tuple))
+guess_what = (1)
+print(type(guess_what))  # int
+guess_what = (1,2)
+print(type(guess_what))  # tuple
+
 
 # * Dictionaries
 
@@ -494,15 +522,14 @@ collections_map = {
 }
 print(collections_map['immutable'])
 
-print('elem' in collections_map)  # searches in .keys
-print('elem' in collections_map.keys())  # same but explicit
-print('elem' in collections_map.values())
-print(('elem', 'val') in collections_map.items())
-for mkey, mval in collections_map.items():
-    print(mkey, mval)
+print('mutable' in collections_map)  # searches in .keys
+print('mutable' in collections_map.keys())  # same but explicit
+print(['tuple', 'frozenset'] in collections_map.values())
+print(('mutable', ['list', 'set', 'dict']) in collections_map.items())
+print(('key', 'val') in collections_map.items())
+for mkey, mval in collections_map.items(): print(mkey, mval)
 lst_items = collections_map.items()
-print(lst_items)  # now list of tuples
-# [('mutable', ['set', 'list']), ('immutable', ['tuple', 'frozenset')]
+print(lst_items)  # now list of tuples: [('mutable', ['set', 'list']), ('immutable', ['tuple', 'frozenset')]
 
 # Absent key:
 # print(collections_map['irresistible']) # KeyError: not found
@@ -523,10 +550,58 @@ print(collections_map.pop('mutable'))
 # Update existing
 collections_map.update({'irresistible': 'some2'})
 
+# Starting prom Python 3.6 dict keeps the order in which items were added (still not sorted!)
+# If we iterate through dict - iteration goes in the order of addition
+
+# Sort dict items by key
+my_dict = {'b': 1, 'a': 2, 'c': 3}
+sorted_dict_by_key = dict(sorted(my_dict.items()))
+# Result: {'a': 2, 'b': 1, 'c': 3}
+
+# Sort dict items by value
+my_dict = {'a': 2, 'b': 1, 'c': 3}
+sorted_dict_by_value = dict(sorted(my_dict.items(), key=lambda item: item[1]))
+# Result: {'b': 1, 'a': 2, 'c': 3}
+
+
+
+
 # Ordered dictionary is a special type:
 from collections import OrderedDict
 
 ordered = OrderedDict()  # same as std::map in C++
+
+
+# defaultdict
+
+from collections import defaultdict
+d = defaultdict(list)
+
+d['fruits'].append('apple')
+d['vegetables'].append('carrot')
+print(d)
+print(d['juices'])
+#defaultdict(<class 'list'>, {'fruits': ['apple'], 'vegetables': ['carrot']})
+#[]
+
+d = defaultdict(list)
+for i in range(5):
+    d[i].append(i)
+
+print("Dictionary with values as list:")
+print(d)
+#Dictionary with values as list:
+#defaultdict(<class 'list'>, {0: [0], 1: [1], 2: [2], 3: [3], 4: [4]})
+
+d = defaultdict(int)
+a = [1, 2, 3, 4, 2, 4, 1, 2]
+for i in a:
+    d[i] += 1
+
+print(d)
+#defaultdict(<class 'int'>, {1: 2, 2: 3 , 3: 1, 4: 2})
+
+
 
 # * Set
 
@@ -544,8 +619,8 @@ print('elem' in nonempty_set)
 
 # Mathematical operations
 
-set1 = {1}
-set2 = {1, 2}
+set1 = {1, 2}
+set2 = {2, 3, 4}
 
 union_set = set1 | set2
 intersection_set = set1 & set2
@@ -557,9 +632,65 @@ symmetric_difference_set = set1 ^ set2
 # Frozenset is immutable
 
 frozen = frozenset(['Anna', 'Elsa', 'Kristoff'])
-
-
 # frozen.add('Olaf') #-> error!
+
+# Declarations summary
+lst = []
+lst = list()
+lst = [1]
+
+tpl = ()
+tpl = tuple()
+tpl = (1,) #one item
+tpl = (1,2)
+
+dct = {}
+dct = dict()
+dct = {'k': 1}
+
+s = set()
+s = {1} #nonempty
+
+fs = frozenset()
+fs = frozenset(['Anna', 'Elsa', 'Kristoff']) #iterable
+
+# Enums
+
+from enum import Enum
+
+class Season(Enum):
+    SPRING = 1
+    SUMMER = 2
+    AUTUMN = 3
+    WINTER = 4
+
+print(Season.SUMMER)
+print(Season.SUMMER.name)
+print(Season.SUMMER.value)
+
+# Great pattern to inherit from str:
+
+class OrderType(str, Enum):
+    BID = "bid"
+    ASK = "ask"
+
+# Can be compared with string directly
+order_type = OrderType.BID
+
+print(order_type == "bid")      # True - works as string
+print(order_type == OrderType.BID)  # True - works as enum
+print(order_type == "ask")   #False
+
+# Automatic data validation:
+
+def process_order(order_type: OrderType):
+    print(f"Processing {order_type} order")
+
+process_order(OrderType.BID)  # OK
+process_order("bid")          # OK - converted from string automatically
+process_order("invalid")      # Error - invalid value for enum
+
+
 
 
 # * Functions
@@ -586,8 +717,8 @@ def add(u: int, w: int) -> int:
     return u + w
 
 
-add(1, 2)  # 3
-# add('still ', 'works')  # 'still works'
+print(add(1, 2))  # 3
+print(add('still ', 'works'))  # 'still works', types are only hints
 
 
 # Params passed by reference
@@ -627,30 +758,25 @@ hello('John', 'hi!')  # John, hi!
 
 # Function doesn't change global val
 counter = 1
-
-
 def inc(value):
     value += 1
-
-
-# inc(counter) -> Error
+inc(counter)
+print(counter) # 1
 
 # Default args
 def helloer(dude, hello_msg='hello, '):
     return hello_msg + dude
 
-
-helloer('Vasya')
+print(helloer('Vasya'))
 
 
 # Variable num of args
 def printer(*args):
-    type(args)  # <class 'tuple'>
+    print(type(args))  # <class 'tuple'>
     for arg in args:
         print(arg)
 
-
-print(1, 2, 3, 4)
+printer(1, 2, 3, 4)
 # <class 'tuple'>
 # 1
 # 2
@@ -659,21 +785,27 @@ print(1, 2, 3, 4)
 
 # We can unfold list into list of args
 lst = ['red', 'green', 'blue']
-printer(lst)
-
-
+printer(*lst)
 # <class 'tuple'>
 # red
 # green
 # blue
 
+# Same result - we just need iterable
+st = {'red', 'green', 'blue'}
+printer(*st)
+
+tp = ('red', 'green', 'blue')
+printer(*tp)
+
+# Pass variable number of args to another function
 def caller1(func, params):
-    return func(*params)  # pass variable number of args to another function
+    return func(*params)
 
 
 # Variable num args and dict
 def printer2(**kv_args):
-    type(kv_args)  # <class 'dict'>
+    print(type(kv_args))  # <class 'dict'>
     for k, v in kv_args.items():
         print('{key} : {val}'.format(key=k, val=v))
 
@@ -696,11 +828,12 @@ f1 = open('filename', text_modes[1])
 
 num_symbols_written = f1.write('Some multiline\nstring')
 print(num_symbols_written)  # 21
-
 f1.close()
+
 # better way (will be closed):
 with open('filename', 'r+') as f2:
     s = f2.write('tst')
+
 # file will be closed anyway when program exits or by GC,
 # but better to close as soon as we don't need it since descriptors can end
 
@@ -718,11 +851,9 @@ lst = f3.readlines()  # ['line1\n', 'line2\n',...]
 f3.close()
 
 import os
-
 os.remove('filename')
-
-
 # f.read() ->i/o error
+
 
 
 # FUNCTIONAL PROGRAMMING
